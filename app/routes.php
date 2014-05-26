@@ -13,12 +13,18 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('home');
 });
 
 Route::get('users', function()
 {
-    $users = User::all();
+    // $users = User::all();
 
-    return View::make('users')->with('users', $users);
+    // return View::make('users')->with('users', $users);
+    return View::make('hi');
 });
+Route::post('test', 'UserController@test');
+
+	
+
+// Route::get('users/{id}', 'UserController@showProfile');

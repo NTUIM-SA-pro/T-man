@@ -1,0 +1,32 @@
+.nvbar{
+	position: relative;
+	width: 100%;
+	padding: 5px;
+	padding-bottom: 10px;
+	background-color: blue;
+}
+#input1, #input2{
+	width: 50%;
+}
+#alert1, #alert2, #alert3{
+	font-size: 12px;
+	display: inline;
+	color: red;
+}
+#inputbox{
+	margin-top: 3%;
+	width:50%;
+	position: relative;
+	background-color: #8EC5C6;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 18px;
+}
+
+body{
+	font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", serif;
+ 	background-color: #CDE5FF;
+ 	padding: 0;
+ 	margin: 0;
+ }
+

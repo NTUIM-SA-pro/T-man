@@ -23,7 +23,26 @@ class WorkController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$name = Input::get('workName');
+		$id = 1;
+		$host= 1;
+		// $img = Input::get('image');
+		$des = Input::get('description');
+		$reward = Input::get('reward');
+		$status = 1;
+		$date = Input::get('date');
+
+		$work = Work::create(
+			array(
+				'host'=>$host,
+				'img'=>'TEDRDTRDTD', 
+				'name'=>$name, 
+				'descroption'=>$des,
+				'reward'=>$reward, 'status'=>$status,
+				'emergency'=>$date));
+		if($work){
+			return Redirect::route('newwork');
+		}
 	}
 
 

@@ -11,20 +11,37 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('home');
-});
+// Route::get('/', function()
+// {
+// 	return View::make('home');
+// });
 
-Route::get('users', function()
-{
-    // $users = User::all();
+// Route::get('users', function()
+// {
+//     // $users = User::all();
 
-    // return View::make('users')->with('users', $users);
-    return View::make('hi');
-});
-Route::post('test', 'UserController@test');
+//     // return View::make('users')->with('users', $users);
+//     return View::make('hi');
+// });
 
-	
+Route::any('/home', array(
+	'as'=>'home',
+	'uses'=>'UsersController@home'
+));
+// Route::get('/', array(
+// 	'as'=>'home',
+// 	'uses'=>'HomeController@mail'
+// ));
 
-// Route::get('users/{id}', 'UserController@showProfile');
+
+// Route::get('users', function()
+// {
+//     $users = User::all();
+
+//     return View::make('users')->with('users', $users);
+// });
+Route::get('logout','UsersController@logout');
+// Route::resource('users', 'UsersController');
+Route::post('register','UsersController@register');
+Route::post('signin','UsersController@login');
+

@@ -1,7 +1,7 @@
-@extends('layout')
+@extends('layouts.default')
 
 @section('content')
     @foreach($users as $user)
-        <p>{{ $user->name }}</p>
+        <a class="ui green button">{{ $user->account }}</a>
     @endforeach
 @stop

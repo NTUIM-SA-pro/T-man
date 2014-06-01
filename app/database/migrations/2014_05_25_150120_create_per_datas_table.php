@@ -18,14 +18,12 @@ class CreatePerDatasTable extends Migration {
         	$table->string('name');
         	$table->string('img');
         	$table->string('dept');
-        	$table->string('mail');
         	$table->string('background');
-        	$table->integer('user_id')->unsigned();
-        	// foreign key, 指到users 的id
+        	/*$table->integer('user_id')->unsigned();
         	$table->foreign('user_id')
       		      ->references('id')->on('users')
       		      ->onDelete('cascade')
-      		      ->onUpdate('cascade');
+      		      ->onUpdate('cascade');*/
         	$table->timestamps();
     	});
 	}

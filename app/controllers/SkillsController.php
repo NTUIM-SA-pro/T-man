@@ -1,6 +1,6 @@
 <?php
 
-class SkillsController extends \BaseController {
+class SkillsController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

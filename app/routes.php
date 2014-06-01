@@ -28,20 +28,12 @@ Route::any('/home', array(
 	'as'=>'home',
 	'uses'=>'UsersController@home'
 ));
-// Route::get('/', array(
-// 	'as'=>'home',
-// 	'uses'=>'HomeController@mail'
-// ));
 
-
-// Route::get('users', function()
-// {
-//     $users = User::all();
-
-//     return View::make('users')->with('users', $users);
-// });
-Route::get('logout','UsersController@logout');
 // Route::resource('users', 'UsersController');
+
+Route::get('logout','UsersController@logout');
 Route::post('register','UsersController@register');
 Route::post('signin','UsersController@login');
+
+Route::resource('home/work', 'WorkController');
 

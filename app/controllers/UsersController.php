@@ -29,6 +29,12 @@ class UsersController extends BaseController {
 	 *
 	 * @return Response
 	 */
+	public function store()
+	{
+		//
+	}
+
+	
 	public function register()
 	{
 		$account = Input::get('account');
@@ -41,8 +47,17 @@ class UsersController extends BaseController {
     		array('account' => $account, 'password' => $password, 'type' => 5,'remember_token'=>'klsf')
 		);
 
+		$user->perData()->insert(array());
+
 		if($user){
-			return Redirect::route('home')->with('success','register success');
+			$auth = Auth::attempt(array(
+			'account' => $account,
+			'password' => $tempPassword));
+			if($auth){
+				return Redirect::route('home');
+			}
+
+			//return Redirect::route('home')->with('success','register success');
 		}
 	}
 	public function login()

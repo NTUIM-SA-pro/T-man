@@ -41,8 +41,20 @@ class UsersController extends BaseController {
     		array('account' => $account, 'password' => $password, 'type' => 5,'remember_token'=>'klsf')
 		);
 
-		if($user){
-			return Redirect::route('home')->with('success','register success');
+		$person = new Perdata;
+
+
+
+		$save = $user->perData()->save($person);
+
+		if($save){
+			$auth = Auth::attempt(array(
+			'account' => $account,
+			'password' => $tempPassword));
+			if($auth){
+				return Redirect::route('home');
+			}
+			// return Redirect::route('home')->with('success','register success');
 		}
 	}
 	public function login()
@@ -61,10 +73,8 @@ class UsersController extends BaseController {
 			return Redirect::route('home');
 		}
 		else{
-			return 'fucku';
-		}
-
-		
+			return '帳號or密碼輸入錯誤';		
+			}	
 	}
 
 	public function logout()

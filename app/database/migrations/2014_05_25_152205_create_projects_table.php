@@ -18,7 +18,18 @@ class CreateProjectsTable extends Migration {
         	$table->dateTime('time');
         	$table->string('description');
         	$table->timestamps();
-    	});
+        	$table->integer('post_by')->unsigned();
+        	$table->foreign('post_by')
+      		      ->references('id')->on('users')
+      		      ->onDelete('cascade')
+      		      ->onUpdate('cascade');    
+      		$table->integer('taken_by')->unsigned();
+      		$table->foreign('taken_by')
+      		      ->references('id')->on('users')
+      		      ->onDelete('cascade')
+      		      ->onUpdate('cascade');   
+
+      	});
 	}
 
 	/**

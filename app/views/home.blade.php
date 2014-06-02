@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<div id='left-container'>
+
 			<div class = "row">
 				<div class="one column stackable ui grid" >
 					<div class="column">
@@ -9,6 +10,9 @@
 								<img class="head-profile"src="img/handsome.jpg"/>
 							</div>
 							<div class="field">
+								@if(Session::has('error_message') )
+					<p>{{Session::get('error_message')}}</p>
+					@endif
 								<div class="profile-name">台大資管<span style="margin-left:20%;">小帥</span>
 								</div>
 							</div>
@@ -199,44 +203,44 @@
 		</div>
 		<div class="content">
 				<form id='register_form' action="register" method="POST">
-				<div class="ui form" >
+					<div class="ui form" >
 
-					<div class="field register" >
-						<label>帳號</label>
-						<input type="text" name="account" placeholder="請使用有效的Email">
-					</div>
-					<div class="field register">
-						<label>密碼</label>
-						<input type="password" name="password" placeholder="請使用四位數以上的密碼">
-					</div>
-					<div class="field register" >
-						<label>請再輸入一次</label>
-						<input type="password" name="checkPassword" placeholder="請使用四位數以上的密碼">
-					</div>
-					
-					<div class="field"  >
-						<div class="ui positive right labeled icon submit button ok" style="width:49%;">
-							OK
-							<i class="checkmark icon"></i>
+						<div class="field register" >
+							<label>帳號</label>
+							<input type="text" name="account" placeholder="請使用有效的Email">
 						</div>
-						<div class="ui black button cancel" style="width:49%;">
-							Cancel
+						<div class="field register">
+							<label>密碼</label>
+							<input type="password" name="password" placeholder="請使用四位數以上的密碼">
 						</div>
-			
+						<div class="field register" >
+							<label>請再輸入一次</label>
+							<input type="password" name="password-again" placeholder="請使用四位數以上的密碼">
+						</div>
+						
+						<div class="field"  >
+							<div class="ui positive right labeled icon submit button ok" style="width:49%;">
+								OK
+								<i class="checkmark icon"></i>
+							</div>
+							<input type="reset"class="ui black button cancel" style="width:49%;" value="reset">
+								<!-- Reset -->
+							<!-- </div> -->
+				
+						</div>
+
 					</div>
-					<!-- <div class="ui error message"></div> -->
-				</div>
 				</form>
 		</div>
 	</div>
 
-	<div class="ui signin modal" style="width:60%;margin-left:-30%;">
+	<div class="ui login modal" style="width:60%;margin-left:-30%;">
 		<i class="close icon"></i>
 		<div class="header">
 			登入
 		</div>
 		<div class="content">
-				<form id='signin_form' action="signin" method="POST">
+				<form id='login_form' action="login" method="POST">
 				<div class="ui form" >
 
 					<div class="field register" >
@@ -253,12 +257,13 @@
 							登入
 							<i class="checkmark icon"></i>
 						</div>
-						<div class="ui black button cancel" style="width:49%;">
-							Cancel
-						</div>
+						<input type="reset"class="ui black button cancel" style="width:49%;" value="reset">
 			
 					</div>
-					<!-- <div class="ui error message"></div> -->
+					@if(Session::has('error_message') )
+					{{Session::get('error_message')}}
+					@endif
+					<div class="ui error message">asa</div>
 				</div>
 				</form>
 		</div>

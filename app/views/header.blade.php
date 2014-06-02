@@ -10,13 +10,20 @@
 	</a>
 	<div class="right menu">
 		@if(Auth::check())
-			<a class="item signout">
-				<i class="user icon"></i>
-				{{Auth::user()->account}}
-			</a>
 			<a class="item">
-				<i class="bell outline icon"></i>訊息
+				<i class="bell outline icon"></i>通知
 			</a>
+			<div class="ui dropdown item">
+				<i class="user icon"></i>
+      			關於我 
+	      		<i class="dropdown icon"></i>
+	      		<div class="menu">
+			        <a class="item">個人頁面</a>
+			        <a class="item">設定</a>
+			        <a class="item">登出</a>
+      			</div>
+    		</div>
+			
 			<a class="item logout" href="/logout">
 				<i class="sign out icon"></i>登出
 			</a>

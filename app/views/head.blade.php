@@ -14,24 +14,49 @@
 
  var settings = {
         inline : true,
-        on : 'submit'
+        on : 'submit',
+        onSuccess: function(){
+            $("#register_form").submit();
+
+        }
     };
     var rules = {
-        account: {
+          account: {
               identifier  : 'account',
               rules: [
                 {
                   type   : 'empty',
-                  prompt : 'Please enter a gender'
+                  prompt : '還沒輸入Email唷!!'
+                },
+                {
+                  type:  'email',
+                  prompt:'請使用有效的Email!!'
                 }
               ]
             },
-            name: {
+          password: {
               identifier  : 'password',
               rules: [
                 {
                   type   : 'empty',
-                  prompt : 'Please enter your name'
+                  prompt : '還沒輸入密碼唷!!'
+                },
+                {
+                  type   : 'length[4]',
+                  prompt : '至少需要4位密碼!!'
+                }
+              ]
+        },
+          password_again: {
+              identifier  : 'password-again',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : '請再輸入一次密碼!!'
+                },
+                {
+                  type   : 'match[password]',
+                  prompt : '兩次密碼不一致，請再輸入一次!!'
                 }
               ]
         }
@@ -40,35 +65,42 @@
 
   $('a.item.register').click(function(){
       $('.register.modal').modal('show');
+      
     });
-    $('#register_form .ui.black.button.cancel').click(function(){
-      $('.register.modal').modal('hide');
-    });
+    // $('#register_form .ui.black.button.cancel').click(function(){
+    //   $('.register.modal').modal('hide');
+    // });
   $('a.item.login').click(function(){
-      $('.signin.modal').modal('show');
+      $('.login.modal').modal({onHide:function(){
+        
+          // $('.error.message').hide();
+          alert('12');
+          }
+        }).modal('show');
     });
-    $('#signin_form .ui.black.button.cancel').click(function(){
-      $('.signin.modal').modal('hide');
+    $('#login_form .ui.black.button.cancel').click(function(){
+      // alert('12');
+      $('.lognin.modal').modal('hide');
     });
 
-  $('#signin_form .button.ok').click(function(){
-      $("#signin_form").submit();
+  $('#login_form .button.ok').click(function(){
+      // $("#login_form").submit();
+      $.ajax({
+        url:'login',
+        type:'POST',
+        data:$('#login_form').serialize(),
+        success: function(message){
+          // alert(message);
+          $('.error.message').html(message).show();
+        },
+        error:function(){
+          alert('wrong');
+        }
+      })
   });
-  $('#register_form .button.ok').click(function(){
-  //   var a1 = $(".ui.form input[name='account']").val();
-  //   var a2 = $(".ui.form input[name='password']").val();
-  //   var a3 = $(".ui.form input[name='checkPassword']").val();
-  //   console.log(a1);
-  //     $.ajax({
-  //       type:'POST',
-  //       url: 'register',
-  //       data: {account:a1,password:a2},
-  //       success:function(){
-  //         $('.test.modal').modal('hide');
-  //       }
-  //     })
-   $("#register_form").submit();
-  });
+  // $('#register_form .button.ok').click(function(){
+
+  // });
 
   $('#register_form .ui.form').form(rules,settings);
   

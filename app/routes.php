@@ -43,5 +43,5 @@ Route::any('/home', array(
 Route::get('logout','UsersController@logout');
 // Route::resource('users', 'UsersController');
 Route::post('register','UsersController@register');
-Route::post('signin','UsersController@login');
+Route::post('login','UsersController@login');
 

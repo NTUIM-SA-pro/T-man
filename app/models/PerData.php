@@ -3,15 +3,15 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class Perdata extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('account','password','type');
-	protected $table = 'users';
+	// protected $fillable = array('account','password','type');
+	protected $table = 'per_datas';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -80,10 +80,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
-
-	public function perData()
+	public function user()
 	{
-		return $this -> hasOne('PerData');
+		return $this->belongsTo('User');
 	}
-
 }

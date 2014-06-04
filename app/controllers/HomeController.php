@@ -15,10 +15,17 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function test()
 	{
-		return View::make('hello');
+		$user = User:: find(1);
+		echo '<pre>' , print_r($user), '</pre>';
+		// return View::make('hello');
 	}
-	
+	public function mail()
+	{
+		Mail::send('emails.auth.test',array('name'=>'ttt'),function($message){
+			$message->to('lbj23k1@gmail.com','asas')->subject('subject');
+		});
+	}
 
 }

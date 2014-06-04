@@ -1,6 +1,6 @@
 <?php
 
-class WorkController extends \BaseController {
+class SkillsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -10,9 +10,6 @@ class WorkController extends \BaseController {
 	public function index()
 	{
 		//
-        $works = Work::all();
-
-        return View::make('works')->with('works', $works);
 	}
 
 
@@ -23,35 +20,7 @@ class WorkController extends \BaseController {
 	 */
 	public function create()
 	{
-		$workname = Input::get('workName');
-		$id = 1;
-		$host= 1;
-		$img = Input::file('image');
-		$name = $img->getClientOriginalName();
-
-		preg_match('/.*(\.\w*)/', $name,$match);
-		$des = Input::get('description');
-		
-
-		$reward = Input::get('reward');
-		$status = 1;
-		$date = Input::get('date');
-
-		$destinationPath = 'public/uploads';
-		$filename = str_random(12).$match[1];
-		$upload_success = $img->move($destinationPath, $filename);
-
-		$work = Work::create(
-			array(
-				'host'=>$host,
-				'img'=> $destinationPath.'/'.$filename, 
-				'name'=>$workname, 
-				'description'=>$des,
-				'reward'=>$reward, 'status'=>$status,
-				'emergency'=>$date));
-		if($work && $upload_success ){
-			return Redirect::route('newwork');
-		}
+		//
 	}
 
 

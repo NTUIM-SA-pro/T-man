@@ -2,22 +2,19 @@
 <html>
 <head>
 
-<script src="public/js/jquery.js"></script>
-<link rel="stylesheet" type="text/css" href="public/css/workstyle.css">
+<script src="js/jquery.js"></script>
+<script src="jqueryui/js/jquery-ui-1.10.4.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/workstyle.css">
+<link rel="stylesheet" type="text/css" href="css/semantic/packaged/css/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="jqueryui/css/smoothness/jquery-ui-1.10.4.custom.min.css">
 <title>新工作</title>
-<?php 
-	echo HTML::style('../public/css/semantic/packaged/css/semantic.min.css'); 
-	echo HTML::style('../public/css/workstyle.css'); 
-	echo HTML::script('../public/js/jquery.js');
-	echo HTML::script('../public/css/workstyle.css');
-	echo HTML::script('../public/jqueryui/js/jquery-ui-1.10.4.custom.min.js');
-	echo HTML::style('../public/jqueryui/css/smoothness/jquery-ui-1.10.4.custom.min.css');
-?>	
+
 
 <script>
 $(document).ready(function(){
 	$("#datepick").datepicker();
-
+	$("#datepick").datepicker("option","dateFormat","yy-mm-dd");
+	
 	$('#alert1').hide();
 	$('#alert2').hide();
 	$('#alert3').hide();
@@ -114,7 +111,7 @@ $(document).ready(function(){
 
 
 	<!--Input part-->
-	<form action="createNewWork" method="POST" class="ui fluid form">
+	<form action="createNewWork" method="POST" class="ui fluid form" enctype="multipart/form-data">
 		<div class="four wide column">
 			<div id="inputbox" class="ui warning form segment">
 				<h2>新增任務</h2>
@@ -141,7 +138,7 @@ $(document).ready(function(){
   				<div class="ui form">
   					<div  class="field">
     					<label>工作敘述</label>
-    					<textarea name="discription"></textarea>
+    					<textarea type="text" name="description"></textarea>
   					</div>
 				</div>
   				<div class="field">

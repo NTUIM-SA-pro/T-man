@@ -11,22 +11,48 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+// Route::get('/', function()
+// {
+// 	return View::make('home');
+// });
 
-Route::get('users', function()
-{
-    $users = User::all();
+// Route::get('users', function()
+// {
+//     // $users = User::all();
 
-    return View::make('users')->with('users', $users);
-});
+//     // return View::make('users')->with('users', $users);
+//     return View::make('hi');
+// });
+
+Route::any('/home', array(
+	'as'=>'home',
+	'uses'=>'UsersController@home'
+));
+// Route::get('/', array(
+// 	'as'=>'home',
+// 	'uses'=>'HomeController@mail'
+// ));
+
+
+// Route::get('users', function()
+// {
+//     $users = User::all();
+
+//     return View::make('users')->with('users', $users);
+// });
+Route::get('logout','UsersController@logout');
+// Route::resource('users', 'UsersController');
+Route::post('register','UsersController@register');
+Route::post('login','UsersController@login');
+
 Route::resource('work', 'WorkController');
 
-Route::get('newwork', function()
+Route::get('newwork',array('as'=>'newwork' ,function()
 {
 	return View::make('work');
-});
+}));
 
-Route::POST('createNewWork', 'WorkController@create');
+Route::post('createNewWork', 'WorkController@create');
+
+
+Route::get('test','UsersController@test');

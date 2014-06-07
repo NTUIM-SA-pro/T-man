@@ -61,13 +61,13 @@
 		</div>
 		<div class = "row">
 			<div class="three column stackable ui grid">
-				<?php foreach ($works as $work) {?>
+				<?php //foreach ($works as $work) {?>
 				<div class="column">
 					<div class="ui segment">
 						<div class="ui dimmer">
 							<div class="content">
 								<div class="task-desc">
-									<p>敘述：<?php echo $work->description; ?></p>
+									<p>敘述：<?php //echo $work->description; ?></p>
 								</div>
 								<div class="task-choose">
 									<a class="ui green button" style="width:200px;text-align:center;">接任務</a>
@@ -76,20 +76,20 @@
 						</div>
 						<div class="task-label">HOT</div>
 						<div class="field">
-							<img src="img/<?php echo $work->img?>" class="head-profile">
+							<img src="img/<?php //echo $work->img?>" class="head-profile">
 						</div>
 						<div class="field">
-							<div class="task-title">任務：<?php echo $work->name; ?></div>
+							<div class="task-title">任務：<?php //echo $work->name; ?></div>
 						</div>
 						<div class="field">
-							<div class="task-creator">發起人:<?php echo $work->creator;?></div>
+							<div class="task-creator">發起人:<?php //echo $work->creator;?></div>
 						</div>
 						<div class="field">
-							<div class="task-date"><?php echo $work->dueTime;?></div>
+							<div class="task-date"><?php //echo $work->dueTime;?></div>
 						</div>
 					</div>
 				</div>
-				<?php }?>
+				<?php //}?>
 				<div class="column">
 					<div class="ui segment">
 						<div class="ui dimmer">

@@ -50,7 +50,7 @@ class WorkController extends \BaseController {
 				'reward'=>$reward, 'status'=>$status,
 				'emergency'=>$date));
 		if($work && $upload_success ){
-			return Redirect::route('newwork');
+			return Redirect::route('home');
 		}
 	}
 

@@ -13,6 +13,13 @@ class CreateWorkSkillsTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::create('workSkills', function($table){
+			$table->foreign('work_id')
+				->references('id')->on('works');
+			$table->foreign('skill_id')
+				->references('id')->on('skills');
+			$table->primary(array('work_id', 'skill_id'));
+		})
 	}
 
 	/**

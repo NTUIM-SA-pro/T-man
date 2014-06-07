@@ -41,36 +41,32 @@ class UsersController extends BaseController {
 		$account = Input::get('account');
 		$tempPassword = Input::get('password');
 		$password = Hash::make($tempPassword);
-		
-		// $type = Input::get('checkPassword');
+
 
 		$user = User::create(
-    		array('account' => $account, 'password' => $password, 'type' => 5)
+    		array('account' => $account, 'password' => $password)
 		);
 
-		$person = new Perdata;
+		$profile = new Profile;
 
 
 
-		$save = $user->perData()->save($person);
+		$save = $user->profile()->save($profile);
 
 		if($save){
 			$auth = Auth::attempt(array(
 			'account' => $account,
-			'password' => $tempPassword));
+			'password' => $tempPassword),true);
 			if($auth){
 				return Redirect::route('home');
 			}
-			// return Redirect::route('home')->with('success','register success');
+			else return 'error';
 		}
 	}
 	public function login()
 	{
 		$account = Input::get('account');
 		$password = Input::get('password');
-		// echo $password;
-		// $password = Hash::make($tempPassword);
-
 
 
 		$auth = Auth::attempt(array(

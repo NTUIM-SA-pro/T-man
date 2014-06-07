@@ -20,9 +20,13 @@ class CreateWorksTable extends Migration {
 			$table->string('description');
 			$table->string('reward');
 			$table->string('img');
+
+
+            $table->integer('user_id')->unsigned();
+
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->integer('status');
-			// $table->timestamp('dueTime');
+			$table->timestamp('dueTime');
 			$table->timestamps();
 		});
 		
@@ -35,7 +39,9 @@ class CreateWorksTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+
+        Schema::drop('works');
+
 	}
 
 }

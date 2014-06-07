@@ -24,17 +24,16 @@ class WorkController extends \BaseController {
 	public function create()
 	{
 		$workname = Input::get('workName');
-		$id = 1;
-		$host= 1;
 		$img = Input::file('image');
 		$name = $img->getClientOriginalName();
 
 		preg_match('/.*(\.\w*)/', $name,$match);
 		$des = Input::get('description');
 		
-
+		$user_id = Auth::id();
+		// echo $user_id;
 		$reward = Input::get('reward');
-		$status = 1;
+		$status = 0;
 		$date = Input::get('date');
 
 		$destinationPath = 'public/uploads';
@@ -43,12 +42,14 @@ class WorkController extends \BaseController {
 
 		$work = Work::create(
 			array(
-				'host'=>$host,
-				'img'=> $destinationPath.'/'.$filename, 
 				'name'=>$workname, 
 				'description'=>$des,
-				'reward'=>$reward, 'status'=>$status,
-				'emergency'=>$date));
+				'reward'=>$reward, 
+				'img'=> $destinationPath.'/'.$filename, 
+				'status'=>$status,
+				'user_id'=>$user_id,
+				'dueTime'=>$date
+				));
 		if($work && $upload_success ){
 			return Redirect::route('home');
 		}

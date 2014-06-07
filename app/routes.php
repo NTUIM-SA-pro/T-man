@@ -56,4 +56,6 @@ Route::post('createNewWork', 'WorkController@create');
 
 
 Route::get('test','UsersController@test');
-
+Route::get('profile', array('as' => 'profile', 'uses' => 'profileController@get_index'));
+Route::get('profileModify', array('as'=>'profile_modify', 'uses'=>'profileController@get_modify'));
+Route::post('profileUpdate', array('uses'=>'profileController@post_update'));

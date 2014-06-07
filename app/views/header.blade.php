@@ -1,5 +1,5 @@
 <div class="ui blue inverted menu" style="background-color: #1987FF">
-	<a class="active item">
+	<a class="active item" href="home">
 		<i class="home icon"></i> T-MAN
 	</a>
 	<a class="item">
@@ -18,7 +18,7 @@
       			關於我 
 	      		<i class="dropdown icon"></i>
 	      		<div class="menu">
-			        <a class="item">個人頁面</a>
+			        <a class="item" href='profile'>個人頁面</a>
 			        <a class="item">設定</a>
 			        <a class="item">登出</a>
       			</div>

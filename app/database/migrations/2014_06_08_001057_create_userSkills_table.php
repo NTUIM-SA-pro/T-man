@@ -14,11 +14,14 @@ class CreateUserSkillsTable extends Migration {
 	{
 		//
 		Schema::create('userSkills', function($table){
+            $table->integer('user_id')->unsigned();
 			$table->foreign('user_id')
-				->references('id')->on('users');
+				->references('id')->on('users')->onDelete('cascade');
+            $table->integer('skill_id')->unsigned();
 			$table->foreign('skill_id')
-				->references('id')->on('skills');
+				->references('id')->on('skills')->onDelete('cascade');
 			$table->primary(array('user_id', 'skill_id'));
+            $table->timestamps();
 		});
 	}
 
@@ -30,6 +33,7 @@ class CreateUserSkillsTable extends Migration {
 	public function down()
 	{
 		//
+        Schema::drop('userSkills');
 	}
 
 }

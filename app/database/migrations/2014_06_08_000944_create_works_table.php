@@ -25,7 +25,7 @@ class CreateWorksTable extends Migration {
 			$table->integer('status');
 			$table->timestamp('dueTime');
 			$table->timestamps();
-		})
+		});
 		
 	}
 

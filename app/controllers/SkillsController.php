@@ -9,7 +9,7 @@ class SkillsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+	
 	}
 
 

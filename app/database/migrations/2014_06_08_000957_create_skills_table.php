@@ -13,6 +13,15 @@ class CreateSkillsTable extends Migration {
 	public function up()
 	{
 		//
+        Schema::create('skills', function($table)
+        {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('description');
+            $table->foreign('cata_id')->references('id')->on('catagorys')->onDelete('cascade');
+            $table->timestamps();
+
+        });
 	}
 
 	/**
@@ -23,6 +32,7 @@ class CreateSkillsTable extends Migration {
 	public function down()
 	{
 		//
+        Schema::drop('skills');
 	}
 
 }

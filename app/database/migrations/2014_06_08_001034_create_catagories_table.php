@@ -13,6 +13,14 @@ class CreateCatagoriesTable extends Migration {
 	public function up()
 	{
 		//
+        Schema::create('catagorys', function($table)
+        {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('description');
+            $table->timestamps();
+
+        });
 	}
 
 	/**
@@ -23,6 +31,7 @@ class CreateCatagoriesTable extends Migration {
 	public function down()
 	{
 		//
+        Schema::drop('catagorys');
 	}
 
 }

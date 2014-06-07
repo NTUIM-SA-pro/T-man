@@ -19,7 +19,7 @@ class CreateWorkSkillsTable extends Migration {
 			$table->foreign('skill_id')
 				->references('id')->on('skills');
 			$table->primary(array('work_id', 'skill_id'));
-		})
+		});
 	}
 
 	/**

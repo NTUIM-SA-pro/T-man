@@ -21,7 +21,7 @@ class CreateProfilesTable extends Migration {
 			$table->primary(array('name','user_id'));
 			$table->string('img');
 			$table->string('introduction');
-		})
+		});
 	}
 
 	/**

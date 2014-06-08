@@ -10704,8 +10704,9 @@ a.ui.teal.label:hover:before {
   user-select: text;
 }
 .ui.dimmer > .content > div {
-  display: table-cell;
-  vertical-align: middle;
+  /*display: table-cell;*/
+  display: inline-block;
+  /*vertical-align: middle;*/
   color: #FFFFFF;
 }
 /* Loose Coupling */

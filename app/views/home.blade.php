@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<div id='left-container'>
-	<a href="/test">1221</a>
+	<a href="<?php echo $url = URL::to('test');?>">1221</a>
 			<div class = "row">
 				<div class="one column stackable ui grid" >
 					<div class="column">

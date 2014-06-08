@@ -9,7 +9,7 @@ class UsersController extends BaseController {
 	 */
 	public function home()
 	{
-		return View::make('home');
+		return View::make('index');
 		
 	}
 	public function test()

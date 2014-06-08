@@ -9,7 +9,9 @@ class UsersController extends BaseController {
 	 */
 	public function home()
 	{
-		return View::make('home');
+		$works = Work::all();
+
+		return View::make('index')->with('works', $works);
 		
 	}
 	public function showHomepage($user_id)

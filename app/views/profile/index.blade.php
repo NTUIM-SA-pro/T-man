@@ -3,7 +3,7 @@
 	@if(isset($message))
 		<p>{{ $message }}</p>
 	@endif
-	<table class="ui table segment" style="width:50%;">
+	<table class="ui table segment" style="height:30%;width:50%;">
 		<tr>
 			<td colspan='2'><img class="head-profile" src="/{{ $data[0]->img }}"></td>
 		</tr>	

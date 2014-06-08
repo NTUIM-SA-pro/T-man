@@ -23,6 +23,37 @@ class CreateSkillsTable extends Migration {
             $table->timestamps();
 
         });
+
+        DB::table('skills')->insert(array(
+        	'name' => 'PHP',
+        	'description' => '',
+        	'cata_id' => 1
+        	));
+        DB::table('skills')->insert(array(
+        	'name' => 'SQL',
+        	'description' => '',
+        	'cata_id' => 1
+        	));
+        DB::table('skills')->insert(array(
+        	'name' => 'ASP',
+        	'description' => '',
+        	'cata_id' => 1
+        	));
+        DB::table('skills')->insert(array(
+        	'name' => 'Clean',
+        	'description' => '',
+        	'cata_id' => 2
+        	));
+        DB::table('skills')->insert(array(
+        	'name' => 'fix PC',
+        	'description' => '',
+        	'cata_id' => 2
+        	));
+        DB::table('skills')->insert(array(
+        	'name' => 'Play',
+        	'description' => '',
+        	'cata_id' => 2
+        	));
 	}
 
 	/**

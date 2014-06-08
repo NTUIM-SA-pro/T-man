@@ -61,7 +61,7 @@
 		</div>
 		@yield('right-container')
 	</div>
-	</article>
+
 
 	
 @stop

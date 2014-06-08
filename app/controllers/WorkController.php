@@ -51,7 +51,7 @@ class WorkController extends \BaseController {
 				'dueTime'=>$date
 				));
 		if($work && $upload_success ){
-			return Redirect::route('home');
+			return Redirect::to("/user/".$user_id."/task");
 		}
 	}
 

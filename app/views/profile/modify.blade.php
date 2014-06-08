@@ -4,11 +4,14 @@
 	$('.ui.selection.dropdown').dropdown();
 	</script>
 	<form method="POST" action="profileUpdate" enctype="multipart/form-data">
-		<table class="ui table segment" style="width:30%;">
+		<table class="ui table segment" style="width:50%;">
 			<tr>
-				<td><img src="{{ $data[0]->img }}"></td>
-				<td><input type="file" name="img"></td>
+				<td colspan='2'><img class="head-profile" src="/{{ $data[0]->img }}"></td>
 			</tr>	
+			<tr>
+				<td><b>Image</td>
+				<td><input type="file" name="img"></td>
+			</tr>
 			<tr>
 				<td><b>Name</td>
 				<td><input type="text" name="name" value="{{ $data[0]->name }}"></td>
@@ -24,7 +27,7 @@
 			</tr>
 			<tr>
 				<td><b>Introduction</td>
-				<td><textarea name="introduction" value="{{ $data[0]->introduction }}"></textarea></td>
+				<td><textarea name="introduction">{{ $data[0]->introduction }}</textarea></td>
 			</tr>
 			<tr>
 				<td><b>New Skill</td>

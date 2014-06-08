@@ -6,7 +6,10 @@
 		<div class="content">
 				<form id='register_form' action="register" method="POST">
 					<div class="ui form" >
-
+						<div class="field register" >
+							<label>綽號</label>
+							<input type="text" name="nickname" placeholder="在T-man上使用的名稱">
+						</div>
 						<div class="field register" >
 							<label>帳號</label>
 							<input type="text" name="account" placeholder="請使用有效的Email">
@@ -26,8 +29,6 @@
 								<i class="checkmark icon"></i>
 							</div>
 							<input type="reset"class="ui black button cancel" style="width:49%;" value="reset">
-								<!-- Reset -->
-							<!-- </div> -->
 				
 						</div>
 
@@ -73,7 +74,7 @@
 	<div class="ui creatework modal">
 		<i class="close icon"></i>
 
-			<form action="createNewWork" method="POST" class="ui fluid form" enctype="multipart/form-data">
+			<form action="/createNewWork" method="POST" class="ui fluid form" enctype="multipart/form-data">
 				<div class="four wide column">
 					<div id="inputbox" class="ui warning form segment">
 						<h2>新增任務</h2>

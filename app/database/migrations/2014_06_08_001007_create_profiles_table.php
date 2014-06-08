@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration {
 				->references('id')->on('users')
 				->onDelete('cascade');
 			$table->primary(array('name','user_id'));
-			$table->string('img')->nullable()->default();;
+			$table->string('img')->nullable()->default('uploads/empty_profile.jpg');
 			$table->string('introduction')->nullable()->default();;
             $table->timestamps();
             $table->boolean('sex')->nullable()->default('1');

@@ -1,8 +1,11 @@
 @extends('layouts.default')
 @section('content')
-	<table class="ui table segment" style="width:30%;">
+	@if(isset($message))
+		<p>{{ $message }}</p>
+	@endif
+	<table class="ui table segment" style="width:50%;">
 		<tr>
-			<td><img src="{{ $data[0]->img }}"></td>
+			<td colspan='2'><img class="head-profile" src="/{{ $data[0]->img }}"></td>
 		</tr>	
 		<tr>
 			<td><b>Name</td>
@@ -31,7 +34,7 @@
 			</td>
 		</tr>
 	</table>
-	<a href="profileModify">
+	<a href="/user/{{Auth::id()}}/profileModify">
 		<div class="ui animated blue button">
 			<div class="visible content">Modify</div>
 			<div class="hidden content">

@@ -12,13 +12,20 @@ class UsersController extends BaseController {
 		return View::make('home');
 		
 	}
-	public function test()
+	public function showHomepage($user_id)
+	{
+		$user = User::find($user_id)->profile;
+		return View::make('user_main')->with('user',$user);
+	}
+	public function test($user_id)
 	{
 		$id = Auth::id();
+		$user = User::find($user_id)->profile;
+		// echo $id;
 		$works = Work::where('user_id','=',$id)->get();
 
-
-		return View::make('right_container')->with('works',$works);
+		// print_r($works);
+		return View::make('right_container')->with('works',$works)->witH('user',$user);	
 	}
 
 	/**
@@ -42,14 +49,14 @@ class UsersController extends BaseController {
 		$account = Input::get('account');
 		$tempPassword = Input::get('password');
 		$password = Hash::make($tempPassword);
-
+		$nickname = Input::get('nickname');
 
 		$user = User::create(
     		array('account' => $account, 'password' => $password)
 		);
 
 		$profile = new Profile;
-
+		$profile->name = $nickname;
 
 
 		$save = $user->profile()->save($profile);

@@ -1,8 +1,11 @@
 @extends('layouts.default')
 @section('content')
-	<table class="ui table segment" style="width:30%;">
+	@if(isset($message))
+		<p>{{ $message }}</p>
+	@endif
+	<table class="ui table segment" style="width:50%;">
 		<tr>
-			<td><img src="{{ $data[0]->img }}"></td>
+			<td colspan='2'><img style="width:100%;height:100%;" src="{{ $data[0]->img }}"></td>
 		</tr>	
 		<tr>
 			<td><b>Name</td>

@@ -4,8 +4,8 @@ class ProfileController extends BaseController{
 	public $restful = true;
 
 	public function get_index(){
-		$id = Auth::user()->id;
-		if(isset($id)){
+		if(isset(Auth::user()->id)){
+			$id = Auth::user()->id;
 			$user_profile = DB::table('users')
 							->join('profiles', 'users.id', '=', 'profiles.user_id')
 							->where('id', $id)
@@ -36,6 +36,7 @@ class ProfileController extends BaseController{
 
 	public function post_update(){
 		$id = Auth::user()->id;
+		$skill_modify = true;
 
 		/*
 		 * get the data from front end. 
@@ -44,28 +45,33 @@ class ProfileController extends BaseController{
 
 		$img = Input::file('img');
 
-		$name = $img->getClientOriginalName();
-		preg_match('/.*(\.\w*)/', $name,$match);
-		$destinationPath = 'public/uploads';
-		$filename = str_random(12).$match[1];
-		$upload_success = $img->move($destinationPath, $filename);
-
+		if(isset($img)){
+			$name = $img->getClientOriginalName();
+			preg_match('/.*(\.\w*)/', $name,$match);
+			$destinationPath = 'public/uploads';
+			$filepath='uploads';
+			$filename = str_random(12).$match[1];
+			$upload_success = $img->move($destinationPath, $filename);
+			DB::table('profiles')->where('user_id', $id)
+									->update( array('img' => $filepath.'/'.$filename));
+									
+		}
 		$sex = Input::get('sex');
 		$intro = Input::get('introduction');
-		$skill = Input::get('skill');
+		$skill = Input::get('skill');	
+
 
 		$profile_modify = DB::table('profiles')
 							->where('user_id', $id)
 							->update(array( 'name' => $profile_name,
-											'img'  => $destinationPath.'/'.$filename,
 											'introduction' => $intro,
 											'sex'  => $sex));
 		if(isset($skill)){
-			$slill_modify = DB::table('userSkills')->insert(
+			$skill_modify = DB::table('userSkills')->insert(
 									array('user_id'=>$id, 'skill_id'=>$skill));
-		}
-								
-		return Redirect::route('profile');
+		}			
+		
+		return Redirect::route('profile')->with('message', 'Update successfully.');
 
 	}
 }

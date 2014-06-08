@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<div id='left-container'>
-	<a href="<?php echo $url = URL::to('user') . '/1';?>">1221</a>
+	<a href="/user/{{Auth::id()}}/task">1221</a>
 			<div class = "row">
 				<div class="one column stackable ui grid" >
 					<div class="column">
@@ -10,7 +10,15 @@
 								<img class="head-profile"src="img/handsome.jpg"/>
 							</div>
 							<div class="field">
-								<div class="profile-name">台大資管<span style="margin-left:20%;">小帥</span>
+								<div class="profile-name">
+									<?php 
+										if(defined($user)){
+											echo $user->name;
+										}
+										else{
+											echo '台大資管<span style="margin-left:20%;">小帥</span>';
+										}
+									?>
 								</div>
 							</div>
 						</div>

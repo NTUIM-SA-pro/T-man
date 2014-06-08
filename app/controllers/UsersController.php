@@ -10,8 +10,12 @@ class UsersController extends BaseController {
 	public function home()
 	{
 		$works = Work::all();
+		$user = NULL;
+		if(Auth::check()){
+			$user = User::find(Auth::id())->profile;
+		}
 
-		return View::make('index')->with('works', $works);
+		return View::make('index')->with('works', $works)->with('user', $user);
 		
 	}
 	public function showHomepage($user_id)

@@ -1,8 +1,8 @@
 <div class="ui blue inverted menu" style="background-color: #1987FF">
-	<a class="active item" href="<?php echo $url = URL::to('home'); ?>">
+	<a class="active item" href="/home">
 		<i class="home icon"></i> T-MAN
 	</a>
-	<a class="item">
+	<a class="item" href="/work">
 		<i class="heart icon"></i> TASK
 	</a>
 	<a class="item">

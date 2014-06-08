@@ -22,10 +22,9 @@
 						<div class="ui segment" style="border: 1px solid #ababab;">
 							<div style="text-align: center; font-size:22px;font-weight: bold;" class="field">
 								<span>Dashboard</span>
-							</div>
 							@if(Auth::id()===$user->user_id)
 								<div class="field">
-									<a href="/user/{{$user->user_id}}/profile"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">個人資料</div></a>
+									<a href="/user/{{$user->user_id}}/profile" class="fluid ui orange button profile-btn post">個人資料</a>
 								</div>
 								<div class="field">
 								@if(Auth::check())
@@ -44,14 +43,13 @@
 								<div class="field">
 									<a class="fluid ui purple button">個人資料</a>
 								</div>
-
-								<div class="field">
-									<div class="profile-btn" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我接的案</div>
-								</div>
-								<div class="field">
-									<a href="/user/{{$user->user_id}}/task"><div class="profile-btn" style="background-color:#fd8a33;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我發的案</div></a>
-								</div>
 							@else
+								<div class="field">
+									<div class="profile-btn" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->name}}接的案</div>
+								</div>
+								<div class="field">
+									<a href="/user/{{$user->user_id}}/task"><div class="profile-btn" style="background-color:#fd8a33;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->name}}發的案</div></a>
+								</div>
 								<div class="field">
 									<a href="/user/{{$user->user_id}}/profile"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->name}}的資料</div></a>
 								</div>

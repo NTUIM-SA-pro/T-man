@@ -11,7 +11,7 @@ class WorkController extends \BaseController {
 	{
 		//
         $works = Work::all();
-                return View::make('works')->with('works', $works);
+        return View::make('works')->with('works', $works);
 	}
 
 

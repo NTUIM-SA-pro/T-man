@@ -2,6 +2,7 @@ body{
  	font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", serif;
  	padding: 0;
  	margin: 0;
+    background-image: url('../img/bg.png');
  }
  #main{
  	padding-left: 20px;
@@ -16,7 +17,6 @@ body{
  	width: 25%;
  	float: left;
  	margin-top: 40px;
-
  }
 #left-container .profile-name{
  	margin-right: auto;
@@ -78,9 +78,9 @@ body{
     font-size: 23px;
     padding: 5px;
     border: none;
-    transform:rotate(45deg);
-	-ms-transform:rotate(45deg); 
-	-webkit-transform:rotate(45deg);
+    transform:rotate(45deg) translate(8px, 0px);
+	-ms-transform:rotate(45deg) translate(8px, 0px); 
+	-webkit-transform:rotate(45deg) translate(8px, 0px);
  }
  #right-container .task-label:before {
     display: inline-block;
@@ -113,7 +113,7 @@ body{
     float: right;
     display: inline-block;
     color: #fff;
-    width: 35px;
+    width: 45px;
     position: relative;
     padding: 7px;
     border-top-left-radius: 4px;
@@ -162,4 +162,8 @@ body{
 
  #register_form .ui.form .field.register{
     height: 88px;
+ }
+
+ a.fluid.button{
+    margin-bottom: 10px;
  }

@@ -47,6 +47,7 @@ class ProfileController extends BaseController{
 		$name = $img->getClientOriginalName();
 		preg_match('/.*(\.\w*)/', $name,$match);
 		$destinationPath = 'public/uploads';
+		$filepath = 'uploads';
 		$filename = str_random(12).$match[1];
 		$upload_success = $img->move($destinationPath, $filename);
 
@@ -57,7 +58,7 @@ class ProfileController extends BaseController{
 		$profile_modify = DB::table('profiles')
 							->where('user_id', $id)
 							->update(array( 'name' => $profile_name,
-											'img'  => $destinationPath.'/'.$filename,
+											'img'  => $filepath.'/'.$filename,
 											'introduction' => $intro,
 											'sex'  => $sex));
 		if(isset($skill)){

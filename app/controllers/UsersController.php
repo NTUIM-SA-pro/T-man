@@ -19,16 +19,7 @@ class UsersController extends BaseController {
 		$user = User::find($user_id)->profile;
 		return View::make('user_main')->with('user',$user);
 	}
-	public function test($user_id)
-	{
-		$id = Auth::id();
-		$user = User::find($user_id)->profile;
-		// echo $id;
-		$works = Work::where('user_id','=',$id)->get();
-
-		// print_r($works);
-		return View::make('right_container')->with('works',$works)->witH('user',$user);	
-	}
+	
 
 	/**
 	 * Show the form for creating a new resource.
@@ -83,7 +74,8 @@ class UsersController extends BaseController {
 			'account' => $account,
 			'password' => $password));
 		if($auth){
-			return Redirect::route('home');
+			$id = Auth::id();
+			return $id;
 		}
 		else{
 			return '帳號or密碼輸入錯誤';		

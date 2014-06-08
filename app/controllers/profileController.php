@@ -3,41 +3,41 @@ class ProfileController extends BaseController{
 	
 	public $restful = true;
 
-	public function get_index(){
-		if(isset(Auth::user()->id)){
-			$id = Auth::user()->id;
+	public function get_index($user_id){
+		$user = $user = User::find($user_id)->profile;
+
 			$user_profile = DB::table('users')
 							->join('profiles', 'users.id', '=', 'profiles.user_id')
-							->where('id', $id)
+							->where('id', $user_id)
 							->get();
 			$user_skill = DB::table('userSkills')
 							->join('skills', 'userSkills.skill_id', '=', 'skills.id')
 							->join('users', 'userSkills.user_id', '=', 'users.id')
-							->where('user_id', $id)
+							->where('user_id', $user_id)
 							->get();
 			return View::make('profile.index')
 				->with( 'data', $user_profile )
-				->with( 'skill', $user_skill ); 
-		}else{
-			return Redirect::route('home')->with('msg','Login First!');
-		}
+				->with( 'skill', $user_skill )
+				->with('user',$user); 
+
 	}
 	
-	public function get_modify(){
-		$id = Auth::user()->id;
+	public function get_modify($user_id){
+		$user = $user = User::find($user_id)->profile;
 		$user_profile = DB::table('users')
 						->join('profiles', 'users.id', '=', 'profiles.user_id')
-						->where('id', $id)
+						->where('id', $user_id)
 						->get();
 		$user_skill = DB::table('userSkills')
 							->join('skills', 'userSkills.skill_id', '=', 'skills.id')
 							->join('users', 'userSkills.user_id', '=', 'users.id')
-							->where('user_id', $id)
+							->where('user_id', $user_id)
 							->get();
 		return View::make('profile.modify')
 			->with( 'data', $user_profile )
 			->with( 'skill', Skill::all() )
-			->with( 'user_skill', $user_skill ); 
+			->with( 'user_skill', $user_skill )
+			->with('user',$user); 
 	}
 
 	public function post_update(){
@@ -88,6 +88,17 @@ class ProfileController extends BaseController{
 		return Redirect::to('/user/'.$user_id."/profile");
 
 
+	}
+
+	public function task($user_id)
+	{
+
+		$user = User::find($user_id)->profile;
+		// echo $id;
+		$works = Work::where('user_id','=',$user_id)->get();
+
+		// print_r($works);
+		return View::make('profile.task')->with('works',$works)->with('user',$user);	
 	}
 }
 ?>

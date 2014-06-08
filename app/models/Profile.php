@@ -3,7 +3,7 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Perdata extends Eloquent implements UserInterface, RemindableInterface {
+class Profile extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
@@ -11,7 +11,7 @@ class Perdata extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var string
 	 */
 	// protected $fillable = array('account','password','type');
-	protected $table = 'per_datas';
+	protected $table = 'profiles';
 
 	/**
 	 * The attributes excluded from the model's JSON form.

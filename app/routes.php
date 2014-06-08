@@ -28,18 +28,7 @@ Route::any('/home', array(
 	'as'=>'home',
 	'uses'=>'UsersController@home'
 ));
-// Route::get('/', array(
-// 	'as'=>'home',
-// 	'uses'=>'HomeController@mail'
-// ));
 
-
-// Route::get('users', function()
-// {
-//     $users = User::all();
-
-//     return View::make('users')->with('users', $users);
-// });
 Route::get('logout','UsersController@logout');
 // Route::resource('users', 'UsersController');
 Route::post('register','UsersController@register');
@@ -56,3 +45,6 @@ Route::post('createNewWork', 'WorkController@create');
 
 
 Route::get('test','UsersController@test');
+Route::get('profile', array('as' => 'profile', 'uses' => 'profileController@get_index'));
+Route::get('profileModify', array('as'=>'profile_modify', 'uses'=>'profileController@get_modify'));
+Route::post('profileUpdate', array('uses'=>'profileController@post_update'));

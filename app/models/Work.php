@@ -11,7 +11,7 @@ class Work extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('host', 'img', 'name', 'description', 'reward', 'status', 'emergency');
+	protected $fillable = array('name', 'description', 'reward', 'img', 'status', 'user_id','dueTime');
 	protected $table = 'works';
 
 	/**

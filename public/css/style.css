@@ -8,8 +8,27 @@ body{
     text-decoration: none;
  }
  #main{
- 	padding-left: 20px;
+ 	/*padding-left: 20px;*/
  	padding-top: 5px;
+ }
+ #main .filter_title{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+ }
+ #preview-coverflow{
+    width: 100%;
+    margin-top: 5px;
+ }
+ #preview-coverflow .cover{
+    background-size:cover;
+    height: 300px;
+    width: 700px;
+    border-radius: 5px;
  }
  .head-profile{
  	width: 100%;
@@ -20,6 +39,7 @@ body{
  	width: 25%;
  	float: left;
  	margin-top: 40px;
+    margin-left: 20px;
  }
 #left-container .profile-name{
  	margin-right: auto;
@@ -52,7 +72,8 @@ body{
  #right-container{
  	width: 70%;
  	padding-left: 30px;
- 	padding-top: 10px;
+ 	/*padding-top: 10px;*/
+    margin-top: 50px;
  	display: inline-block;
 
  }
@@ -68,6 +89,7 @@ body{
  }
  #right-container .ui.segment{
  	position: relative;
+    margin-top: 10px;
  }
  #right-container .task-label{
  	position: absolute;
@@ -174,4 +196,18 @@ body{
 
  a.fluid.button{
     margin-bottom: 10px;
+ }
+
+ .ui.animated.button.go{
+    width: 100%;
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+ }
+
+ .profile_table{
+    margin-top: 5%;
+ }
+ .ui.table.segment td{
+    padding: 20px;
  }

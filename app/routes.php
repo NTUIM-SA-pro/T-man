@@ -53,5 +53,5 @@ Route::post('/user/{userid}/profileUpdate', array('as'=>'profile_update','uses'=
 
 Route::get('/user/{userid}',array('as'=>'user-homepage','uses'=>'UsersController@showHomepage'));
 //拿你po的專案
-Route::get('/user/{userid}/task', array('uses'=>'UsersController@test'));
+Route::get('/user/{userid}/task', array('uses'=>'UsersController@showHomepage'));
 

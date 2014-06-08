@@ -1,4 +1,11 @@
-<form action="createNewWork" method="POST" class="ui fluid form" enctype="multipart/form-data">
+@extend(layouts.default)
+@section('content')
+    
+@stop
+
+
+
+<!-- <form action="createNewWork" method="POST" class="ui fluid form" enctype="multipart/form-data">
 		<div class="four wide column">
 			<div id="inputbox" class="ui warning form segment">
 				<h2>新增任務</h2>
@@ -50,4 +57,4 @@
 				<div id="submit" class="ui black submit button">提交</div>
 			</div>
 		</div>
-	</form>
+	</form> -->

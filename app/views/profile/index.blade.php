@@ -1,45 +1,47 @@
-@extends('layouts.default')
-@section('content')
+@extends('user_main')
+@section('right-container')
 	@if(isset($message))
 		<p>{{ $message }}</p>
 	@endif
-	<table class="ui table segment" style="height:30%;width:50%;">
-		<tr>
-			<td colspan='2'><img class="head-profile" src="/{{ $data[0]->img }}"></td>
-		</tr>	
-		<tr>
-			<td><b>Name</td>
-			<td>{{ $data[0]->name }}</td>
-		</tr>
-		<tr>
-			<td><b>Sex</td>
-			<td>
-				@if($data[0]->sex == 0)
-					<p>Female</p>
-				@else
-					<p>Male</p>
-				@endif
-			</td>
-		</tr>
-		<tr>
-			<td><b>Introduction</td>
-			<td>{{ $data[0]->introduction }}</td>
-		</tr>
-		<tr>
-			<td><b>Skill</td>
-			<td>
-				@foreach($skill as $item)
-					{{$item->name}}
-				@endforeach
-			</td>
-		</tr>
-	</table>
-	<a href="/user/{{Auth::id()}}/profileModify">
-		<div class="ui animated blue button">
-			<div class="visible content">Modify</div>
-			<div class="hidden content">
-	    		<i class="right arrow icon"></i>
-	  		</div>
-		</div>
-	</a>
+	<div class="profile_table">
+		<table class="ui table segment" style="height:100%;width:100%;">
+			
+			<tr>
+				<td><b>綽號</td>
+				<td>{{ $data[0]->name }}</td>
+			</tr>
+			<tr>
+				<td><b>性別</td>
+				<td>
+					@if($data[0]->sex == 0)
+						<p>男生</p>
+					@else
+						<p>女生</p>
+					@endif
+				</td>
+			</tr>
+			<tr>
+				<td><b>個人簡介</td>
+				<td>
+					@if($data[0]->introduction==1)
+					@else
+						{{ $data[0]->introduction }}
+					@endif
+				</td>
+			</tr>
+			<tr>
+				<td><b>專長、技能</td>
+				<td>
+					@foreach($skill as $item)
+						{{$item->name}}
+					@endforeach
+				</td>
+			</tr>
+		</table>
+		<a href="/user/{{Auth::id()}}/profileModify">
+			<div class="ui blue button" style="width:100%;">
+				Modify
+			</div>
+		</a>
+	</div>
 @endsection

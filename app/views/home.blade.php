@@ -11,14 +11,11 @@
 							</div>
 							<div class="field">
 								<div class="profile-name">
-									<?php 
-										if(defined($user)){
-											echo $user->name;
-										}
-										else{
-											echo '台大資管<span style="margin-left:20%;">小帥</span>';
-										}
-									?>
+									@if(Auth::check())
+										{{$user->name}}
+									@else
+										台大資管<span style="margin-left:20%;">小帥</span>
+									@endif
 								</div>
 							</div>
 						</div>

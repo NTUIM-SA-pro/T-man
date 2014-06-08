@@ -26,16 +26,13 @@
 							<img class="head-profile" src="/{{$work->img}}"/>
 						</div>
 						<div class="field">
-							<div class="">發案人:</div>
+							<div class="">發案人:{{$work->user_id}}</div>
 						</div>
 						<div class="field">
 							<div class="task-title">{{$work->name}}</div>
 						</div>
 						<div class="field">
-							<div class="task-title">{{$work->name}}</div>
-						</div>
-						<div class="field">
-						<div class="task-date">www</div>
+						<div class="task-date"><?php echo substr($work->dueTime, 5, 5); ?></div>
 						</div>
 					</div>
 				</div>

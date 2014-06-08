@@ -23,22 +23,23 @@
 						<div class="ui segment" style="border: 1px solid #ababab;">
 							<div style="text-align: center; font-size:22px;font-weight: bold;" class="field">
 								<span>Dashboard</span>
-							</div>
-							<div class="field">
-							@if(Auth::check())
 								<div class="field">
-								<div class="profile-btn post" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">發案</div></div>
-							@endif
-								<div class="profile-btn" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我接的案</div>
-							</div>
-							<div class="field">
-								<div class="profile-btn" style="background-color:#fd8a33;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我發的案</div>
-							</div>
-							<div class="field">
-								<div class="profile-btn" style="background-color:#8bc53f;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">歷史記錄</div>
-							</div>
-							<div class="field">
-								<div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">個人資料</div>
+								@if(Auth::check())
+									<div class="field">
+									<div class="profile-btn post" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">發案</div></div>
+								@endif
+								</div>
+									<a class="fluid ui green button">我接的案</a>
+								</div>
+								<div class="field">
+									<a class="fluid ui blue button">我發的案</a>
+								</div>
+								<div class="field">
+									<a class="fluid ui red button">歷史記錄</a>
+								</div>
+								<div class="field">
+									<a class="fluid ui purple button">個人資料</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -166,8 +167,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="three column stackable ui grid">
 				<div class="column">
 					<div class="ui segment">
 						<div class="field">

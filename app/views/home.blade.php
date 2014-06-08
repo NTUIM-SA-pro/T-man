@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 	<div id='left-container'>
-	<a href="<?php echo $url = URL::to('test');?>">1221</a>
+	<a href="<?php echo $url = URL::to('user') . '/1';?>">1221</a>
 			<div class = "row">
 				<div class="one column stackable ui grid" >
 					<div class="column">
@@ -26,7 +26,7 @@
 								<div class="field">
 								@if(Auth::check())
 									<div class="field">
-									<div class="profile-btn post" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">發案</div></div>
+									<a class="fluid ui black button profile-btn post">發案</a></div>
 								@endif
 								</div>
 									<a class="fluid ui green button">我接的案</a>

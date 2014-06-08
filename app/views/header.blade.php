@@ -1,5 +1,5 @@
 <div class="ui blue inverted menu" style="background-color: #1987FF">
-	<a class="active item" href="/home">
+	<a class="active item" href="<?php echo $url = URL::to('home'); ?>">
 		<i class="home icon"></i> T-MAN
 	</a>
 	<a class="item">

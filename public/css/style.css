@@ -30,7 +30,7 @@ body{
     font-size: 25px;
  	margin-top: 10px;
  }
-#left-container .profile-btn{
+/*#left-container .profile-btn{
  	width: 80%;
  	display: block;
  	border: 1px solid #007aff;
@@ -48,7 +48,7 @@ body{
  }
 #left-container .profile-btn:hover{
  	color: #0045ff;
- }
+ }*/
  #right-container{
  	width: 70%;
  	padding-left: 30px;

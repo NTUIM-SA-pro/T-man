@@ -24,27 +24,34 @@
 //     return View::make('hi');
 // });
 
-Route::any('/home', array(
+Route::any('home', array(
 	'as'=>'home',
 	'uses'=>'UsersController@home'
 ));
 
+
+
 Route::get('logout','UsersController@logout');
-// Route::resource('users', 'UsersController');
 Route::post('register','UsersController@register');
 Route::post('login','UsersController@login');
 
 Route::resource('work', 'WorkController');
 
-Route::get('newwork',array('as'=>'newwork' ,function()
-{
-	return View::make('work');
-}));
 
 Route::post('createNewWork', 'WorkController@create');
 
 
-Route::get('test','UsersController@test');
-Route::get('profile', array('as' => 'profile', 'uses' => 'profileController@get_index'));
-Route::get('profileModify', array('as'=>'profile_modify', 'uses'=>'profileController@get_modify'));
+// Route::get('test','UsersController@test');
+// Route::get('profile', array('as' => 'profile', 'uses' => 'profileController@get_index'));
+// Route::get('profileModify', array('as'=>'profile_modify', 'uses'=>'profileController@get_modify'));
 Route::post('profileUpdate', array('uses'=>'profileController@post_update'));
+
+//{userid}動態拿取userid
+Route::get('/user/{userid}/profile',array('as'=>'profile', 'uses'=>'profileController@get_index'));
+Route::get('/user/{userid}/profileModify',array('as'=>'profile_modify', 'uses'=>'profileController@get_modify'));
+Route::post('/user/{userid}/profileUpdate', array('as'=>'profile_update','uses'=>'profileController@post_update'));
+
+Route::get('/user/{userid}',array('as'=>'user-homepage','uses'=>'UsersController@showHomepage'));
+//拿你po的專案
+Route::get('/user/{userid}/task', array('uses'=>'UsersController@test'));
+

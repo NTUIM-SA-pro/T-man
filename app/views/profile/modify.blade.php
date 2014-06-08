@@ -1,10 +1,11 @@
 @extends('layouts.default')
 @section('content')
+	<?php $count = false; ?>
 	<script type="text/javascript">
 	$('.ui.selection.dropdown').dropdown();
 	</script>
 	<form method="POST" action="profileUpdate" enctype="multipart/form-data">
-		<table class="ui table segment" style="width:50%;">
+		<table class="ui table segment" style="height:30%;width:50%;">
 			<tr>
 				<td colspan='2'><img style="width:100%;height:100%;" src="{{ $data[0]->img }}"></td>
 			</tr>	
@@ -34,9 +35,9 @@
 				<td>
 					<select name="skill">
 					@foreach($skill as $item)
-						<option value="{{$item->id}}">{{$item->name}}
+						<option value="{{ $item->id }}">{{ $item->name }}
 					@endforeach
-				</select>
+					</select>
 				</td>
 			</tr>
 		</table>

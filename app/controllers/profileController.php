@@ -29,9 +29,15 @@ class ProfileController extends BaseController{
 						->join('profiles', 'users.id', '=', 'profiles.user_id')
 						->where('id', $id)
 						->get();
+		$user_skill = DB::table('userSkills')
+							->join('skills', 'userSkills.skill_id', '=', 'skills.id')
+							->join('users', 'userSkills.user_id', '=', 'users.id')
+							->where('user_id', $id)
+							->get();
 		return View::make('profile.modify')
 			->with( 'data', $user_profile )
-			->with( 'skill', Skill::all() );
+			->with( 'skill', Skill::all() )
+			->with( 'user_skill', $user_skill ); 
 	}
 
 	public function post_update(){
@@ -70,7 +76,7 @@ class ProfileController extends BaseController{
 			$skill_modify = DB::table('userSkills')->insert(
 									array('user_id'=>$id, 'skill_id'=>$skill));
 		}			
-		
+
 		return Redirect::route('profile')->with('message', 'Update successfully.');
 
 	}

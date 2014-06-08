@@ -11,8 +11,7 @@ class WorkController extends \BaseController {
 	{
 		//
         $works = Work::all();
-
-        return View::make('works')->with('works', $works);
+                return View::make('works')->with('works', $works);
 	}
 
 
@@ -37,6 +36,7 @@ class WorkController extends \BaseController {
 		$date = Input::get('date');
 
 		$destinationPath = 'public/uploads';
+		$filepath = 'uploads';
 		$filename = str_random(12).$match[1];
 		$upload_success = $img->move($destinationPath, $filename);
 
@@ -45,7 +45,7 @@ class WorkController extends \BaseController {
 				'name'=>$workname, 
 				'description'=>$des,
 				'reward'=>$reward, 
-				'img'=> $destinationPath.'/'.$filename, 
+				'img'=> $filepath.'/'.$filename, 
 				'status'=>$status,
 				'user_id'=>$user_id,
 				'dueTime'=>$date

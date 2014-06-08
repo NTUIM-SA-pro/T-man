@@ -14,10 +14,11 @@ class UsersController extends BaseController {
 	}
 	public function test()
 	{
-		// $works = Work::all();
-		// print_r($works);
-		$id = Auth::user()->account;
-		echo $id;
+		$id = Auth::id();
+		$works = Work::where('user_id','=',$id)->get();
+
+
+		return View::make('right_container')->with('works',$works);
 	}
 
 	/**

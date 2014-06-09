@@ -17,8 +17,10 @@
   $(document).ready(function(){
     $('.ui.dropdown').dropdown();
     $('.ui.dimmer').dimmer({on: 'hover'});
-    
-
+    var checked = [];
+    // $('.model_checkbox input').each(function()){
+    //   if(  $(this).prop("checked", true) ) 
+    // }
  var settings = {
         inline : true,
         on : 'submit',

@@ -96,9 +96,11 @@ class ProfileController extends BaseController{
 		$user = User::find($user_id)->profile;
 		// echo $id;
 		$works = Work::where('user_id','=',$user_id)->get();
+		$workskills = DB::table('works')->join('workSkills','workSkills.work_id' ,'=', 'works.id')
+						->where('user_id',$user_id)->get();
+		// $workskill = 
 
-		// print_r($works);
-		return View::make('profile.task')->with('works',$works)->with('user',$user);	
+		return View::make('profile.task')->with('works',$works)->with('user',$user)->with('workskills',$workskills);
 	}
 }
 ?>

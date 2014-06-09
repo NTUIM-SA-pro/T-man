@@ -83,19 +83,17 @@
 		    				<div id="input1" class="ui input focus">
 		      					<input name="workName" id="ui1" placeholder="Work name" type="text">
 		    				</div>
-		    				<p id="alert1">請輸入名稱</p>
 		  				</div>
 		  				<div class="field">
 		    				<label>相關圖片</label>
 		    				<div id="input2" class="ui input focus">
 		      					<input name="image" id="ui2" type="file">
 		    				</div>
-		    				<p id="alert2">請上傳圖片</p>
 		  				</div>
 		  				<div class="ui form">
 		  					<div  class="field">
 		    					<label>工作敘述</label>
-		    					<textarea type="text" name="description"></textarea>
+		    					<textarea type="text" name="description" style="height:2em;"></textarea>
 		  					</div>
 						</div>
 		  				<div class="field">
@@ -109,9 +107,38 @@
 		    					<div id="input3" class="ui input">
 		      						<input name="date" id="datepick" tyep="text">
 		    					</div>
-		    					<p id="alert3">請選擇時間</p>
 		  				</div>
-						<div id="submit" class="ui black submit button">提交</div>
+		  				<div class="field">
+		  					<label>Tag</label>
+		  					<div class="model_checkbox">
+			  					<div class="ui checkbox">
+										<input type="checkbox" name="skill1">
+										<label>電腦</label>
+								</div>
+								<div class="ui checkbox">
+										<input type="checkbox" name="skill2">
+										<label>語文</label>
+								</div>
+								<div class="ui checkbox">
+										<input type="checkbox" name="skill3">
+										<label>運動</label>
+								</div>
+								<div class="ui checkbox">
+										<input type="checkbox" name="skill4">
+										<label>美術</label>
+								</div>
+								<div class="ui checkbox">
+										<input type="checkbox" name="skill5">
+										<label>行政</label>
+								</div>
+								<div class="ui checkbox">
+										<input type="checkbox" name="skill6">
+										<label>其他</label>
+								</div>
+							</div>
+					
+		  				</div>
+						<div id="submit" class="ui black submit button" style="width:100%">提交</div>
 					</div>
 				</div>
 			</form>

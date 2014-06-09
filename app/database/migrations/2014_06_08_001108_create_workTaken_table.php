@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkSkillsTable extends Migration {
+class CreateWorktakenTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,14 +13,18 @@ class CreateWorkSkillsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('workSkills', function($table){
-			$table->increments('id');
+        Schema::create('worktaken', function($table)
+        {
+            $table->increments('id');
+            $table->integer('status');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')->on('users')->onDelete('cascade');
             $table->integer('work_id')->unsigned();
 			$table->foreign('work_id')
 				->references('id')->on('works')->onDelete('cascade');
-			$table->string('skillname');
             $table->timestamps();
-		});
+        });
 	}
 
 	/**
@@ -31,7 +35,7 @@ class CreateWorkSkillsTable extends Migration {
 	public function down()
 	{
 		//
-        Schema::drop('workSkills');
+        Schema::drop('skills');
 	}
 
 }

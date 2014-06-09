@@ -10,9 +10,6 @@
 	</a>
 	<div class="right menu">
 		@if(Auth::check())
-			<a class="item">
-				<i class="bell outline icon"></i>通知
-			</a>
 			<div class="ui dropdown item">
 				<i class="user icon"></i>
       			關於我 

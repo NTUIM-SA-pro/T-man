@@ -16,7 +16,7 @@ class CreateSkillsTable extends Migration {
         Schema::create('skills', function($table)
         {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('description');
             $table->integer('cata_id')->unsigned();
             $table->foreign('cata_id')->references('id')->on('catagorys')->onDelete('cascade');
@@ -25,32 +25,32 @@ class CreateSkillsTable extends Migration {
         });
 
         DB::table('skills')->insert(array(
-        	'name' => 'PHP',
+        	'name' => '電腦',
         	'description' => '',
         	'cata_id' => 1
         	));
         DB::table('skills')->insert(array(
-        	'name' => 'SQL',
+        	'name' => '語文',
         	'description' => '',
         	'cata_id' => 1
         	));
         DB::table('skills')->insert(array(
-        	'name' => 'ASP',
+        	'name' => '運動',
         	'description' => '',
         	'cata_id' => 1
         	));
         DB::table('skills')->insert(array(
-        	'name' => 'Clean',
+        	'name' => '美術',
         	'description' => '',
         	'cata_id' => 2
         	));
         DB::table('skills')->insert(array(
-        	'name' => 'fix PC',
+        	'name' => '行政',
         	'description' => '',
         	'cata_id' => 2
         	));
         DB::table('skills')->insert(array(
-        	'name' => 'Play',
+        	'name' => '其他',
         	'description' => '',
         	'cata_id' => 2
         	));

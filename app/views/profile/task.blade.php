@@ -26,14 +26,16 @@
 							<img class="head-profile" src="/{{$work->img}}"/>
 						</div>
 						<div class="field">
-							<div class="">發案人:</div>
+							<div class="task_host">發案人:{{$work->name}}</div>
 						</div>
 						<div class="field">
-							<div class="task-title">{{$work->name}}</div>
+							<div class="task_host">獎賞:{{$work->reward}}</div>
 						</div>
 				
-						<div class="field">
-						<div class="task-date">www</div>
+						<div class="field" style="margin-top:10px;">
+							@foreach($workskills as $workskill)
+								<div class="task-date">{{$workskill->skillname}}</div>
+							@endforeach
 						</div>
 					</div>
 				</div>

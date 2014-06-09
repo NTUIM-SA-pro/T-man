@@ -4,8 +4,9 @@ class HomeController extends BaseController {
 
 	public function home()
 	{
-		$works = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
-		return View::make('home')->with('works',$works);
+		$works_cover = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
+		$works = Work::all();
+		return View::make('home')->with('workCover',$works_cover)->with('works',$works);
 	}
 
 	public function test()

@@ -4,15 +4,15 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Work extends Eloquent implements UserInterface, RemindableInterface {
+class Worktaken extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('name', 'description', 'reward', 'img', 'status', 'user_id','dueTime');
-	protected $table = 'works';
+
+	protected $table = 'worktaken';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -81,16 +81,9 @@ class Work extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
-	public function workskill()
-	{
-		return $this->hasMany('Workskill');
-	}
-
-	public function worktaken()
-	{
-		return $this->hasMany('Worktaken');
-	}
-
-
+	public function work()
+    {
+        return $this->belongsToMany('Work');
+    }
 
 }

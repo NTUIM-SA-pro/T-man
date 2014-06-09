@@ -13,7 +13,7 @@
 			<tr>
 				<td><b>性別</td>
 				<td>
-					@if($data[0]->sex == 0)
+					@if($data[0]->sex == 1)
 						<p>男生</p>
 					@else
 						<p>女生</p>

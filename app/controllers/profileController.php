@@ -30,18 +30,16 @@ class ProfileController extends BaseController{
 						->get();
 		$user_skill = DB::table('userSkills')
 							->join('skills', 'userSkills.skill_id', '=', 'skills.id')
-							->join('users', 'userSkills.user_id', '=', 'users.id')
-							->where('user_id', $user_id)
 							->get();
 		return View::make('profile.modify')
 			->with( 'data', $user_profile )
 			->with( 'skill', Skill::all() )
-			->with( 'user_skill', $user_skill )
 			->with('user',$user); 
 	}
 
 	public function post_update(){
 		$id = Auth::user()->id;
+		$user_id = $id;
 		$skill_modify = true;
 
 		/*
@@ -51,12 +49,12 @@ class ProfileController extends BaseController{
 
 		$img = Input::file('img');
 
-		$filepath='uploads';
-		$name = $img->getClientOriginalName();
-			preg_match('/.*(\.\w*)/', $name,$match);
-			$destinationPath = 'public/uploads';
+		// $filepath='uploads';
+		// $name = $img->getClientOriginalName();
+		// 	preg_match('/.*(\.\w*)/', $name,$match);
+		// 	$destinationPath = 'public/uploads';
 			
-			$filename = str_random(12).$match[1];
+		// 	$filename = str_random(12).$match[1];
 		if(isset($img)){
 			$name = $img->getClientOriginalName();
 			preg_match('/.*(\.\w*)/', $name,$match);
@@ -76,7 +74,7 @@ class ProfileController extends BaseController{
 		$profile_modify = DB::table('profiles')
 							->where('user_id', $id)
 							->update(array( 'name' => $profile_name,
-											'img'  => $filepath.'/'.$filename,
+											// 'img'  => $filepath.'/'.$filename,
 											'introduction' => $intro,
 											'sex'  => $sex));
 		if(isset($skill)){

@@ -81,6 +81,7 @@ class Work extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
+
 	public function workskill()
 	{
 		return $this->hasMany('Workskill');
@@ -90,3 +91,4 @@ class Work extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->hasMany('Worktaken');
 	}
+}

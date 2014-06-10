@@ -1,15 +1,15 @@
 body{
- 	font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", serif;
- 	padding: 0;
- 	margin: 0;
+    font-family: "微軟正黑體", "Microsoft JhengHei", "新細明體", "PMingLiU", "細明體", "MingLiU", "標楷體", "DFKai-sb", serif;
+    padding: 0;
+    margin: 0;
     background-image: url('../img/bg.png');
  }
  a{
     text-decoration: none;
  }
  #main{
- 	/*padding-left: 20px;*/
- 	padding-top: 5px;
+    /*padding-left: 20px;*/
+    padding-top: 5px;
  }
  #main .filter_title{
     display: block;
@@ -31,71 +31,71 @@ body{
     border-radius: 5px;
  }
  .head-profile{
- 	width: 100%;
- 	height: 200px;
- 	border-radius: 5px;
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
  }
  #main #left-container{
- 	width: 25%;
- 	float: left;
- 	margin-top: 40px;
+    width: 25%;
+    float: left;
+    margin-top: 40px;
     margin-left: 20px;
  }
 #left-container .profile-name{
- 	margin-right: auto;
- 	margin-left: auto;
- 	display: block;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
     text-align: center;
- 	width: 70%;
+    width: 70%;
     font-size: 25px;
- 	margin-top: 10px;
+    margin-top: 10px;
  }
 #left-container .profile-btn{
- 	width: 80%;
- 	display: block;
- 	border: 1px solid #007aff;
- 	color: #007aff;
- 	font-size: 18px;
- 	cursor: pointer;
- 	margin-right: auto;
- 	margin-left: auto;
- 	border-radius: 4px;
- 	text-align: center; 
- 	margin-top: 15px;
- 	padding: 2px;
- 	letter-spacing: 2px;
- 	transition: 0.5s;
+    width: 80%;
+    display: block;
+    border: 1px solid #007aff;
+    color: #007aff;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 4px;
+    text-align: center; 
+    margin-top: 15px;
+    padding: 2px;
+    letter-spacing: 2px;
+    transition: 0.5s;
  }
 #left-container .profile-btn:hover{
- 	color: #0045ff;
+    color: #0045ff;
  }
  #right-container{
- 	width: 70%;
- 	padding-left: 30px;
- 	/*padding-top: 10px;*/
+    width: 70%;
+    padding-left: 30px;
+    /*padding-top: 10px;*/
     margin-top: 50px;
- 	display: inline-block;
+    display: inline-block;
 
  }
  #right-container .filter-task{
- 	width: 100%;
+    width: 100%;
 
  }
  #right-container .filter-task span{
- 	font-size: 20px;
- 	font-weight: bold;
- 	color: #4a4a4a;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4a4a4a;
 
  }
  #right-container .ui.segment{
- 	position: relative;
+    position: relative;
     margin-top: 10px;
  }
  #right-container .task-label{
- 	position: absolute;
- 	font-family: Helvetica, Arial, sans-serif;
- 	left: 60%;
- 	text-align: center;
+    position: absolute;
+    font-family: Helvetica, Arial, sans-serif;
+    left: 60%;
+    text-align: center;
     display: inline-block;
     color: white;
     width: 38%;
@@ -106,8 +106,8 @@ body{
     padding: 5px;
     border: none;
     transform:rotate(45deg) translate(8px, 0px);
-	-ms-transform:rotate(45deg) translate(8px, 0px); 
-	-webkit-transform:rotate(45deg) translate(8px, 0px);
+    -ms-transform:rotate(45deg) translate(8px, 0px); 
+    -webkit-transform:rotate(45deg) translate(8px, 0px);
  }
  #right-container .task-label:before {
     display: inline-block;
@@ -135,7 +135,7 @@ body{
 }
 #right-container .task-date{
 
-	font-family: Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     background: #ff9933;
     float: right;
     display: inline-block;
@@ -148,7 +148,7 @@ body{
     margin: 0 20px 0 0;
     text-decoration: none;
     -webkit-transition:  .5s; 
-	transition:  .5s;
+    transition:  .5s;
 }
 
 #right-container .task-date:hover {
@@ -168,8 +168,8 @@ body{
 }
  
 #right-container .task-title{
- 	font-size: 16px;
- 	margin-top: 5px;
+    font-size: 16px;
+    margin-top: 5px;
  }
 #right-container .content{
     padding: 2px 10px 0px 10px;
@@ -177,17 +177,17 @@ body{
 }
 #right-container .task-desc{
     overflow:scroll;
- 	text-align: left;
+    text-align: left;
 
- 	height: 70%;
+    height: 70%;
 
- 	width: 90%;
+    width: 90%;
  }
 #right-container .task-choose{
- 	position: absolute;
- 	left: 50%;
- 	margin-left: -100px;
- 	bottom: 10%;
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+    bottom: 10%;
  }
 
  #register_form .ui.form .field.register{
@@ -211,3 +211,4 @@ body{
  .ui.table.segment td{
     padding: 20px;
  }
+ 

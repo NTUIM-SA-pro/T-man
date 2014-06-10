@@ -20,7 +20,7 @@ class WorkController extends BaseController {
 	 */
 	public function create()
 	{
-		
+
 	}
 
 	public function taketask($work_id)
@@ -34,7 +34,7 @@ class WorkController extends BaseController {
 				'user_id'=>$user_id,
 				'dueTime'=>$date
 				));
-		
+
 		if($skill1 == 'on')
 		{
 			$profile = new Workskill;
@@ -63,7 +63,7 @@ class WorkController extends BaseController {
 
 		preg_match('/.*(\.\w*)/', $name,$match);
 		$des = Input::get('description');
-		
+
 		$user_id = Auth::id();
 
 		$reward = Input::get('reward');
@@ -85,7 +85,7 @@ class WorkController extends BaseController {
 				'user_id'=>$user_id,
 				'dueTime'=>$date
 				));
-		
+
 		if($skill1 == 'on')
 		{
 			$profile = new Workskill;
@@ -122,7 +122,7 @@ class WorkController extends BaseController {
 			$profile->skillname = '其他';
 			$work->workskill()->save($profile);
 		}
-		
+
 		// if($work && $upload_success ){
 			if($upload_success ){
 			return Redirect::to("/user/".$user_id."/task");

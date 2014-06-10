@@ -90,7 +90,3 @@ class Work extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->hasMany('Worktaken');
 	}
-
-
-
-}

@@ -31,9 +31,9 @@ Route::any('home', array(
 
 
 
-Route::get('logout','UsersController@logout');
-Route::post('register','UsersController@register');
-Route::post('login','UsersController@login');
+Route::get('logout','UserController@logout');
+Route::post('register','UserController@register');
+Route::post('login','UserController@login');
 
 Route::resource('work', 'WorkController');
 
@@ -44,18 +44,18 @@ Route::resource('work', 'WorkController');
 
 
 //{userid}動態拿取userid
-Route::get('/user/{userid}/profile',array('as'=>'profile', 'uses'=>'profileController@get_index'));
+Route::get('/user/{userid}/profile',array('as'=>'profile', 'uses'=>'ProfileController@get_index'));
 
 
 
-Route::get('/user/{userid}',array('as'=>'user-homepage','uses'=>'UsersController@showHomepage'));
+Route::get('/user/{userid}',array('as'=>'user-homepage','uses'=>'UserController@showHomepage'));
 //拿你po的專案
-Route::get('/user/{userid}/task', array('uses'=>'profileController@task'));
+Route::get('/user/{userid}/task', array('uses'=>'ProfileController@task'));
 
 Route::group(array('before'=>'auth'),function(){
 	Route::post('createNewWork', 'WorkController@create');
-	Route::get('/user/{userid}/profileModify',array('as'=>'profile_modify', 'uses'=>'profileController@get_modify'));
-	Route::post('profileUpdate', array('uses'=>'profileController@post_update'));
+	Route::get('/user/{userid}/profileModify',array('as'=>'profile_modify', 'uses'=>'ProfileController@get_modify'));
+	Route::post('profileUpdate', array('uses'=>'ProfileController@post_update'));
 	Route::post('takeTask/{work_id}','WorkController@taketask');
 });
 

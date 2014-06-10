@@ -1,6 +1,6 @@
 <?php
 
-class CatagorysController extends \BaseController {
+class CatagoryController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

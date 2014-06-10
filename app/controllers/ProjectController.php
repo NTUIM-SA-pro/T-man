@@ -1,6 +1,6 @@
 <?php
 
-class PerDatasController extends \BaseController {
+class ProjectController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

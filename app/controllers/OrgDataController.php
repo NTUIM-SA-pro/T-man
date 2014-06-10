@@ -1,6 +1,6 @@
 <?php
 
-class OrgDatasController extends \BaseController {
+class OrgDataController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

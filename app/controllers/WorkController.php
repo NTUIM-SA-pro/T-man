@@ -1,6 +1,6 @@
 <?php
 
-class WorkController extends \BaseController {
+class WorkController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

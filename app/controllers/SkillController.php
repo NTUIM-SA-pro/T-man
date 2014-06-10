@@ -1,6 +1,6 @@
 <?php
 
-class ProjectsController extends BaseController {
+class SkillController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class ProjectsController extends BaseController {
 	 */
 	public function index()
 	{
-		//
+	
 	}
 
 

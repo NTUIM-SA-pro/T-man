@@ -12,7 +12,7 @@
 */
 
 //首頁
-Route::any('home', array(
+Route::any('/', array(
 	'as' => 'home',
 	'uses' => 'HomeController@home'
 ));

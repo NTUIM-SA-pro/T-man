@@ -10,8 +10,6 @@ class WorkController extends BaseController {
 	public function index()
 	{
 		//
-        $works = Work::all();
-                return View::make('works')->with('works', $works);
 	}
 
 
@@ -21,6 +19,35 @@ class WorkController extends BaseController {
 	 * @return Response
 	 */
 	public function create()
+	{
+		
+	}
+
+	public function taketask($work_id)
+	{
+		$worktaken = Worktaken::create(
+			array(
+				'description'=>$des,
+				'reward'=>$reward, 
+				'img'=> $filepath.'/'.$filename, 
+				'status'=>$status,
+				'user_id'=>$user_id,
+				'dueTime'=>$date
+				));
+		
+		if($skill1 == 'on')
+		{
+			$profile = new Workskill;
+			$profile->skillname = '電腦';
+			$work->workskill()->save($profile);
+		}
+	}
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
 	{
 		$skill1 = Input::get('skill1');
 		$skill2 = Input::get('skill2');
@@ -100,35 +127,6 @@ class WorkController extends BaseController {
 			if($upload_success ){
 			return Redirect::to("/user/".$user_id."/task");
 		}
-	}
-
-	public function taketask($work_id)
-	{
-		$worktaken = Worktaken::create(
-			array(
-				'description'=>$des,
-				'reward'=>$reward, 
-				'img'=> $filepath.'/'.$filename, 
-				'status'=>$status,
-				'user_id'=>$user_id,
-				'dueTime'=>$date
-				));
-		
-		if($skill1 == 'on')
-		{
-			$profile = new Workskill;
-			$profile->skillname = '電腦';
-			$work->workskill()->save($profile);
-		}
-	}
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
 	}
 
 

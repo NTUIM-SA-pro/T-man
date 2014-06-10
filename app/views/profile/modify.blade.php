@@ -8,28 +8,28 @@
 		<form method="POST" action="profileUpdate" enctype="multipart/form-data">
 			<table class="ui table segment" style="height:100%;width:100%;">
 				<tr>
-					<td><b>Image</td>
+					<td><b>大頭照</td>
 					<td><input type="file" name="img"></td>
 				</tr>
 				<tr>
-					<td><b>Name</td>
+					<td><b>綽號</td>
 					<td><input type="text" name="name" value="{{ $data[0]->name }}"></td>
 				</tr>
 				<tr>
-					<td><b>Sex</td>
+					<td><b>性別</td>
 					<td>
 						<select name='sex' class='ui selection dropdown'>
-							<option value="1">Male
-							<option value="0">Female
+							<option value="1">男性
+							<option value="0">女性
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td><b>Introduction</td>
+					<td><b>個人簡介</td>
 					<td><textarea name="introduction" rows="3">{{ $data[0]->introduction }}</textarea></td>
 				</tr>
 				<tr>
-					<td><b>New Skill</td>
+					<td><b>專長、技能</td>
 					<td>
 						<select name="skill">
 						@foreach($skill as $item)
@@ -42,5 +42,4 @@
 			<input class="ui blue button" style="width:100%;" type="submit" value="submit">
 		</form>
 	</div>
-
 @stop

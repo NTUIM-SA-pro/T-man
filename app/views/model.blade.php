@@ -67,7 +67,7 @@
 
 <div class="ui creatework modal">
 	<i class="close icon"></i>
-	<form action="/createNewWork" method="POST" class="ui fluid form" enctype="multipart/form-data">
+	<form action="/work" method="POST" class="ui fluid form" enctype="multipart/form-data">
 		<div class="four wide column">
 			<div id="inputbox" class="ui warning form segment">
 				<h2>新增任務</h2>

@@ -118,11 +118,11 @@
 
 
   $('#register_form .ui.form').form(rules,settings);
-  $('.profile-btn.post').click(function(){
-      $('.creatework.modal').modal('show');
-  })
-  
 
+  //顯示發案視窗
+  $('.profile-btn.post').click( function() {
+    $('.creatework.modal').modal('show');
+  });
 
   $("#datepick").datepicker();
   $("#datepick").datepicker("option","dateFormat","yy-mm-dd");

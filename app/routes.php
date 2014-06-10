@@ -11,47 +11,47 @@
 |
 */
 
+//首頁
 Route::any('home', array(
-	'as'=>'home',
-	'uses'=>'HomeController@home'
+	'as' => 'home',
+	'uses' => 'HomeController@home'
 ));
 
 //登出
-Route::get('logout','UserController@logout');
+Route::get('logout', 'UserController@logout');
 
 //註冊
-Route::post('register','UserController@register');
+Route::post('register', 'UserController@register');
 
 //登入
-Route::post('login','UserController@login');
-
-Route::resource('work', 'WorkController');
+Route::post('login', 'UserController@login');
 
 //{userid}動態拿取userid
 Route::get('/user/{userid}/profile', array(
-	'as'=>'profile',
-	'uses'=>'ProfileController@get_index'
+	'as' => 'profile',
+	'uses' => 'ProfileController@get_index'
 ));
 
 Route::get('/user/{userid}', array(
-	'as'=>'user-homepage',
-	'uses'=>'UserController@showHomepage'
+	'as' => 'user-homepage',
+	'uses' => 'UserController@showHomepage'
 ));
 
 //拿你po的專案
 Route::get('/user/{userid}/task', array(
-	'uses'=>'ProfileController@task'
+	'uses' => 'ProfileController@task'
 ));
 
-Route::group(array('before'=>'auth'), function(){
-	Route::post('createNewWork', 'WorkController@create');
+//使用者登入後
+Route::group(array('before' => 'auth'), function() {
+	Route::resource('work', 'WorkController');
 
 	Route::get('/user/{userid}/profileModify', array(
 		'as'=>'profile_modify',
 		'uses'=>'ProfileController@get_modify'
 	));
 
-	Route::post('profileUpdate', array(
+	Route::post('/user/{userid}/profileUpdate', array(
 		'uses'=>'ProfileController@post_update'
 	));
 

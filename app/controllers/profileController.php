@@ -3,7 +3,13 @@ class ProfileController extends BaseController{
 	
 	public $restful = true;
 
-	public function get_index($user_id){
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function get_index($user_id)
+	{
 		$user = $user = User::find($user_id)->profile;
 
 			$user_profile = DB::table('users')
@@ -22,7 +28,9 @@ class ProfileController extends BaseController{
 
 	}
 	
-	public function get_modify($user_id){
+	//顯示修改個人資料頁面
+	public function get_modify($user_id)
+	{
 		$user = $user = User::find($user_id)->profile;
 		$user_profile = DB::table('users')
 						->join('profiles', 'users.id', '=', 'profiles.user_id')
@@ -40,7 +48,9 @@ class ProfileController extends BaseController{
 			->with('user',$user); 
 	}
 
-	public function post_update(){
+	//修改個人資料
+	public function post_update()
+	{
 		$id = Auth::user()->id;
 		$skill_modify = true;
 
@@ -57,7 +67,8 @@ class ProfileController extends BaseController{
 			$destinationPath = 'public/uploads';
 			
 			$filename = str_random(12).$match[1];
-		if(isset($img)){
+		if(isset($img))
+		{
 			$name = $img->getClientOriginalName();
 			preg_match('/.*(\.\w*)/', $name,$match);
 			$destinationPath = 'public/uploads';
@@ -79,15 +90,12 @@ class ProfileController extends BaseController{
 											'img'  => $filepath.'/'.$filename,
 											'introduction' => $intro,
 											'sex'  => $sex));
-		if(isset($skill)){
+		/*if(isset($skill))
+		{ ====userskill!!!!!
 			$skill_modify = DB::table('userSkills')->insert(
 									array('user_id'=>$id, 'skill_id'=>$skill));
-		}			
-
-		
-		return Redirect::to('/user/'.$user_id."/profile");
-
-
+		}*/			
+		return Redirect::to('/user/'.$id."/profile");
 	}
 
 	public function task($user_id)
@@ -103,4 +111,3 @@ class ProfileController extends BaseController{
 		return View::make('profile.task')->with('works',$works)->with('user',$user)->with('workskills',$workskills);
 	}
 }
-?>

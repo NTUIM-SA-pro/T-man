@@ -7,5 +7,5 @@ composer.phar
 .DS_Store
 /public/.htaccess
 Thumbs.db
-app/config/database.php
+#app/config/database.php
 

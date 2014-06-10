@@ -119,6 +119,7 @@ class WorkController extends BaseController {
 			$profile = new Workskill;
 			$profile->skillname = '電腦';
 			$work->workskill()->save($profile);
+		}
 	}
 	/**
 	 * Store a newly created resource in storage.

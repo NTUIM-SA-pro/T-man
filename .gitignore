@@ -7,8 +7,5 @@ composer.lock
 .DS_Store
 /public/.htaccess
 Thumbs.db
-<<<<<<< HEAD
 app/config/database.php
-=======
-app/config/database.php
->>>>>>> user
+

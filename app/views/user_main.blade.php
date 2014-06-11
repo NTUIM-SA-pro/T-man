@@ -16,15 +16,15 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
 		<div class = "row">
 			<div class="one column stackable ui grid">
 				<div class="column">
 					<div class="ui segment" style="border: 1px solid #ababab;">
 						<div style="text-align: center; font-size:22px;font-weight: bold;" class="field">
-							<span>Dashboard</span>
+							<span>選擇項目</span>
 						</div>
-
 						<!-- 個人資料 -->
 						@if(Auth::id()===$user->profile_uid)
 							<div class="field">

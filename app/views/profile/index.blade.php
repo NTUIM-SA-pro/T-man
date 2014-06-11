@@ -8,6 +8,7 @@
 			
 			<tr>
 				<td><b>綽號</td>
+
 				<td>{{ $data[0]->pname }}</td>
 			</tr>
 			<tr>

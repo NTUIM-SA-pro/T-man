@@ -6,7 +6,8 @@ class HomeController extends BaseController {
 	{
 		$works_cover = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
 		$works = Work::all();
-		return View::make('home')->with('workCover',$works_cover)->with('works',$works);
+		$user = DB::table('works')->join('profiles','profiles.user_id' ,'=', 'works.user_id')->get();
+		return View::make('home')->with('workCover',$works_cover)->with('works',$works)->with('users',$user);
 	}
 
 	public function test()

@@ -104,29 +104,32 @@
 						<div class="field">
 							<img class="head-profile" src="/{{$work->img}}"/>
 						</div>
-						<div class="field">ach
-							<div class="task_host">發案人:{{$work->wname}}</div>
-						</div>
+
 						<div class="field">
-							<div class="task_host">獎賞:{{$work->reward}}</div>
+							<div class="task_host">任務名稱:{{$work->workname}}</div>
 						</div>
-				
-						<div class="field" style="margin-top:10px;">
-							@foreach($work->workskill as $eachskill)
-								<div class="task-date">{{$eachskill->skillname}}</div>
-							@endforeach
-						</div>
+						@foreach($users as $user)
+							@if($user->id == $work->id)
+							<div class="task_host">發案人:{{$user->username}}</div>
+							@endif
+						@endforeach
+
 					</div>
+					<div class="field">
+						<div class="task_host">獎賞:{{$work->reward}}</div>
+					</div>
+				
+					<div class="field" style="margin-top:10px;">
+						@foreach($work->workskill as $eachskill)
+							<div class="task-date">{{$eachskill->skillname}}</div>
+						@endforeach
+					</div>
+				</div>
 				</div>
 				@if($i%3==2)
 					</div></div>
 				@endif
 				<?php $i++ ?>
-
-			
 		@endforeach
-
 	</div>
-
-	
 @stop

@@ -23,25 +23,6 @@ class WorkController extends BaseController {
 
 	}
 
-	public function taketask($work_id)
-	{
-		$worktaken = Worktaken::create(
-			array(
-				'description'=>$des,
-				'reward'=>$reward, 
-				'img'=> $filepath.'/'.$filename, 
-				'status'=>$status,
-				'user_id'=>$user_id,
-				'dueTime'=>$date
-				));
-
-		if($skill1 == 'on')
-		{
-			$profile = new Workskill;
-			$profile->skillname = '電腦';
-			$work->workskill()->save($profile);
-		}
-	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -77,7 +58,7 @@ class WorkController extends BaseController {
 
 		$work = Work::create(
 			array(
-				'name'=>$workname, 
+				'workname'=>$workname, 
 				'description'=>$des,
 				'reward'=>$reward, 
 				'img'=> $filepath.'/'.$filename, 
@@ -129,6 +110,35 @@ class WorkController extends BaseController {
 		}
 	}
 
+	public function taketask($work_id)	
+	{
+		$id = Auth::id();
+		$worktaken = Worktaken::create(
+			array(
+				'work_id'=>$work_id,
+				'taken_by'=>$id,
+				'status' =>1
+				));
+		
+		Work::find($work_id)->update(array('status'=>1));
+		return Redirect::to("/user/".$id."/tasktaken");
+	}
+
+	public function confirmtask()	
+	{
+		$id = Auth::id();
+		$chosen_user = Input::get('user');
+		$work = Input::get('work');
+		$worktaken = Worktaken::where('work_id','=',$work)->delete();
+		$worktaken = Worktaken::create(
+			array(
+				'work_id'=>$work,
+				'taken_by'=>$chosen_user,
+				'status' =>2
+				));
+		return 'Redirect::to("/user/".$id."/task")';
+
+	}
 
 	/**
 	 * Display the specified resource.

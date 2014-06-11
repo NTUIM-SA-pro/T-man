@@ -19,7 +19,7 @@
 									<div class="choose_user">
 									@foreach($worktakens as $worktaken)
 										@if($worktaken->work_id == $work->id)
-											<img name='{{$worktaken->taken_by}}' work-id='{{$work->id}}' data-content="<a style='color:#1AB8F3;' href='/user/{{$worktaken->taken_by}}/profile'>{{$worktaken->username}}</a>" class="circular ui image" src="/{{$worktaken->user_img}}">
+											<img name='{{$worktaken->taken_by}}' work-id='{{$work->id}}' data-content="<a style='color:#1AB8F3;' href='/user/{{$worktaken->taken_by}}/profile'>{{$worktaken->username}}</a>" class="circular ui image" src="/{{$worktaken->user_img}}" />
 										@endif
 									@endforeach
 									</div>
@@ -32,10 +32,10 @@
 							<img class="head-profile" src="/{{$work->img}}"/>
 						</div>
 						<div class="field">
-							<div class="task_host">任務名稱:{{$work->workname}}</div>
+							<div class="task_host">任務名稱:{{$work->wname}}</div>
 						</div>
 						<div class="field">
-							<div class="task_host">發案人:{{$user->username}}</div>
+							<div class="task_host">發案人:{{$user->pname}}</div>
 						</div>
 						<div class="field">
 							<div class="task_host">獎賞:{{$work->reward}}</div>
@@ -43,9 +43,8 @@
 				
 						<div class="field" style="margin-top:10px;">
 							@foreach($work->workskill as $eachskill)
-								<div class="task-date">{{$eachskill->skillname}}</div>
+								<div class="task-date">{{$eachskill->sname}}</div>
 							@endforeach
-
 						</div>
 					</div>
 				</div>

@@ -17,11 +17,13 @@ class CreateWorktakenTable extends Migration {
         {
             $table->increments('wtid');
             $table->integer('worktaken_status');
+            // foreign key: user id
             $table->integer('worktaken_uid')->unsigned();
             $table->foreign('worktaken_uid')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+            // foreign key: work id
             $table->integer('worktaken_wid')->unsigned();
 			$table->foreign('worktaken_wid')
 				->references('wid')

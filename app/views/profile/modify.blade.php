@@ -13,7 +13,7 @@
 				</tr>
 				<tr>
 					<td><b>Name</td>
-					<td><input type="text" name="name" value="{{ $data[0]->name }}"></td>
+					<td><input type="text" name="name" value="{{ $data[0]->username }}"></td>
 				</tr>
 				<tr>
 					<td><b>Sex</td>

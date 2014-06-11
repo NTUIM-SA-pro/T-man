@@ -17,8 +17,8 @@ class CreateWorktakenTable extends Migration {
         {
             $table->increments('id');
             $table->integer('status');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')
+            $table->integer('taken_by')->unsigned();
+            $table->foreign('taken_by')
                 ->references('id')->on('users')->onDelete('cascade');
             $table->integer('work_id')->unsigned();
 			$table->foreign('work_id')

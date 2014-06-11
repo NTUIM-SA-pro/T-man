@@ -46,7 +46,7 @@ Route::resource('work', 'WorkController');
 //{userid}動態拿取userid
 Route::get('/user/{userid}/profile',array('as'=>'profile', 'uses'=>'profileController@get_index'));
 
-
+Route::get('/user/{userid}/tasktaken','profileController@showtakenTask');
 
 Route::get('/user/{userid}',array('as'=>'user-homepage','uses'=>'UsersController@showHomepage'));
 //拿你po的專案
@@ -55,7 +55,8 @@ Route::get('/user/{userid}/task', array('uses'=>'profileController@task'));
 Route::group(array('before'=>'auth'),function(){
 	Route::post('createNewWork', 'WorkController@create');
 	Route::get('/user/{userid}/profileModify',array('as'=>'profile_modify', 'uses'=>'profileController@get_modify'));
-	Route::post('profileUpdate', array('uses'=>'profileController@post_update'));
+	Route::post('/user/{userid}/profileUpdate', array('uses'=>'profileController@post_update'));
 	Route::post('takeTask/{work_id}','WorkController@taketask');
+	Route::post('/user/{userid}/confirmtask','WorkController@confirmtask');
 });
 

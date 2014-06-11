@@ -8,12 +8,12 @@
 			
 			<tr>
 				<td><b>綽號</td>
-				<td>{{ $data[0]->name }}</td>
+				<td>{{ $data[0]->username }}</td>
 			</tr>
 			<tr>
 				<td><b>性別</td>
 				<td>
-					@if($data[0]->sex == 0)
+					@if($data[0]->sex == 1)
 						<p>男生</p>
 					@else
 						<p>女生</p>

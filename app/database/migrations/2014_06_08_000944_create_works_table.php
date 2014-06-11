@@ -16,7 +16,7 @@ class CreateWorksTable extends Migration {
 		Schema::create('works', function($table)
 		{
 			$table->increments('id');
-			$table->string('name');
+			$table->string('workname');
 			$table->string('description');
 			$table->string('reward');
 			$table->string('img');

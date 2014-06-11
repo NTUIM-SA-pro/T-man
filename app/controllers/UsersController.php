@@ -49,7 +49,7 @@ class UsersController extends BaseController {
 		);
 
 		$profile = new Profile;
-		$profile->name = $nickname;
+		$profile->username = $nickname;
 
 
 		$save = $user->profile()->save($profile);

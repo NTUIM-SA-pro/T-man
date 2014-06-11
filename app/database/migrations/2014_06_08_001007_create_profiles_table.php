@@ -14,13 +14,13 @@ class CreateProfilesTable extends Migration {
 	{
 		//
 		Schema::create('profiles', function($table){
-			$table->string('name')->nullable()->default();;
+			$table->string('username')->nullable()->default();;
             $table->integer('user_id')->unsigned();
 			$table->foreign('user_id')
 				->references('id')->on('users')
 				->onDelete('cascade');
-			$table->primary(array('name','user_id'));
-			$table->string('img')->nullable()->default('uploads/empty_profile.jpg');
+			$table->primary(array('username','user_id'));
+			$table->string('user_img')->nullable()->default('uploads/empty_profile.jpg');
 			$table->string('introduction')->nullable()->default();;
             $table->timestamps();
             $table->boolean('sex')->nullable()->default('1');

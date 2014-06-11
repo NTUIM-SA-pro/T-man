@@ -40,7 +40,7 @@ class ProfileController extends BaseController{
 			->with('user',$user); 
 	}
 
-	public function post_update(){
+	public function post_update($user_id){
 		$id = Auth::user()->id;
 		$skill_modify = true;
 
@@ -65,7 +65,7 @@ class ProfileController extends BaseController{
 			$filename = str_random(12).$match[1];
 			$upload_success = $img->move($destinationPath, $filename);
 			DB::table('profiles')->where('user_id', $id)
-									->update( array('img' => $filepath.'/'.$filename));
+									->update( array('user_img' => $filepath.'/'.$filename));
 									
 		}
 		$sex = Input::get('sex');
@@ -75,14 +75,11 @@ class ProfileController extends BaseController{
 
 		$profile_modify = DB::table('profiles')
 							->where('user_id', $id)
-							->update(array( 'name' => $profile_name,
-											'img'  => $filepath.'/'.$filename,
+							->update(array( 'username' => $profile_name,
+											'user_img'  => $filepath.'/'.$filename,
 											'introduction' => $intro,
 											'sex'  => $sex));
-		if(isset($skill)){
-			$skill_modify = DB::table('userSkills')->insert(
-									array('user_id'=>$id, 'skill_id'=>$skill));
-		}			
+				
 
 		
 		return Redirect::to('/user/'.$user_id."/profile");
@@ -96,11 +93,24 @@ class ProfileController extends BaseController{
 		$user = User::find($user_id)->profile;
 		// echo $id;
 		$works = Work::where('user_id','=',$user_id)->get();
-		$workskills = DB::table('works')->join('workSkills','workSkills.work_id' ,'=', 'works.id')
-						->where('user_id',$user_id)->get();
-		// $workskill = 
+	
+		$worktaken = DB::table('works')->join('worktaken','worktaken.work_id' ,'=', 'works.id')
+						->join('profiles','profiles.user_id','=','worktaken.taken_by')->get();
+						// ->where('taken_by',$user_id)->get();
 
-		return View::make('profile.task')->with('works',$works)->with('user',$user)->with('workskills',$workskills);
+		return View::make('profile.task')->with('works',$works)->with('user',$user)->with('worktakens',$worktaken);
+	}
+
+	public function showtakenTask($user_id)
+	{
+		$user = User::find($user_id)->profile;
+
+		$works = DB::table('works')->join('worktaken','worktaken.work_id' ,'=', 'works.id')
+						->join('profiles','profiles.user_id','=','works.user_id')
+						->where('taken_by',$user_id)->get();
+
+
+		return View::make('profile.tasktaken')->with('user',$user)->with('works',$works);
 	}
 }
 ?>

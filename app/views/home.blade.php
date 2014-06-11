@@ -104,8 +104,15 @@
 						<div class="field">
 							<img class="head-profile" src="/{{$work->img}}"/>
 						</div>
-						<div class="field">ach
-							<div class="task_host">發案人:{{$work->name}}</div>
+						<div class="field">
+						<div class="field">
+							<div class="task_host">任務名稱:{{$work->workname}}</div>
+						</div>
+						@foreach($users as $user)
+							@if($user->id == $work->id)
+							<div class="task_host">發案人:{{$user->username}}</div>
+							@endif
+						@endforeach
 						</div>
 						<div class="field">
 							<div class="task_host">獎賞:{{$work->reward}}</div>

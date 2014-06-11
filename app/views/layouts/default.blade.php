@@ -8,6 +8,7 @@
 			@include('header')
 		</header>
 		<div id="main">
+
 			@yield('content')
 		</div>
 		@include('model')

@@ -19,11 +19,26 @@ class SkillSeeder extends DatabaseSeeder
                 'name' => '運動',
                 'description' => '',
                 'cata_id' => 1
-            ]
+            ],
+            [
+                'name' => '美術',
+                'description' => '',
+                'cata_id' => 2
+            ],
+            [
+                'name' => '行政',
+                'description' => '',
+                'cata_id' => 2
+            ],
+            [
+                'name' => '其他',
+                'description' => '',
+                'cata_id' => 2
+            ],
         ];
   
-        foreach ($categories as $category) {
-            Category::create($categor);
+        foreach ($skills as $skill) {
+            Skill::create($skill);
         }
     }
 }

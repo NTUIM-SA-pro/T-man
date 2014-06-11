@@ -24,7 +24,7 @@ class CreateSkillsTable extends Migration {
 
         });
 
-        DB::table('skills')->insert(array(
+        /*DB::table('skills')->insert(array(
         	'name' => '電腦',
         	'description' => '',
         	'cata_id' => 1
@@ -53,7 +53,7 @@ class CreateSkillsTable extends Migration {
         	'name' => '其他',
         	'description' => '',
         	'cata_id' => 2
-        	));
+        	));*/
 	}
 
 	/**

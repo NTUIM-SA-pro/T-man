@@ -21,14 +21,14 @@ class CreateCatagoriesTable extends Migration {
             $table->timestamps();
 
         });
-        DB::table('catagorys')->insert(array(
+        /*DB::table('catagorys')->insert(array(
         	'name' => 'Web Design',
         	'description' => 'Design webpage, including back-end and fornt-end.'
         	));
         DB::table('catagorys')->insert(array(
         	'name' => 'Others',
         	'description' => 'Others.'
-        	));
+        	));*/
 	}
 
 	/**

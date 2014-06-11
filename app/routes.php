@@ -26,15 +26,12 @@ Route::post('register', 'UserController@register');
 //登入
 Route::post('login', 'UserController@login');
 
+Route::resource('user', 'UserController');
+
 //{userid}動態拿取userid
 Route::get('/user/{userid}/profile', array(
 	'as' => 'profile',
 	'uses' => 'ProfileController@get_index'
-));
-
-Route::get('/user/{userid}', array(
-	'as' => 'user-homepage',
-	'uses' => 'UserController@showHomepage'
 ));
 
 //拿你po的專案

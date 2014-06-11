@@ -7,19 +7,10 @@ class UserController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function home()
+	public function index()
 	{
-		$works = Work::all();
-
-		return View::make('index')->with('works', $works);
-		
+		//
 	}
-	public function showHomepage($user_id)
-	{
-		$user = User::find($user_id)->profile;
-		return View::make('user_main')->with('user',$user);
-	}
-	
 
 	/**
 	 * Show the form for creating a new resource.
@@ -28,9 +19,8 @@ class UserController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('form');
+		//
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
@@ -87,6 +77,7 @@ class UserController extends BaseController {
 		Auth::logout();
 		return Redirect::route('home');
 	}
+
 	/**
 	 * Display the specified resource.
 	 *
@@ -95,7 +86,8 @@ class UserController extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$user = User::find($id)->profile;
+		return View::make('user_main')->with('user',$user);
 	}
 
 

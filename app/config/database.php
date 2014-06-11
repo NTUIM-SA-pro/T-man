@@ -1,11 +1,11 @@
 <?php
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+/*$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $host = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
-$database = substr($url["path"], 1);
+$database = substr($url["path"], 1);*/
 
 return array(
 
@@ -33,7 +33,7 @@ return array(
 	|
 	*/
 
-	'default' => 'heroku',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ return array(
 			'prefix'    => '',
 		),
 
-		'heroku' => array(
+		/*'heroku' => array(
 			'driver'    => 'mysql',
 			'host'      => $host,
 			'database'  => $database,
@@ -79,7 +79,7 @@ return array(
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
-		),
+		),*/
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',

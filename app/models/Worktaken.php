@@ -11,7 +11,7 @@ class Worktaken extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-
+	protected $fillable = array('taken_by','work_id','status');
 	protected $table = 'worktaken';
 
 	/**

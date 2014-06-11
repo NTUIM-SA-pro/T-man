@@ -79,26 +79,23 @@
               ]
         }
     }
+    $('.choose_user img').popup({
+      on: 'click',
+      inline:true
+  });
   $('.ui.checkbox').checkbox();
 
   $('a.item.register').click(function(){
       $('.register.modal').modal('show');
       
     });
-    // $('#register_form .ui.black.button.cancel').click(function(){
-    //   $('.register.modal').modal('hide');
-    // });
   $('a.item.login').click(function(){
   
-      // $('.login.modal').modal('onShow',function(){
 
-      //     $('.error.message').html('').hide();
-      // })
       $('.login.modal').modal('show');
     });
     $('#login_form .ui.black.button.cancel').click(function(){
-      // $('.error.message').html('').hide();
-      // $('.lognin.modal').modal('hide');
+
     });
 
   $('#login_form .button.ok').click(function(){
@@ -133,10 +130,41 @@
 
   });
 
+  $('.choose_user img').click(function(){
+    $('.choose_user').children('img').each(function(){
+      $(this).removeClass('active');
+    });
+      $(this).addClass('active');
+  })
+  $('.ui.green.button.choose-user').click(function(){
+      var chosen_user;
+      var work_id;
+      $('.choose_user').children('img').each(function(){
+        if($(this).hasClass('active'))
+        {
+          chosen_user = $(this).attr('name');
+          work_id = $(this).attr('work-id');
+        }
+      });
+      if(typeof chosen_user == 'undefined') 
+      {
+        alert('至少選一個！！');
+      }
+      else
+      {
+          $.ajax({
+          url:'confirmtask',
+          type:'POST',
+          data:{user:chosen_user,work:work_id}
+        })
+      }
 
+    });
+      
 });
-
-
+  
+  
+  
 
 $(function() {
         function tabsToSpaces(line, tabsize) {

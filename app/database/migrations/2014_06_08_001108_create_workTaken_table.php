@@ -15,6 +15,7 @@ class CreateWorktakenTable extends Migration {
 		//
         Schema::create('worktaken', function($table)
         {
+
             $table->increments('wtid');
             $table->integer('worktaken_status');
             $table->integer('worktaken_uid')->unsigned();

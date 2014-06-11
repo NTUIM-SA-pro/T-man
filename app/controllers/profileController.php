@@ -18,11 +18,24 @@ class ProfileController extends BaseController{
 
 		$user = User::find($user_id)->profile;
 		// echo $id;
-		$works = Work::where('work_uid','=',$user_id)->get();
-		$workskills = DB::table('works')->join('workSkills','workSkills.workSkill_wid' ,'=', 'works.wid')
-						->where('work_uid',$user_id)->get();
-		// $workskill = 
+		$works = Work::where('user_id','=',$user_id)->get();
 
-		return View::make('profile.task')->with('works',$works)->with('user',$user)->with('workskills',$workskills);
+		$worktaken = DB::table('works')->join('worktaken','worktaken.work_id' ,'=', 'works.id')
+						->join('profiles','profiles.user_id','=','worktaken.taken_by')->get();
+						// ->where('taken_by',$user_id)->get();
+
+		return View::make('profile.task')->with('works',$works)->with('user',$user)->with('worktakens',$worktaken);
+	}
+
+	public function showtakenTask($user_id)
+	{
+		$user = User::find($user_id)->profile;
+
+		$works = DB::table('works')->join('worktaken','worktaken.work_id' ,'=', 'works.id')
+						->join('profiles','profiles.user_id','=','works.user_id')
+						->where('taken_by',$user_id)->get();
+
+
+		return View::make('profile.tasktaken')->with('user',$user)->with('works',$works);
 	}
 }

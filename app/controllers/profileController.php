@@ -21,7 +21,7 @@ class ProfileController extends BaseController{
 		$works = Work::where('user_id','=',$user_id)->get();
 
 		$worktaken = DB::table('works')->join('worktaken','worktaken.work_id' ,'=', 'works.id')
-						->join('profiles','profiles.user_id','=','worktaken.taken_by')->get();
+						->join('profiles','profiles.profile_uid','=','worktaken.taken_by')->get();
 						// ->where('taken_by',$user_id)->get();
 
 		return View::make('profile.task')->with('works',$works)->with('user',$user)->with('worktakens',$worktaken);
@@ -32,7 +32,7 @@ class ProfileController extends BaseController{
 		$user = User::find($user_id)->profile;
 
 		$works = DB::table('works')->join('worktaken','worktaken.work_id' ,'=', 'works.id')
-						->join('profiles','profiles.user_id','=','works.user_id')
+						->join('profiles','profiles.profile_uid','=','works.work_uid')
 						->where('taken_by',$user_id)->get();
 
 

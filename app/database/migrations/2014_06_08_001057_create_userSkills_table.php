@@ -13,13 +13,17 @@ class CreateUserSkillsTable extends Migration {
 	public function up()
 	{
 		Schema::create('userSkills', function($table){
-            $table->integer('user_id')->unsigned();
-			$table->foreign('user_id')
-				->references('id')->on('users')->onDelete('cascade');
-            $table->integer('skill_id')->unsigned();
-			$table->foreign('skill_id')
-				->references('id')->on('skills')->onDelete('cascade');
-			$table->primary(array('user_id', 'skill_id'));
+            $table->integer('userSkill_uid')->unsigned();
+			$table->foreign('userSkill_uid')
+				->references('id')
+				->on('users')
+				->onDelete('cascade');
+            $table->integer('userSkill_sid')->unsigned();
+			$table->foreign('userSkill_sid')
+				->references('sid')
+				->on('skills')
+				->onDelete('cascade');
+			$table->primary(array('userSkill_uid', 'userSkill_sid'));
             $table->timestamps();
 		});
 	}

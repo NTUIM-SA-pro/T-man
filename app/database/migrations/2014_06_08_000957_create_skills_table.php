@@ -15,13 +15,10 @@ class CreateSkillsTable extends Migration {
 		//
         Schema::create('skills', function($table)
         {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->integer('cate_id')->unsigned();
-            $table->foreign('cate_id')->references('id')->on('categorys')->onDelete('cascade');
+            $table->increments('sid');
+            $table->string('sname');
+            $table->string('skill_description');
             $table->timestamps();
-
         });
 	}
 

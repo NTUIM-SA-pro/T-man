@@ -26,13 +26,9 @@ Route::post('register', 'UserController@register');
 //登入
 Route::post('login', 'UserController@login');
 
-Route::resource('user', 'UserController');
-
-//{userid}動態拿取userid
-Route::get('/user/{userid}/profile', array(
-	'as' => 'profile',
-	'uses' => 'ProfileController@get_index'
-));
+//除了編輯個人頁面
+Route::resource('user', 'UserController',
+	array('except' => array('edit')));
 
 //拿你po的專案
 Route::get('/user/{userid}/task', array(
@@ -43,14 +39,7 @@ Route::get('/user/{userid}/task', array(
 Route::group(array('before' => 'auth'), function() {
 	Route::resource('work', 'WorkController');
 
-	Route::get('/user/{userid}/profileModify', array(
-		'as'=>'profile_modify',
-		'uses'=>'ProfileController@get_modify'
-	));
-
-	Route::post('/user/{userid}/profileUpdate', array(
-		'uses'=>'ProfileController@post_update'
-	));
+	Route::resource('user', 'UserController');
 
 	Route::post('takeTask/{work_id}','WorkController@taketask');
 });

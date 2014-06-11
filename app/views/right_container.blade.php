@@ -14,7 +14,7 @@
 					<div class="content">
 						<div class="task-desc">
 							<h3>敘述：</h3>
-							<p>{{$work->description}}</p>
+							<p>{{$work->work_description}}</p>
 						</div>
 						<div class="task-choose">
 							<a class="ui green button" style="width:200px;text-align:center;">接任務</a>
@@ -28,10 +28,10 @@
 					<div class="">發案人:</div>
 				</div>
 				<div class="field">
-					<div class="task-title">{{$work->name}}</div>
+					<div class="task-title">{{$work->wname}}</div>
 				</div>
 				<div class="field">
-					<div class="task-title">{{$work->name}}</div>
+					<div class="task-title">{{$work->wname}}</div>
 				</div>
 				<div class="field">
 					<div class="task-date">www</div>

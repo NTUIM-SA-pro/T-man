@@ -5,7 +5,7 @@
 	$('.ui.selection.dropdown').dropdown();
 	</script>
 	<div class="profile_table">
-		<form method="POST" action="profileUpdate" enctype="multipart/form-data">
+		{{ Form::open(array('url' => '/user/'.Auth::id(), 'method' => 'put', 'files' => true)) }}
 			<table class="ui table segment" style="height:100%;width:100%;">
 				<tr>
 					<td><b>大頭照</td>
@@ -13,15 +13,16 @@
 				</tr>
 				<tr>
 					<td><b>綽號</td>
-					<td><input type="text" name="name" value="{{ $data[0]->name }}"></td>
+					<td><input type="text" name="name" value="{{ $data[0]->pname }}"></td>
 				</tr>
 				<tr>
 					<td><b>性別</td>
 					<td>
-						<select name='sex' class='ui selection dropdown'>
-							<option value="1">男性
-							<option value="0">女性
-						</select>
+						{{ Form::select('sex', array(
+        					'0'     => '男性',
+        					'1'     => '女性',
+        					'2'     => '不明'
+    					), $data[0]->sex, array('class' => 'ui selection dropdown')) }}
 					</td>
 				</tr>
 				<tr>
@@ -33,13 +34,13 @@
 					<td>
 						<select name="skill">
 						@foreach($skill as $item)
-							<option value="{{ $item->id }}">{{ $item->name }}</option>
+							<option value="{{ $item->sid }}">{{ $item->sname }}</option>
 						@endforeach
 						</select>
 					</td>
 				</tr>
 			</table>
-			<input class="ui blue button" style="width:100%;" type="submit" value="submit">
-		</form>
+			<input class="ui blue button" style="width:100%;" type="submit" value="確定">
+		{{ Form::close() }}
 	</div>
 @stop

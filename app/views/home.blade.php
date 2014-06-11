@@ -12,7 +12,7 @@
 	  			</div>
   			@endif
   			<?php $j++?>
-				<img class="cover" src="{{$work->img}}"/>
+				<img class="cover" src="{{$work->work_img}}"/>
 			</div>
 
 		@endforeach
@@ -90,10 +90,10 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work->description}}</p>
+									<p>{{$work->work_description}}</p>
 								</div>
 								<div class="task-choose">
-									<form action="takeTask/{{$work->id}}" method="post">
+									<form action="takeTask/{{$work->wid}}" method="post">
 										<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
 									</form>
 								</div>
@@ -105,7 +105,7 @@
 							<img class="head-profile" src="/{{$work->img}}"/>
 						</div>
 						<div class="field">ach
-							<div class="task_host">發案人:{{$work->name}}</div>
+							<div class="task_host">發案人:{{$work->wname}}</div>
 						</div>
 						<div class="field">
 							<div class="task_host">獎賞:{{$work->reward}}</div>

@@ -15,9 +15,11 @@ class CreateWorkSkillsTable extends Migration {
 		//
 		Schema::create('workSkills', function($table){
 			$table->increments('id');
-            $table->integer('work_id')->unsigned();
-			$table->foreign('work_id')
-				->references('id')->on('works')->onDelete('cascade');
+            $table->integer('workSkill_wid')->unsigned();
+			$table->foreign('workSkill_wid')
+				->references('wid')
+				->on('works')
+				->onDelete('cascade');
 			$table->string('skillname');
             $table->timestamps();
 		});

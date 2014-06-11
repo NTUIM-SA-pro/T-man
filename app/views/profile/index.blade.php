@@ -8,15 +8,17 @@
 			
 			<tr>
 				<td><b>綽號</td>
-				<td>{{ $data[0]->name }}</td>
+				<td>{{ $data[0]->pname }}</td>
 			</tr>
 			<tr>
 				<td><b>性別</td>
 				<td>
-					@if($data[0]->sex == 0)
-						<p>男生</p>
+					@if($data[0]->sex === 0)
+						<p>男性</p>
+					@elseif($data[0]->sex === 1)
+						<p>女性</p>
 					@else
-						<p>女生</p>
+						<p>不明</p>
 					@endif
 				</td>
 			</tr>
@@ -38,10 +40,12 @@
 				</td>
 			</tr>
 		</table>
-		<a href="/user/{{Auth::id()}}/profileModify">
-			<div class="ui blue button" style="width:100%;">
-				Modify
-			</div>
-		</a>
+		@if(Auth::id()===$user->profile_uid)
+			<a href="/user/{{Auth::id()}}/edit">
+				<div class="ui blue button" style="width:100%;">
+					修改個人資料
+				</div>
+			</a>
+		@endif
 	</div>
 @endsection

@@ -15,14 +15,18 @@ class CreateWorktakenTable extends Migration {
 		//
         Schema::create('worktaken', function($table)
         {
-            $table->increments('id');
-            $table->integer('status');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')
-                ->references('id')->on('users')->onDelete('cascade');
-            $table->integer('work_id')->unsigned();
-			$table->foreign('work_id')
-				->references('id')->on('works')->onDelete('cascade');
+            $table->increments('wtid');
+            $table->integer('worktaken_status');
+            $table->integer('worktaken_uid')->unsigned();
+            $table->foreign('worktaken_uid')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->integer('worktaken_wid')->unsigned();
+			$table->foreign('worktaken_wid')
+				->references('wid')
+				->on('works')
+				->onDelete('cascade');
             $table->timestamps();
         });
 	}

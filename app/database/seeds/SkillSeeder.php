@@ -6,34 +6,28 @@ class SkillSeeder extends DatabaseSeeder
     {
         $skills = [
             [
-                'name' => '電腦',
-                'description' => '',
-                'cate_id' => 1
+                'sname' => '電腦',
+                'skill_description' => ''
             ],
             [
-                'name' => '語文',
-                'description' => '',
-                'cate_id' => 1
+                'sname' => '語文',
+                'skill_description' => ''
             ],
             [
-                'name' => '運動',
-                'description' => '',
-                'cate_id' => 1
+                'sname' => '運動',
+                'skill_description' => ''
             ],
             [
-                'name' => '美術',
-                'description' => '',
-                'cate_id' => 2
+                'sname' => '美術',
+                'skill_description' => ''
             ],
             [
-                'name' => '行政',
-                'description' => '',
-                'cate_id' => 2
+                'sname' => '行政',
+                'skill_description' => ''
             ],
             [
-                'name' => '其他',
-                'description' => '',
-                'cate_id' => 2
+                'sname' => '其他',
+                'skill_description' => ''
             ],
         ];
   

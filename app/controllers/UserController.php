@@ -139,7 +139,7 @@ class UserController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$skill_modify = true;
+		//$skill_modify = true;
 		$user = User::find($id)->profile;
 
 		/*
@@ -157,10 +157,11 @@ class UserController extends BaseController {
 
 		$filepath = 'uploads';
 		$name = $img->getClientOriginalName();
-			preg_match('/.*(\.\w*)/', $name,$match);
-			$destinationPath = 'public/uploads';
-			
-			$filename = str_random(12).$match[1];
+		preg_match('/.*(\.\w*)/', $name,$match);
+		$destinationPath = 'public/uploads';
+		// file name
+		$filename = str_random(12).$match[1];
+
 		if(isset($img))
 		{
 			$name = $img->getClientOriginalName();

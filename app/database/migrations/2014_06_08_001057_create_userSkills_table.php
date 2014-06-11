@@ -12,7 +12,6 @@ class CreateUserSkillsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
 		Schema::create('userSkills', function($table){
             $table->integer('user_id')->unsigned();
 			$table->foreign('user_id')

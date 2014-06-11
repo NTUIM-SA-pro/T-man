@@ -8,32 +8,32 @@ class SkillSeeder extends DatabaseSeeder
             [
                 'name' => '電腦',
                 'description' => '',
-                'cata_id' => 1
+                'cate_id' => 1
             ],
             [
                 'name' => '語文',
                 'description' => '',
-                'cata_id' => 1
+                'cate_id' => 1
             ],
             [
                 'name' => '運動',
                 'description' => '',
-                'cata_id' => 1
+                'cate_id' => 1
             ],
             [
                 'name' => '美術',
                 'description' => '',
-                'cata_id' => 2
+                'cate_id' => 2
             ],
             [
                 'name' => '行政',
                 'description' => '',
-                'cata_id' => 2
+                'cate_id' => 2
             ],
             [
                 'name' => '其他',
                 'description' => '',
-                'cata_id' => 2
+                'cate_id' => 2
             ],
         ];
   

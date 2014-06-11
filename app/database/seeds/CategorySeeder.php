@@ -16,7 +16,7 @@ class CategorySeeder extends DatabaseSeeder
         ];
   
         foreach ($categories as $category) {
-            Category::create($categor);
+            Category::create($category);
         }
     }
 }

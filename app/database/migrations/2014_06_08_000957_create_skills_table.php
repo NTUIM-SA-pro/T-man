@@ -18,8 +18,8 @@ class CreateSkillsTable extends Migration {
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->integer('cata_id')->unsigned();
-            $table->foreign('cata_id')->references('id')->on('catagorys')->onDelete('cascade');
+            $table->integer('cate_id')->unsigned();
+            $table->foreign('cate_id')->references('id')->on('categorys')->onDelete('cascade');
             $table->timestamps();
 
         });

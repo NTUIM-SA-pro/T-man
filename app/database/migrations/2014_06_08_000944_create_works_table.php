@@ -12,7 +12,6 @@ class CreateWorksTable extends Migration {
 	 */
 	public function up()
 	{
-		//
 		Schema::create('works', function($table)
 		{
 			$table->increments('id');
@@ -29,7 +28,6 @@ class CreateWorksTable extends Migration {
 			$table->date('duetime');
 			$table->timestamps();
 		});
-		
 	}
 
 	/**
@@ -39,9 +37,6 @@ class CreateWorksTable extends Migration {
 	 */
 	public function down()
 	{
-
         Schema::drop('works');
-
 	}
-
 }

@@ -57,7 +57,7 @@
 	</div>
 
 	<div id="right-container">
-		@yield('task_filter')
 		@yield('right-container')
-	</div>	
+	</div>
 @stop
+

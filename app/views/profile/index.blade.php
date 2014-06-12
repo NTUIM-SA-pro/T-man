@@ -1,18 +1,22 @@
 @extends('user_main')
 @section('right-container')
-	@if(isset($message))
-		<p>{{ $message }}</p>
+	<div class="ui segment main">
+	@if($user->user_id==Auth::id())
+		<h2 class="ui left floated header">我的個人資料</h2>
+	@else
+		<h2 class="ui left floated header">{{$user->username}}的個人資料</h2>
 	@endif
+	<div class="ui clearing divider"></div>
 	<div class="profile_table">
 		<table class="ui table segment" style="height:100%;width:100%;">
 			
 			<tr>
-				<td><b>綽號</td>
+				<td><b>綽號</b></td>
 
 				<td>{{ $data[0]->pname }}</td>
 			</tr>
 			<tr>
-				<td><b>性別</td>
+				<td><b>性別</b></td>
 				<td>
 					@if($data[0]->sex === 0)
 						<p>男性</p>
@@ -24,7 +28,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><b>個人簡介</td>
+				<td><b>個人簡介</b></td>
 				<td>
 					@if($data[0]->introduction==1)
 					@else
@@ -33,7 +37,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><b>專長、技能</td>
+				<td><b>專長、技能</b></td>
 				<td>
 					@foreach($skill as $item)
 						{{$item->name}}

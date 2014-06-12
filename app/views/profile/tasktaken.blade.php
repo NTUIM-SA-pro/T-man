@@ -1,7 +1,13 @@
 @extends('user_main')
 <!-- 發的專案 -->
 @section('right-container')
-
+	<div class="ui segment main">
+	@if($user->user_id==Auth::id())
+		<h2 class="ui left floated header">我接的案</h2>
+	@else
+		<h2 class="ui left floated header">{{$user->username}}接的案</h2>
+	@endif
+	<div class="ui clearing divider"></div>
 		<?php $i=0 ?>
 		@foreach($works as $work)
 			@if($i%3==0)
@@ -44,5 +50,5 @@
 
 			
 		@endforeach
-
+	</div>
 @stop

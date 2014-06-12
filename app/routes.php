@@ -17,8 +17,15 @@ Route::any('home', array(
 	'uses' => 'HomeController@home'
 ));
 
+
+Route::any('home_error', array(
+	'as'=>'home-error',
+	'uses'=>'HomeController@home_error'
+));
+
 //登出
 Route::get('logout', 'UserController@logout');
+
 
 //註冊
 Route::post('register', 'UserController@register');

@@ -1,10 +1,37 @@
+
+
+	<div class="ui login modal" style="width:60%;margin-left:-30%;">
+		<i class="close icon"></i>
+		<div class="header">
+			登入
+		</div>
+		<div class="content">
+				<form id='login_form' action="login" method="POST">
+				<div class="ui form" >
+
+					<div class="field register" >
+						<label>帳號</label>
+						<input type="text" name="account" placeholder="請使用有效的Email">
+					</div>
+					<div class="field register">
+						<label>密碼</label>
+						<input type="password" name="password" placeholder="請使用四位數以上的密碼">
+						
+					</div>
+					<div class="ui error message">請登入在進行操作:)</div>
+					<div class="field"  >
+						<div class="ui positive right labeled icon submit button ok" style="width:49%;">
+							登入
+							<i class="checkmark icon"></i>
+						</div>
+						<input type="reset"class="ui black button cancel" style="width:49%;" value="reset">
+
 <div class="ui register modal" style="width:60%;margin-left:-30%;">
 	<i class="close icon"></i>
 
 	<div class="header">
 		註冊
 	</div>
-
 	<div class="content">
 		<form id='register_form' action="register" method="POST">
 			<div class="ui form" >
@@ -36,34 +63,8 @@
 	</div>
 </div>
 
-<div class="ui login modal" style="width:60%;margin-left:-30%;">
-	<i class="close icon"></i>
-	<div class="header">
-		登入
-	</div>
-	<div class="content">
-		<form id='login_form' action="login" method="POST">
-			<div class="ui form" >
-				<div class="field register" >
-					<label>帳號</label>
-					<input type="text" name="account" placeholder="請使用有效的Email">
-				</div>
-				<div class="field register">
-					<label>密碼</label>
-					<input type="password" name="password" placeholder="請使用四位數以上的密碼">
-				</div>
-				<div class="ui error message"></div>
-				<div class="field"  >
-					<div class="ui positive right labeled icon submit button ok" style="width:49%;">
-						登入
-						<i class="checkmark icon"></i>
-					</div>
-					<input type="reset"class="ui black button cancel" style="width:49%;" value="reset">			
-				</div>					
-			</div>
-		</form>
-	</div>
-</div>
+
+
 
 <div class="ui creatework modal">
 	<i class="close icon"></i>

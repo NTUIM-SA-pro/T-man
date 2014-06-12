@@ -132,4 +132,7 @@
 				<?php $i++ ?>
 		@endforeach
 	</div>
+	@if(isset($msg)) <span class="test">{{$msg}}</span> 
+	@endif
+
 @stop

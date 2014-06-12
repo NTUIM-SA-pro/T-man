@@ -89,17 +89,22 @@ class UserController extends BaseController {
 	{
 		$user = User::find($id)->profile;
 
-		$works = Work::where('works_uid','=',$id)->get();
-
+		// profiles join works
 		$user_works = DB::table('works')
 						->join('user_works','user_works.user_works_wid' ,'=', 'works.wid')
 						->join('profiles','profiles.profiles_uid','=','user_works.user_works_uid')
 						->get();
 
+		// works join skills
+		$work_skills = DB::table('works')
+						->join('work_skills','works.wid' ,'=', 'work_skills.work_skills_wid')
+						->join('skills','skills.sid' ,'=', 'work_skills.work_skills_sid')
+						->get();
+
 		return View::make('profile.task')
-					->with('works',$works)
 					->with('user',$user)
-					->with('user_works',$user_works);
+					->with('user_works',$user_works)
+					->with('work_skills',$work_skills);
 	}
 
 	/**

@@ -29,11 +29,15 @@ class CreateUserWorksTable extends Migration {
 			// primary key: user id + work id
 			$table->primary(array('user_works_uid', 'user_works_wid'));
 			/* user 和 work 之間的關係:
-			 * 1. 發案人
-			 * 2. 候選接案人
-			 * 3. 確定接案人
+			 * 0. 發案人, 未接
+			 * 1. 發案人, 未確認
+			 * 2. 發案人, 已確認
+			 * 3. 接案人, 未確認
+			 * 4. 接案人, 已確認
 			 */
-			$table->integer('status');
+			$table->integer('status')
+				->nullable()
+				->default(0);
             $table->timestamps();
         });
 	}

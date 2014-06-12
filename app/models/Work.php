@@ -24,8 +24,8 @@ class Work extends Eloquent {
 		return $this->belongsToMany('Skill', 'work_skills', 'work_skills_wid', 'work_skills_sid');
 	}
 
-	public function worktaken()
+	public function user()
 	{
-		return $this->hasMany('Worktaken', 'worktaken_wid', 'wid');
+		return $this->belongsToMany('User', 'user_works', 'user_works_wid', 'user_works_uid');
 	}
 }

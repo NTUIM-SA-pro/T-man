@@ -68,6 +68,8 @@ class WorkController extends BaseController {
 			));
 
 		$work = Work::find($work_id);
+
+		$work->user()->attach($user_id);
 		// 我想用sync
 		if($skill1 == 'on')
 		{
@@ -103,14 +105,16 @@ class WorkController extends BaseController {
 	public function taketask($work_id)	
 	{
 		$id = Auth::id();
-		$worktaken = Worktaken::create(
-			array(
-				'worktaken_wid'=>$work_id,
-				'worktaken_uid'=>$id,
-				'status' =>1
-				));
-		
-		Work::find($work_id)->update(array('status'=>1));
+
+		// 發案人: 未接 -> 未確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work_id)
+						->where('status', '=', 0)
+						->update(array('status' => 1));
+
+		// 接案人: 未確認
+		$work_taker = Work::find($work_id);
+		$work_taker->user()->attach($id, array('status' => 3));
+
 		return Redirect::to("/user/".$id."/tasktaken");
 	}
 
@@ -120,16 +124,17 @@ class WorkController extends BaseController {
 		$chosen_user = Input::get('user');
 		$work = Input::get('work');
 
-		$worktaken_delete = Worktaken::where('work_id','=',$work)->delete();
-		$worktaken_create = Worktaken::create(
-			array(
-				'worktaken_wid'=>$work,
-				'worktaken_uid'=>$chosen_user,
-				'status' =>2
-				));
-		Work::find($work)->update(array('status'=>2));
-		return $id;
+		// 發案人: 未確認 -> 已確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work)
+						->where('status', '=', 1)
+						->update(array('status' => 2));
 
+		// 接案人: 未確認 -> 已確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work)
+						->where('status', '=', 3)
+						->update(array('status' => 4));
+
+		return $id;
 	}
 
 	/**

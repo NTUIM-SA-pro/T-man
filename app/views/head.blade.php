@@ -163,7 +163,7 @@
             type:'POST',
             data:{user:chosen_user,work:work_id},
             success:function(msg){
-                window.location.href = "/user/"+msg+"/task";
+                window.location.href = "/user/"+msg;
             },
             error:function(){
               alert('wrong');

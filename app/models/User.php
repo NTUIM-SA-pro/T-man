@@ -10,6 +10,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
+	protected $fillable = array('account','password');
 	protected $table = 'users';
 
 	/**
@@ -40,6 +41,37 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	/**
+	 * Get the token value for the "remember me" session.
+	 *
+	 * @return string
+	 */
+	public function getRememberToken()
+	{
+		return $this->remember_token;
+	}
+
+	/**
+	 * Set the token value for the "remember me" session.
+	 *
+	 * @param  string  $value
+	 * @return void
+	 */
+	public function setRememberToken($value)
+	{
+		$this->remember_token = $value;
+	}
+
+	/**
+	 * Get the column name for the "remember me" token.
+	 *
+	 * @return string
+	 */
+	public function getRememberTokenName()
+	{
+		return 'remember_token';
+	}
+
+	/**
 	 * Get the e-mail address where password reminders are sent.
 	 *
 	 * @return string
@@ -49,4 +81,18 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+	public function profile()
+	{
+		return $this -> hasOne('Profile', 'profiles_uid', 'id');
+	}
+
+	public function skill()
+	{
+		return $this->belongsToMany('Skill', 'work_skills', 'work_skills_wid', 'work_skills_sid');
+	}
+
+	public function work()
+	{
+		return $this->belongsToMany('Work', 'user_works', 'user_works_uid', 'user_works_wid');
+	}
 }

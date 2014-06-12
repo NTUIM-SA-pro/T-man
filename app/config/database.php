@@ -1,21 +1,11 @@
 <?php
 
-if (!function_exists('heroku_pgsql_database')) {
-    function heroku_pgsql_database()
-    {
-        if (!isset($_SERVER['DATABASE_URL'])) {
-            return array();
-        }
-        $config = parse_url($_SERVER['DATABASE_URL']);
-        return [
-            'username' => $config['user'],
-            'password' => $config['pass'],
-            'host' => $config['host'],
-            'port' => $config['port'],
-            'database' => starts_with($config['path'], '/') ? substr($config['path'], 1) : $config['path'],
-        ];
-    }
-}
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
 
 return array(
 
@@ -43,7 +33,7 @@ return array(
 	|
 	*/
 
-	'default' => 'pgsql',
+	'default' => 'heroku',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -72,23 +62,35 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'database',
-			'username'  => 'root',
-			'password'  => '',
+			'database'  => 't-man',
+			'username'  => 'tman',
+			'password'  => 'EFV4MYVqBaseEvqB',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
 
-        'pgsql' => array_merge(
-            array(
-                'driver' => 'pgsql',
-                'charset' => 'utf8',
-                'prefix' => '',
-                'schema' => 'public',
-            ),
-            heroku_pgsql_database()
-        ),
+		'heroku' => array(
+			'driver'    => 'mysql',
+			'host'      => $host,
+			'database'  => $database,
+			'username'  => $username,
+			'password'  => $password,
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'pgsql' => array(
+			'driver'   => 'pgsql',
+			'host'     => 'localhost',
+			'database' => 'database',
+			'username' => 'root',
+			'password' => '',
+			'charset'  => 'utf8',
+			'prefix'   => '',
+			'schema'   => 'public',
+		),
 
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
@@ -127,12 +129,12 @@ return array(
 
 	'redis' => array(
 
-		'cluster' => false,
+		'cluster' => true,
 
 		'default' => array(
 			'host'     => '127.0.0.1',
 			'port'     => 6379,
-			'database' => 0,
+			'database' => 'T-man',
 		),
 
 	),

@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost:8000',
+	'url' => 'http://localhost',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Asia/Taipei',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -56,6 +56,19 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| Application Fallback Locale
+	|--------------------------------------------------------------------------
+	|
+	| The fallback locale determines the locale to use when the current one
+	| is not available. You may change the value to correspond to any of
+	| the language folders that are provided through your application.
+	|
+	*/
+
+	'fallback_locale' => 'en',
+
+	/*
+	|--------------------------------------------------------------------------
 	| Encryption Key
 	|--------------------------------------------------------------------------
 	|
@@ -65,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'kS6QN1YKKdSVV6fgLC6K1pc4Tk5yzyok',
+	'key' => 'uKh0tAeF1Q3XebDFRvVBTyzsgGuA4wVg',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -106,8 +119,6 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
 	),
 
@@ -163,6 +174,7 @@ return array(
 		'Queue'           => 'Illuminate\Support\Facades\Queue',
 		'Redirect'        => 'Illuminate\Support\Facades\Redirect',
 		'Redis'           => 'Illuminate\Support\Facades\Redis',
+        //'Redis'           => 'D:\redis',
 		'Request'         => 'Illuminate\Support\Facades\Request',
 		'Response'        => 'Illuminate\Support\Facades\Response',
 		'Route'           => 'Illuminate\Support\Facades\Route',

@@ -2,10 +2,13 @@
 /vendor
 composer.phar
 composer.lock
-.env.*.php
-.env.php
 .DS_Store
-/public/.htaccess
 Thumbs.db
+.idea
+/node_modules
+/public/bower_components
+.sass-cache
+/client/compiled
+/public/uploads
 /app/config/database.php
 

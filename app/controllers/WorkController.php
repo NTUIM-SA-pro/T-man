@@ -1,6 +1,6 @@
 <?php
 
-class WorkController extends \BaseController {
+class WorkController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -10,8 +10,6 @@ class WorkController extends \BaseController {
 	public function index()
 	{
 		//
-        $works = Work::all();
-                return View::make('works')->with('works', $works);
 	}
 
 
@@ -21,6 +19,16 @@ class WorkController extends \BaseController {
 	 * @return Response
 	 */
 	public function create()
+	{
+
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
 	{
 		$skill1 = Input::get('skill1');
 		$skill2 = Input::get('skill2');
@@ -36,7 +44,7 @@ class WorkController extends \BaseController {
 
 		preg_match('/.*(\.\w*)/', $name,$match);
 		$des = Input::get('description');
-		
+
 		$user_id = Auth::id();
 
 		$reward = Input::get('reward');
@@ -58,7 +66,7 @@ class WorkController extends \BaseController {
 				'user_id'=>$user_id,
 				'dueTime'=>$date
 				));
-		
+
 		if($skill1 == 'on')
 		{
 			$profile = new Workskill;
@@ -95,7 +103,7 @@ class WorkController extends \BaseController {
 			$profile->skillname = '其他';
 			$work->workskill()->save($profile);
 		}
-		
+
 		// if($work && $upload_success ){
 			if($upload_success ){
 			return Redirect::to("/user/".$user_id."/task");
@@ -132,16 +140,6 @@ class WorkController extends \BaseController {
 		return $id;
 
 	}
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
 
 	/**
 	 * Display the specified resource.

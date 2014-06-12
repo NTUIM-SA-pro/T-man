@@ -1,5 +1,5 @@
 <div class="ui blue inverted menu" style="background-color: #1987FF">
-	<a class="active item" href="/home">
+	<a class="active item" href="/">
 		<i class="home icon"></i> T-MAN
 	</a>
 
@@ -19,17 +19,13 @@
 				<i class="sign out icon"></i>登出
 			</a>
 			
-		@else
-			
+		@else			
 			<a class="item register">
 				<i class="user icon"></i>註冊
 			</a>
 			<a class="item login">
 				<i class="sign in icon"></i>登入
 			</a>
-
 		@endif
-		
-		
 	</div>
 </div>

@@ -12,7 +12,6 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		//
         Schema::create('users', function($table)
         {
             $table->increments('id');
@@ -20,9 +19,7 @@ class CreateUsersTable extends Migration {
             $table->string('password');
             $table->string('remember_token')->default();
             $table->timestamps();
-
         });
-        // haha
 	}
 
 	/**
@@ -32,8 +29,6 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		//
         Schema::drop('users');
 	}
-
 }

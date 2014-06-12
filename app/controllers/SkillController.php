@@ -1,6 +1,6 @@
 <?php
 
-class OrgDatasController extends \BaseController {
+class SkillController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class OrgDatasController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+	
 	}
 
 

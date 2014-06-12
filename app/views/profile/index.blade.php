@@ -11,21 +11,24 @@
 		<table class="ui table segment" style="height:100%;width:100%;">
 			
 			<tr>
-				<td><b>綽號</td>
-				<td>{{ $data[0]->username }}</td>
+				<td><b>綽號</b></td>
+
+				<td>{{ $data[0]->pname }}</td>
 			</tr>
 			<tr>
-				<td><b>性別</td>
+				<td><b>性別</b></td>
 				<td>
-					@if($data[0]->sex == 1)
-						<p>男生</p>
+					@if($data[0]->sex === 0)
+						<p>男性</p>
+					@elseif($data[0]->sex === 1)
+						<p>女性</p>
 					@else
-						<p>女生</p>
+						<p>不明</p>
 					@endif
 				</td>
 			</tr>
 			<tr>
-				<td><b>個人簡介</td>
+				<td><b>個人簡介</b></td>
 				<td>
 					@if($data[0]->introduction==1)
 					@else
@@ -34,7 +37,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><b>專長、技能</td>
+				<td><b>專長、技能</b></td>
 				<td>
 					@foreach($skill as $item)
 						{{$item->name}}
@@ -42,14 +45,13 @@
 				</td>
 			</tr>
 		</table>
-		@if($user->user_id==Auth::id())
-		<a href="/user/{{Auth::id()}}/profileModify">
-			<div class="ui blue button" style="width:100%;">
-				Modify
-			</div>
-		</a>
-		@else
+
+		@if(Auth::id()===$user->profile_uid)
+			<a href="/user/{{Auth::id()}}/edit">
+				<div class="ui blue button" style="width:100%;">
+					修改個人資料
+				</div>
+			</a>
 		@endif
-	</div>
 	</div>
 @endsection

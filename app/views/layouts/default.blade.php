@@ -12,5 +12,5 @@
 			@yield('content')
 		</div>
 		@include('model')
-</body>
+	</body>
 </html>

@@ -3,14 +3,13 @@ body{
  	padding: 0;
  	margin: 0;
     position: relative;
-
  }
  a{
     text-decoration: none;
  }
  #main{
- 	/*padding-left: 20px;*/
- 	padding-top: 5px;
+    /*padding-left: 20px;*/
+    padding-top: 5px;
  }
  #main .filter_title{
     display: block;
@@ -32,44 +31,45 @@ body{
     border-radius: 5px;
  }
  .head-profile{
- 	width: 100%;
- 	height: 200px;
- 	border-radius: 5px;
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
  }
+<<<<<<< HEAD
 #left-container{
  	width: 25%;
  	float: left;
  	margin-top: 40px;
     margin-left: 1%;
     /*border: 1px solid red;*/
- }
+}
 #left-container .profile-name{
- 	margin-right: auto;
- 	margin-left: auto;
- 	display: block;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
     text-align: center;
- 	width: 70%;
+    width: 70%;
     font-size: 25px;
- 	margin-top: 10px;
+    margin-top: 10px;
  }
 #left-container .profile-btn{
- 	width: 80%;
- 	display: block;
- 	border: 1px solid #007aff;
- 	color: #007aff;
- 	font-size: 18px;
- 	cursor: pointer;
- 	margin-right: auto;
- 	margin-left: auto;
- 	border-radius: 4px;
- 	text-align: center; 
- 	margin-top: 15px;
- 	padding: 2px;
- 	letter-spacing: 2px;
- 	transition: 0.5s;
+    width: 80%;
+    display: block;
+    border: 1px solid #007aff;
+    color: #007aff;
+    font-size: 18px;
+    cursor: pointer;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 4px;
+    text-align: center; 
+    margin-top: 15px;
+    padding: 2px;
+    letter-spacing: 2px;
+    transition: 0.5s;
  }
 #left-container .profile-btn:hover{
- 	color: #0045ff;
+    color: #0045ff;
  }
  #right-container{
  	width: 70%;
@@ -78,27 +78,24 @@ body{
     margin-left: 2%;
  	display: inline-block;
 
-
  }
  #right-container .filter-task{
- 	width: 100%;
+    width: 100%;
 
  }
  #right-container .filter-task span{
- 	font-size: 20px;
- 	font-weight: bold;
- 	color: #4a4a4a;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4a4a4a;
 
  }
- #right-container .ui.segment{
 
-
- }
+ 
  #right-container .task-label{
- 	position: absolute;
- 	font-family: Helvetica, Arial, sans-serif;
- 	left: 60%;
- 	text-align: center;
+    position: absolute;
+    font-family: Helvetica, Arial, sans-serif;
+    left: 60%;
+    text-align: center;
     display: inline-block;
     color: white;
     width: 38%;
@@ -109,8 +106,8 @@ body{
     padding: 5px;
     border: none;
     transform:rotate(45deg) translate(8px, 0px);
-	-ms-transform:rotate(45deg) translate(8px, 0px); 
-	-webkit-transform:rotate(45deg) translate(8px, 0px);
+    -ms-transform:rotate(45deg) translate(8px, 0px); 
+    -webkit-transform:rotate(45deg) translate(8px, 0px);
  }
  #right-container .task-label:before {
     display: inline-block;
@@ -138,7 +135,7 @@ body{
 }
 #right-container .task-date{
 
-	font-family: Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     background: #ff9933;
     float: right;
     display: inline-block;
@@ -151,8 +148,8 @@ body{
     margin: 0 20px 0 0;
     text-decoration: none;
     -webkit-transition:  .5s; 
-	transition:  .5s;
-    margin-bottom: 5px;
+    transition:  .5s;
+
 }
 
 #right-container .task-date:hover {
@@ -172,12 +169,13 @@ body{
 }
  
 #right-container .task-title{
- 	font-size: 16px;
- 	margin-top: 5px;
+    font-size: 16px;
+    margin-top: 5px;
  }
 
 #right-container .task-desc{
     overflow:scroll;
+<<<<<<< HEAD
  	text-align: left;
  	height: 80%;
  	width: 90%;
@@ -192,7 +190,13 @@ body{
     /*height: 0%;*/
  	margin-left: -100px;
  	bottom: 10%;
+    text-align: left;
+
+    height: 70%;
+
+    width: 90%;
  }
+
 
  #right-container .task-choose.user{
     position: absolute;
@@ -258,3 +262,4 @@ body{
     box-shadow:0 0 5px rgba(20%,20%,40%,0.8) inset;
     padding:1.5em;
 }
+

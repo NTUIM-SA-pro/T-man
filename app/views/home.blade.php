@@ -12,7 +12,7 @@
 	  			</div>
   			@endif
   			<?php $j++?>
-				<img class="cover" src="{{$work->img}}"/>
+				<img class="cover" src="{{$work->work_img}}"/>
 			</div>
 
 		@endforeach
@@ -90,10 +90,10 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work->description}}</p>
+									<p>{{$work->work_description}}</p>
 								</div>
 								<div class="task-choose">
-									<form action="takeTask/{{$work->id}}" method="post">
+									<form action="takeTask/{{$work->wid}}" method="post">
 										<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
 									</form>
 								</div>
@@ -104,7 +104,7 @@
 						<div class="field">
 							<img class="head-profile" src="/{{$work->img}}"/>
 						</div>
-						<div class="field">
+
 						<div class="field">
 							<div class="task_host">任務名稱:{{$work->workname}}</div>
 						</div>
@@ -113,28 +113,26 @@
 							<div class="task_host">發案人:{{$user->username}}</div>
 							@endif
 						@endforeach
-						</div>
-						<div class="field">
-							<div class="task_host">獎賞:{{$work->reward}}</div>
-						</div>
-				
-						<div class="field" style="margin-top:10px;">
-							@foreach($work->workskill as $eachskill)
-								<div class="task-date">{{$eachskill->skillname}}</div>
-							@endforeach
-						</div>
+
 					</div>
+					<div class="field">
+						<div class="task_host">獎賞:{{$work->reward}}</div>
+					</div>
+				
+					<div class="field" style="margin-top:10px;">
+						@foreach($work->workskill as $eachskill)
+							<div class="task-date">{{$eachskill->skillname}}</div>
+						@endforeach
+					</div>
+				</div>
 				</div>
 				@if($i%3==2)
 					</div></div>
 				@endif
 				<?php $i++ ?>
-
-			
 		@endforeach
-
 	</div>
 	@if(isset($msg)) <span class="test">{{$msg}}</span> 
 	@endif
-	
+
 @stop

@@ -99,12 +99,6 @@
         onHidden:function(){
           $('#login_form .error.message').hide();
 
-        }
-        }).modal('show');
-      });
-      $('#login_form .ui.black.button.cancel').click(function(){
-
-      });
 
     $('#login_form .button.ok').click(function(){
         $.ajax({
@@ -121,6 +115,12 @@
         })
     });
 
+  $('#register_form .ui.form').form(rules,settings);
+
+  //顯示發案視窗
+  $('.profile-btn.post').click( function() {
+    $('.creatework.modal').modal('show');
+  });
 
     $('#register_form .ui.form').form(rules,settings);
     $('.profile-btn.post').click(function(){

@@ -95,18 +95,18 @@ class ProfileController extends BaseController{
 	 */
 	public function update($id)
 	{
-		/*$validator = array(
+		$validator = array(
     		'img' => 'required|min:1|integerOrArray'
-		);*/
+		);
 
 		// get the data from front end. 
 		$profile_name = Input::get('name');
 
 		// image validation
-		/*if ($validator->fails())
+		if ($validator->fails())
 		{
     		// The given data did not pass validation
-		}*/
+		}
 
 		// 有照片
 		if( Input::file('img')->isValid() )

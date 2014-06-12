@@ -12,15 +12,21 @@ class CreateWorkSkillsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
-		Schema::create('workSkills', function($table){
-			$table->increments('id');
-            $table->integer('workSkill_wid')->unsigned();
-			$table->foreign('workSkill_wid')
+		Schema::create('work_skills', function($table){
+			// foreign key: work id
+            $table->integer('work_skills_wid')->unsigned();
+			$table->foreign('work_skills_wid')
 				->references('wid')
 				->on('works')
 				->onDelete('cascade');
-			$table->string('skillname');
+			// foreign key: skill id
+            $table->integer('work_skills_sid')->unsigned();
+			$table->foreign('work_skills_sid')
+				->references('sid')
+				->on('skills')
+				->onDelete('cascade');
+			// primary key: work id + skill id
+			$table->primary(array('work_skills_wid', 'work_skills_sid'));
             $table->timestamps();
 		});
 	}
@@ -32,8 +38,6 @@ class CreateWorkSkillsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
-        Schema::drop('workSkills');
+        Schema::drop('work_skills');
 	}
-
 }

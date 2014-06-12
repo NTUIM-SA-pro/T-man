@@ -37,13 +37,13 @@ class WorkController extends BaseController {
 		$skill5 = Input::get('skill5');
 		$skill6 = Input::get('skill6');
 
-
 		$workname = Input::get('workName');
 		$img = Input::file('image');
+		// image name
 		$name = $img->getClientOriginalName();
 
 		preg_match('/.*(\.\w*)/', $name,$match);
-		$des = Input::get('description');
+		$description = Input::get('description');
 
 		$user_id = Auth::id();
 
@@ -56,71 +56,65 @@ class WorkController extends BaseController {
 		$filename = str_random(12).$match[1];
 		$upload_success = $img->move($destinationPath, $filename);
 
-		$work = Work::create(
+		// insert and get this work id
+		$work_id = Work::insertGetId(
 			array(
-				'workname'=>$workname, 
-				'description'=>$des,
-				'reward'=>$reward, 
-				'img'=> $filepath.'/'.$filename, 
-				'status'=>$status,
-				'user_id'=>$user_id,
-				'dueTime'=>$date
-				));
+				'wname' => $workname, 
+				'works_description' => $description,
+				'reward' => $reward, 
+				'works_img' => $filepath.'/'.$filename,
+				'works_uid' => $user_id,
+				'dueTime' => $date
+			));
 
+		$work = Work::find($work_id);
+
+		$work->user()->attach($user_id);
+		// 我想用sync
 		if($skill1 == 'on')
 		{
-			$profile = new Workskill;
-			$profile->skillname = '電腦';
-			$work->workskill()->save($profile);
+			$work->skill()->attach(1);
 		}
 		if($skill2 == 'on')
 		{
-			$profile = new Workskill;
-			$profile->skillname = '語文';
-			$work->workskill()->save($profile);
+			$work->skill()->attach(2);
 		}
 		if($skill3 == 'on')
 		{
-			$profile = new Workskill;
-			$profile->skillname = '運動';
-			$work->workskill()->save($profile);
+			$work->skill()->attach(3);
 		}
 		if($skill4 == 'on')
 		{
-			$profile = new Workskill;
-			$profile->skillname = '美術';
-			$work->workskill()->save($profile);
+			$work->skill()->attach(4);
 		}
 		if($skill5 == 'on')
 		{
-			$profile = new Workskill;
-			$profile->skillname = '行政';
-			$work->workskill()->save($profile);
+			$work->skill()->attach(5);
 		}
 		if($skill6 == 'on')
 		{
-			$profile = new Workskill;
-			$profile->skillname = '其他';
-			$work->workskill()->save($profile);
+			$work->skill()->attach(6);
 		}
 
 		// if($work && $upload_success ){
-			if($upload_success ){
-			return Redirect::to("/user/".$user_id."/task");
+			if( $upload_success ) {
+			return Redirect::to("/user/".$user_id);
 		}
 	}
 
 	public function taketask($work_id)	
 	{
 		$id = Auth::id();
-		$worktaken = Worktaken::create(
-			array(
-				'work_id'=>$work_id,
-				'taken_by'=>$id,
-				'status' =>1
-				));
-		
-		Work::find($work_id)->update(array('status'=>1));
+
+		// 發案人: 未接 -> 未確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work_id)
+						->where('status', '=', 0)
+						->update(array('status' => 1));
+
+		// 接案人: 未確認
+		$work_taker = Work::find($work_id);
+		$work_taker->user()->attach($id, array('status' => 3));
+
 		return Redirect::to("/user/".$id."/tasktaken");
 	}
 
@@ -129,15 +123,18 @@ class WorkController extends BaseController {
 		$id = Auth::id();
 		$chosen_user = Input::get('user');
 		$work = Input::get('work');
-		$worktaken = Worktaken::where('work_id','=',$work)->delete();
-		$worktaken = Worktaken::create(
-			array(
-				'work_id'=>$work,
-				'taken_by'=>$chosen_user,
-				'status' =>2
-				));
-		return 'Redirect::to("/user/".$id."/task")';
 
+		// 發案人: 未確認 -> 已確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work)
+						->where('status', '=', 1)
+						->update(array('status' => 2));
+
+		// 接案人: 未確認 -> 已確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work)
+						->where('status', '=', 3)
+						->update(array('status' => 4));
+
+		return $id;
 	}
 
 	/**

@@ -59,7 +59,6 @@ class UserController extends BaseController {
 		$account = Input::get('account');
 		$password = Input::get('password');
 
-
 		$auth = Auth::attempt(array(
 			'account' => $account,
 			'password' => $password));
@@ -81,7 +80,7 @@ class UserController extends BaseController {
 	}
 
 	/**
-	 * Display profile.
+	 * Display user works.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -90,108 +89,45 @@ class UserController extends BaseController {
 	{
 		$user = User::find($id)->profile;
 
-		$user_profile = DB::table('users')
-						->join('profiles', 'users.id', '=', 'profiles.profile_uid')
-						->where('id', $id)
+		// profiles join works
+		$user_works = DB::table('works')
+						->join('user_works','user_works.user_works_wid' ,'=', 'works.wid')
+						->join('profiles','profiles.profiles_uid','=','user_works.user_works_uid')
 						->get();
-		$user_skill = DB::table('userSkills')
-						->join('skills', 'userSkills.userSkill_sid', '=', 'skills.sid')
-						->join('users', 'userSkills.userSkill_uid', '=', 'users.id')
-						->where('userSkill_uid', $id)
+
+		// works join skills
+		$work_skills = DB::table('works')
+						->join('work_skills','works.wid' ,'=', 'work_skills.work_skills_wid')
+						->join('skills','skills.sid' ,'=', 'work_skills.work_skills_sid')
 						->get();
-		return View::make('profile.index')
-				->with( 'data', $user_profile )
-				->with( 'skill', $user_skill )
-				->with( 'user', $user ); 
+
+		return View::make('profile.task')
+					->with('user',$user)
+					->with('user_works',$user_works)
+					->with('work_skills',$work_skills);
 	}
 
 	/**
-	 * Edit profile.
+	 * 
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function edit($id)
 	{
-		$user = User::find($id)->profile;
-		$user_profile = DB::table('users')
-						->join('profiles', 'users.id', '=', 'profiles.profile_uid')
-						->where('id', $id)
-						->get();
-		$user_skill = DB::table('userSkills')
-							->join('skills', 'userSkills.userSkill_sid', '=', 'skills.sid')
-							->join('users', 'userSkills.userSkill_uid', '=', 'users.id')
-							->where('userSkill_uid', $id)
-							->get();
-		return View::make('profile.modify')
-			->with( 'data', $user_profile )
-			->with( 'skill', Skill::all() )
-			->with( 'user_skill', $user_skill )
-			->with( 'user', $user );
+		//
 	}
 
-
 	/**
-	 * Update profile.
+	 * 
 	 *
 	 * @param  int  $id
 	 * @return profile.index.blade.php
 	 */
 	public function update($id)
 	{
-		//$skill_modify = true;
-		$user = User::find($id)->profile;
-
-		/*
-		 * get the data from front end. 
-		 */
-		$profile_name = Input::get('name');
-
-		$img = $user->profile_img;
-
-		// 有照片
-		if( Input::file('img')->isValid() )
-		{
-			$img = Input::file('img');
-		}	
-
-		$filepath = 'uploads';
-		$name = $img->getClientOriginalName();
-		preg_match('/.*(\.\w*)/', $name,$match);
-		$destinationPath = 'public/uploads';
-		// file name
-		$filename = str_random(12).$match[1];
-
-		if(isset($img))
-		{
-			$name = $img->getClientOriginalName();
-			preg_match('/.*(\.\w*)/', $name,$match);
-			
-			$filename = str_random(12).$match[1];
-			$upload_success = $img->move($destinationPath, $filename);
-			DB::table('profiles')->where('profile_uid', $id)
-									->update( array('profile_img' => $filepath.'/'.$filename));
-									
-		}
-		$sex = Input::get('sex');
-		$intro = Input::get('introduction');
-		$skill = Input::get('skill');	
-
-
-		$profile_modify = DB::table('profiles')
-							->where('profile_uid', $id)
-							->update(array( 'pname' => $profile_name,
-											'profile_img'  => $filepath.'/'.$filename,
-											'introduction' => $intro,
-											'sex'  => $sex));
-		/*if(isset($skill))
-		{ ====userskill!!!!!
-			$skill_modify = DB::table('userSkills')->insert(
-									array('user_id'=>$id, 'skill_id'=>$skill));
-		}*/			
-		return Redirect::to('/user/'.$id);
+		//
 	}
-
 
 	/**
 	 * Remove the specified resource from storage.

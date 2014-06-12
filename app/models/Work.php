@@ -1,94 +1,31 @@
 <?php
 
+class Work extends Eloquent {
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
-class Work extends Eloquent implements UserInterface, RemindableInterface {
-
+	protected $fillable = array('wname', 'works_description', 'reward', 'works_img', 'works_uid','dueTime');
+	
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $fillable = array('workname', 'description', 'reward', 'img', 'status', 'user_id','dueTime');
 	protected $table = 'works';
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password');
+	protected $primaryKey = 'wid';
+
 
 	/**
-	 * Get the unique identifier for the user.
+	 * Many to many.
 	 *
-	 * @return mixed
+	 * Table: work_skills
 	 */
-	public function getAuthIdentifier()
+	public function skill()
 	{
-		return $this->getKey();
+		return $this->belongsToMany('Skill', 'work_skills', 'work_skills_wid', 'work_skills_sid');
 	}
 
-	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
-	public function getAuthPassword()
+	public function user()
 	{
-		return $this->password;
-	}
-
-	/**
-	 * Get the token value for the "remember me" session.
-	 *
-	 * @return string
-	 */
-	public function getRememberToken()
-	{
-		return $this->remember_token;
-	}
-
-	/**
-	 * Set the token value for the "remember me" session.
-	 *
-	 * @param  string  $value
-	 * @return void
-	 */
-	public function setRememberToken($value)
-	{
-		$this->remember_token = $value;
-	}
-
-	/**
-	 * Get the column name for the "remember me" token.
-	 *
-	 * @return string
-	 */
-	public function getRememberTokenName()
-	{
-		return 'remember_token';
-	}
-
-	/**
-	 * Get the e-mail address where password reminders are sent.
-	 *
-	 * @return string
-	 */
-	public function getReminderEmail()
-	{
-		return $this->email;
-	}
-
-	public function workskill()
-	{
-		return $this->hasMany('Workskill');
-	}
-
-	public function worktaken()
-	{
-		return $this->hasMany('Worktaken');
+		return $this->belongsToMany('User', 'user_works', 'user_works_wid', 'user_works_uid');
 	}
 }

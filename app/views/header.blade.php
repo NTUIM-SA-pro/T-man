@@ -1,13 +1,8 @@
 <div class="ui blue inverted menu" style="background-color: #1987FF">
-	<a class="active item" href="/">
+	<a class="active item" href="/home">
 		<i class="home icon"></i> T-MAN
 	</a>
-	<a class="item">
-		<i class="heart icon"></i> TASK
-	</a>
-	<a class="item">
-		<i class="users icon"></i> T-men
-	</a>
+
 	<div class="right menu">
 		@if(Auth::check())
 			<div class="ui dropdown item">
@@ -15,9 +10,8 @@
       			關於我 
 	      		<i class="dropdown icon"></i>
 	      		<div class="menu">
-			        <a class="item" href='/user/{{Auth::id()}}/task'>個人頁面</a>
-			        <a class="item">設定</a>
-			        <a class="item">登出</a>
+			        <a class="item" href='/user/{{Auth::id()}}'>個人頁面</a>
+			        <a class="item" href="/logout">登出</a>
       			</div>
     		</div>
 			

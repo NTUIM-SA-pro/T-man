@@ -12,18 +12,21 @@ class CreateUserSkillsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('userSkills', function($table){
-            $table->integer('userSkill_uid')->unsigned();
-			$table->foreign('userSkill_uid')
+		Schema::create('user_skills', function($table){
+			// foreign key: user id
+            $table->integer('user_skills_uid')->unsigned();
+			$table->foreign('user_skills_uid')
 				->references('id')
 				->on('users')
 				->onDelete('cascade');
-            $table->integer('userSkill_sid')->unsigned();
-			$table->foreign('userSkill_sid')
+			// foreign key: skill id
+            $table->integer('user_skills_sid')->unsigned();
+			$table->foreign('user_skills_sid')
 				->references('sid')
 				->on('skills')
 				->onDelete('cascade');
-			$table->primary(array('userSkill_uid', 'userSkill_sid'));
+			// primary key: user id + skill id
+			$table->primary(array('user_skills_uid', 'user_skills_sid'));
             $table->timestamps();
 		});
 	}
@@ -36,7 +39,7 @@ class CreateUserSkillsTable extends Migration {
 	public function down()
 	{
 		//
-        Schema::drop('userSkills');
+        Schema::drop('user_skills');
 	}
 
 }

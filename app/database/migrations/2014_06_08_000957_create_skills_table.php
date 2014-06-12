@@ -12,12 +12,11 @@ class CreateSkillsTable extends Migration {
 	 */
 	public function up()
 	{
-		//
         Schema::create('skills', function($table)
         {
             $table->increments('sid');
             $table->string('sname');
-            $table->string('skill_description');
+            $table->string('skills_description');
             $table->timestamps();
         });
 	}
@@ -29,7 +28,6 @@ class CreateSkillsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
         Schema::drop('skills');
 	}
 

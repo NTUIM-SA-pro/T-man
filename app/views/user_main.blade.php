@@ -6,7 +6,7 @@
 				<div class="column">
 					<div class="ui segment" style="border: 1px solid #ababab;">
 						<div class="field">
-							<img class="head-profile"src="/{{$user->profile_img}}"/>
+							<img class="head-profile"src="/{{$user->profiles_img}}"/>
 						</div>
 						<div class="field">
 							<div class="profile-name">{{$user->pname}}
@@ -25,29 +25,30 @@
 							<span>選擇項目</span>
 						</div>
 						<!-- 個人資料 -->
-						@if(Auth::id()===$user->profile_uid)
+						@if(Auth::id()===$user->profiles_uid)
 							<div class="field">
-								<a href="/user/{{$user->profile_uid}}"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">個人資料</div></a>
+								<a href="/profile/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">個人資料</div></a>
 							</div>
 							<div class="field">
 								<div class="profile-btn post" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">發案</div>
 							</div>
 							<div class="field">
+								<a href="/user/{{$user->profiles_uid}}/tasktaken">
 								<div class="profile-btn" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我接的案</div>
 							</div>
 							<div class="field">
-								<a href="/user/{{$user->user_id}}/task"><div class="profile-btn" style="background-color:#fd8a33;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我發的案</div></a>
+								<a href="/user/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#fd8a33;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我發的案</div></a>
 							</div>
 						<!-- 他人資料 -->
 						@else
 							<div class="field">
-								<a href="/user/{{$user->user_id}}/profile"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}的資料</div></a>
+								<a href="/profile/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}的資料</div></a>
 							</div>
 							<div class="field">
 								<div class="profile-btn" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}接的案</div>
 							</div>
 							<div class="field">
-								<a href="/user/{{$user->user_id}}/task"><div class="profile-btn" style="background-color:#fd8a33;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}發的案</div></a>
+								<a href="/user/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#fd8a33;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}發的案</div></a>
 							</div>
 						@endif
 					</div>
@@ -57,7 +58,7 @@
 	</div>
 
 	<div id="right-container">
-		@yield('task_filter')
 		@yield('right-container')
-	</div>	
+	</div>
 @stop
+

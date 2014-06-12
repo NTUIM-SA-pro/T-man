@@ -12,13 +12,20 @@
 */
 
 //首頁
-Route::any('/', array(
+Route::any('home', array(
 	'as' => 'home',
 	'uses' => 'HomeController@home'
 ));
 
+
+Route::any('home_error', array(
+	'as'=>'home-error',
+	'uses'=>'HomeController@home_error'
+));
+
 //登出
 Route::get('logout', 'UserController@logout');
+
 
 //註冊
 Route::post('register', 'UserController@register');
@@ -30,10 +37,7 @@ Route::post('login', 'UserController@login');
 Route::resource('user', 'UserController',
 	array('except' => array('edit')));
 
-//拿你po的專案
-Route::get('/user/{userid}/task', array(
-	'uses' => 'ProfileController@task'
-));
+Route::resource('profile', 'ProfileController');
 
 //使用者登入後
 Route::group(array('before' => 'auth'), function() {
@@ -42,11 +46,9 @@ Route::group(array('before' => 'auth'), function() {
 	Route::resource('user', 'UserController');
 
 	Route::post('takeTask/{work_id}','WorkController@taketask');
-	Route::post('takeTask/{work_id}','WorkController@taketask');
-	Route::post('/user/{userid}/confirmtask','WorkController@confirmtask');
+
+	Route::post('/user/confirmtask','WorkController@confirmtask');
 });
 
-Route::get('/user/{userid}/tasktaken','profileController@showtakenTask');
+Route::get('/user/{userid}/tasktaken','ProfileController@showtakenTask');
 
-//拿你po的專案
-Route::get('/user/{userid}/task', array('uses'=>'profileController@task'));

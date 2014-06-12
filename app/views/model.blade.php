@@ -55,14 +55,14 @@
 						<input type="password" name="password" placeholder="請使用四位數以上的密碼">
 						
 					</div>
-					<div class="ui error message"></div>
+					<div class="ui error message">請登入在進行操作:)</div>
 					<div class="field"  >
 						<div class="ui positive right labeled icon submit button ok" style="width:49%;">
 							登入
 							<i class="checkmark icon"></i>
 						</div>
 						<input type="reset"class="ui black button cancel" style="width:49%;" value="reset">
-			
+
 					</div>
 					
 				</div>
@@ -77,7 +77,9 @@
 			<form action="/createNewWork" method="POST" class="ui fluid form" enctype="multipart/form-data">
 				<div class="four wide column">
 					<div id="inputbox" class="ui warning form segment">
-						<h2>新增任務</h2>
+						<h3>新增任務</h3>
+
+						<div class="ui clearing divider"></div>
 		  				<div class="field">
 		    				<label>工作名稱</label>
 		    				<div id="input1" class="ui input focus">

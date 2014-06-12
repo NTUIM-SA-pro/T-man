@@ -1,8 +1,12 @@
 @extends('user_main')
 @section('right-container')
-	@if(isset($message))
-		<p>{{ $message }}</p>
+	<div class="ui segment main">
+	@if($user->user_id==Auth::id())
+		<h2 class="ui left floated header">我的個人資料</h2>
+	@else
+		<h2 class="ui left floated header">{{$user->username}}的個人資料</h2>
 	@endif
+	<div class="ui clearing divider"></div>
 	<div class="profile_table">
 		<table class="ui table segment" style="height:100%;width:100%;">
 			
@@ -38,10 +42,14 @@
 				</td>
 			</tr>
 		</table>
+		@if($user->user_id==Auth::id())
 		<a href="/user/{{Auth::id()}}/profileModify">
 			<div class="ui blue button" style="width:100%;">
 				Modify
 			</div>
 		</a>
+		@else
+		@endif
+	</div>
 	</div>
 @endsection

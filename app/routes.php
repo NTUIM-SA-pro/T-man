@@ -29,6 +29,10 @@ Route::any('home', array(
 	'uses'=>'HomeController@home'
 ));
 
+Route::any('home_error', array(
+	'as'=>'home-error',
+	'uses'=>'HomeController@home_error'
+));
 
 
 Route::get('logout','UsersController@logout');

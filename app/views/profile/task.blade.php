@@ -1,7 +1,16 @@
 @extends('user_main')
 <!-- 發的專案 -->
-@section('right-container')
 
+@section('right-container')
+	<div class="ui segment main">
+	@if($user->user_id==Auth::id())
+		<h2 class="ui left floated header">我發的案</h2>
+	@else
+		<h2 class="ui left floated header">{{$user->username}}發的案</h2>
+	@endif
+  	
+
+  	<div class="ui clearing divider"></div>
 		<?php $i=0 ?>
 		@foreach($works as $work)
 			@if($i%3==0)
@@ -13,20 +22,53 @@
 					<div class="ui segment">
 						<div class="ui dimmer">
 							<div class="content">
-								<div class="task-desc">
-									<h3>敘述：</h3>
-									<p>{{$work->description}}</p>
-								</div>
-								<div class="task-choose user">
+								
+								@if($work->status==0)
+									<div class="task-desc">
+										<h3>敘述：</h3>
+										<p>{{$work->description}}</p>
+									</div>
+									<div class="task-choose">
+										<div class="ui small message" style="width:200px;text-align:center;">
+										  <p>還沒有任何人接案！！</p>
+										</div>
+									</div>
+								@elseif($work->status==1)
+									<div class="task-desc user">
+										<h3>敘述：</h3>
+										<p>{{$work->description}}</p>
+									</div>
+									<div class="userList">
+										
+										@foreach($worktakens as $worktaken)
+										@if($worktaken->work_id == $work->id)
+										<img name='{{$worktaken->taken_by}}' work-id='{{$work->id}}' data-content="<a style='color:#1AB8F3;' href='/user/{{$worktaken->taken_by}}/profile'>{{$worktaken->username}}</a>" class="circular ui image" src="/{{$worktaken->user_img}}">
+										@endif
+										@endforeach
+									</div>
 									<div class="choose_user">
-									@foreach($worktakens as $worktaken)
+										<a class="ui green button choose-user" style="width:200px;text-align:center;">選擇他</a>
+									</div>
+								@else
+									<div class="task-desc user">
+										<h3>敘述：</h3>
+										<p>{{$work->description}}</p>
+									</div>
+									<div class="userList">
+										
+										@foreach($worktakens as $worktaken)
 										@if($worktaken->work_id == $work->id)
 											<img name='{{$worktaken->taken_by}}' work-id='{{$work->id}}' data-content="<a style='color:#1AB8F3;' href='/user/{{$worktaken->taken_by}}/profile'>{{$worktaken->username}}</a>" class="circular ui image" src="/{{$worktaken->user_img}}">
 										@endif
-									@endforeach
+										@endforeach
 									</div>
-									<a class="ui green button choose-user" style="width:200px;text-align:center;">選擇他</a>
-								</div>
+									<div class="task-choose">
+										<div class="ui small message" style="width:200px;text-align:center;">
+											<p>此專案由{{$worktaken->username}}承接</p>
+										</div>
+									</div>
+								@endif
+
 							</div>
 						</div>
 						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work->duetime}}</div>
@@ -57,5 +99,5 @@
 
 			
 		@endforeach
-
+	</div>
 @stop

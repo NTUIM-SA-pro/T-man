@@ -3,7 +3,7 @@
 	
 	<div id="preview-coverflow">
 
-		<?php $j=0?>
+		<?php $j=0 ?>
 		@foreach($workCover as $work)
 			<div>
 			@if($j==0)
@@ -134,6 +134,7 @@
 		@endforeach
 
 	</div>
-
+	@if(isset($msg)) <span class="test">{{$msg}}</span> 
+	@endif
 	
 @stop

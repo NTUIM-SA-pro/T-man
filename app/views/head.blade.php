@@ -17,18 +17,23 @@
   $(document).ready(function(){
     $('.ui.dropdown').dropdown();
     $('.ui.dimmer').dimmer({on: 'hover'});
-    var checked = [];
-    // $('.model_checkbox input').each(function()){
-    //   if(  $(this).prop("checked", true) ) 
-    // }
- var settings = {
-        inline : true,
-        on : 'submit',
-        onSuccess: function(){
-            $("#register_form").submit();
 
+    if($('.test').length!=0){
+      $('.login.modal').modal('setting',{
+        onHidden:function(){
+          window.location.href = '/home';
         }
-    };
+      }).modal('show');
+      $('#login_form .ui.error.message').show();
+    }
+    var settings = {
+          inline : true,
+          on : 'submit',
+          onSuccess: function(){
+              $("#register_form").submit();
+
+          }
+      };
     var rules = {
           nickname: {
               identifier  : 'nickname',
@@ -79,88 +84,97 @@
               ]
         }
     }
-    $('.choose_user img').popup({
+    $('.userList img').popup({
       on: 'click',
       inline:true
   });
-  $('.ui.checkbox').checkbox();
+    $('.ui.checkbox').checkbox();
 
-  $('a.item.register').click(function(){
-      $('.register.modal').modal('show');
-      
-    });
-  $('a.item.login').click(function(){
-  
-
-      $('.login.modal').modal('show');
-    });
-    $('#login_form .ui.black.button.cancel').click(function(){
-
-    });
-
-  $('#login_form .button.ok').click(function(){
-      $.ajax({
-        url:'login',
-        type:'POST',
-        data:$('#login_form').serialize(),
-        success: function(message){
-          if(message!='帳號or密碼輸入錯誤') window.location.href = "/user/"+message+"/profile";
-          else $('.error.message').html(message).show();
-        },
-        error:function(){
-          alert('wrong');
-        }
-      })
-  });
-
-
-  $('#register_form .ui.form').form(rules,settings);
-  $('.profile-btn.post').click(function(){
-      $('.creatework.modal').modal('show');
-  })
-  
-
-
-  $("#datepick").datepicker();
-  $("#datepick").datepicker("option","dateFormat","yy-mm-dd");
-  
-  $('#submit').click(function(){
-   
-      $('.ui.fluid.form').submit();
-
-  });
-
-  $('.choose_user img').click(function(){
-    $('.choose_user').children('img').each(function(){
-      $(this).removeClass('active');
-    });
-      $(this).addClass('active');
-  })
-  $('.ui.green.button.choose-user').click(function(){
-      var chosen_user;
-      var work_id;
-      $('.choose_user').children('img').each(function(){
-        if($(this).hasClass('active'))
-        {
-          chosen_user = $(this).attr('name');
-          work_id = $(this).attr('work-id');
-        }
+    $('a.item.register').click(function(){
+        $('.register.modal').modal('show');
+        
       });
-      if(typeof chosen_user == 'undefined') 
-      {
-        alert('至少選一個！！');
-      }
-      else
-      {
-          $.ajax({
-          url:'confirmtask',
+    $('a.item.login').click(function(){
+        $('.login.modal').modal('setting',{
+        onHidden:function(){
+          $('#login_form .error.message').hide();
+
+        }
+        }).modal('show');
+      });
+      $('#login_form .ui.black.button.cancel').click(function(){
+
+      });
+
+    $('#login_form .button.ok').click(function(){
+        $.ajax({
+          url:'login',
           type:'POST',
-          data:{user:chosen_user,work:work_id}
+          data:$('#login_form').serialize(),
+          success: function(message){
+            if(message!='帳號or密碼輸入錯誤') window.location.href = "/user/"+message+"/profile";
+            else $('.error.message').html(message).show();
+          },
+          error:function(){
+            alert('wrong');
+          }
         })
-      }
+    });
+
+
+    $('#register_form .ui.form').form(rules,settings);
+    $('.profile-btn.post').click(function(){
+        $('.creatework.modal').modal('show');
+    })
+    
+
+
+    $("#datepick").datepicker();
+    $("#datepick").datepicker("option","dateFormat","yy-mm-dd");
+    
+    $('#submit').click(function(){
+     
+        $('.ui.fluid.form').submit();
 
     });
-      
+
+    $('.userList img').click(function(){
+      $('.userList').children('img').each(function(){
+        $(this).removeClass('active');
+      });
+        $(this).addClass('active');
+    })
+    $('.ui.green.button.choose-user').click(function(){
+        var chosen_user;
+        var work_id;
+        $('.userList').children('img').each(function(){
+          if($(this).hasClass('active'))
+          {
+            chosen_user = $(this).attr('name');
+            work_id = $(this).attr('work-id');
+          }
+        });
+        if(typeof chosen_user == 'undefined') 
+        {
+          alert('至少選一個！！');
+        }
+        else
+        {
+            $.ajax({
+            url:'confirmtask',
+            type:'POST',
+            data:{user:chosen_user,work:work_id},
+            success:function(msg){
+                window.location.href = "/user/"+msg+"/task";
+            },
+            error:function(){
+              alert('wrong');
+            }
+          })
+        }
+
+      });
+        
 });
   
   

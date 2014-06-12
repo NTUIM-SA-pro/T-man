@@ -121,14 +121,15 @@ class WorkController extends \BaseController {
 		$id = Auth::id();
 		$chosen_user = Input::get('user');
 		$work = Input::get('work');
-		$worktaken = Worktaken::where('work_id','=',$work)->delete();
-		$worktaken = Worktaken::create(
+		$worktaken_delete = Worktaken::where('work_id','=',$work)->delete();
+		$worktaken_create = Worktaken::create(
 			array(
 				'work_id'=>$work,
 				'taken_by'=>$chosen_user,
 				'status' =>2
 				));
-		return 'Redirect::to("/user/".$id."/task")';
+		Work::find($work)->update(array('status'=>2));
+		return $id;
 
 	}
 	/**

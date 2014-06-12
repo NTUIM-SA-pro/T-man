@@ -1,7 +1,7 @@
 /bootstrap/compiled.php
 /vendor
 composer.phar
-#composer.lock
+composer.lock
 .DS_Store
 Thumbs.db
 .idea
@@ -9,6 +9,6 @@ Thumbs.db
 /public/bower_components
 .sass-cache
 /client/compiled
-#/public/uploads
-#/app/config/database.php
+/public/uploads
+/app/config/database.php
 

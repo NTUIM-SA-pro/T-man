@@ -9,6 +9,6 @@ Thumbs.db
 /public/bower_components
 .sass-cache
 /client/compiled
-/public/uploads
+#/public/uploads
 #/app/config/database.php
 

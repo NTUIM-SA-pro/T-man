@@ -33,6 +33,7 @@
 								<div class="profile-btn post" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">發案</div>
 							</div>
 							<div class="field">
+								<a href="/user/{{$user->profiles_uid}}/tasktaken">
 								<div class="profile-btn" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">我接的案</div>
 							</div>
 							<div class="field">
@@ -41,7 +42,7 @@
 						<!-- 他人資料 -->
 						@else
 							<div class="field">
-								<a href="/profile/{{$user->profiles_uid}}/profile"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}的資料</div></a>
+								<a href="/profile/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#ff82b5;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}的資料</div></a>
 							</div>
 							<div class="field">
 								<div class="profile-btn" style="background-color:#00cbe9;color:white;border:none;box-shadow: 1px 1px 1px #aaa;">{{$user->pname}}接的案</div>

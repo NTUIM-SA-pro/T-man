@@ -104,7 +104,7 @@
           type:'POST',
           data:$('#login_form').serialize(),
           success: function(message){
-            if(message!='帳號or密碼輸入錯誤') window.location.href = "/user/"+message+"/profile";
+            if(message!='帳號or密碼輸入錯誤') window.location.href = "/user/"+message;
             else $('.error.message').html(message).show();
           },
           error:function(){

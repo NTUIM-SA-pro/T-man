@@ -6,7 +6,7 @@ class HomeController extends BaseController {
 	{
 		$works_covers = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
 
-		// users join profiles
+		// works join profiles
 		$users = DB::table('works')
 				->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
 				->get();
@@ -15,6 +15,7 @@ class HomeController extends BaseController {
 		$work_skills = DB::table('skills')
 						->join('work_skills','work_skills.work_skills_sid' ,'=', 'skills.sid')
 						->join('works','work_skills.work_skills_wid' ,'=', 'works.wid')
+						->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
 						->get();
 
 		return View::make('home')

@@ -1,12 +1,10 @@
-
-
 	<div class="ui login modal" style="width:60%;margin-left:-30%;">
 		<i class="close icon"></i>
 		<div class="header">
 			登入
 		</div>
 		<div class="content">
-				<form id='login_form' action="login" method="POST">
+			<form id='login_form' action="login" method="POST">
 				<div class="ui form" >
 
 					<div class="field register" >
@@ -25,6 +23,11 @@
 							<i class="checkmark icon"></i>
 						</div>
 						<input type="reset"class="ui black button cancel" style="width:49%;" value="reset">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
 <div class="ui register modal" style="width:60%;margin-left:-30%;">
 	<i class="close icon"></i>
@@ -62,9 +65,6 @@
 		</form>
 	</div>
 </div>
-
-
-
 
 <div class="ui creatework modal">
 	<i class="close icon"></i>

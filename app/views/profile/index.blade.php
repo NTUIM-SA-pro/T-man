@@ -1,10 +1,10 @@
 @extends('user_main')
 @section('right-container')
 	<div class="ui segment main">
-	@if($user->user_id==Auth::id())
+	@if($user->id==Auth::id())
 		<h2 class="ui left floated header">我的個人資料</h2>
 	@else
-		<h2 class="ui left floated header">{{$user->username}}的個人資料</h2>
+		<h2 class="ui left floated header">{{$user->pname}}的個人資料</h2>
 	@endif
 	<div class="ui clearing divider"></div>
 	<div class="profile_table">
@@ -39,9 +39,7 @@
 			<tr>
 				<td><b>專長、技能</b></td>
 				<td>
-					@foreach($skill as $item)
-						{{$item->name}}
-					@endforeach
+					
 				</td>
 			</tr>
 		</table>

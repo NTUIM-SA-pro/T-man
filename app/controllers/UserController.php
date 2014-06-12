@@ -59,7 +59,6 @@ class UserController extends BaseController {
 		$account = Input::get('account');
 		$password = Input::get('password');
 
-
 		$auth = Auth::attempt(array(
 			'account' => $account,
 			'password' => $password));

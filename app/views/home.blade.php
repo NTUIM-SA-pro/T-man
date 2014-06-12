@@ -108,11 +108,9 @@
 						<div class="field">
 							<div class="task_host">任務名稱:{{$work_skill->wname}}</div>
 						</div>
-						@foreach($users as $user)
-							@if($user->profiles_uid == $work_skill->wid)
-							<div class="task_host">發案人:{{$user->pname}}</div>
-							@endif
-						@endforeach
+
+						<div class="task_host">發案人:{{$work_skill->pname}}</div>
+
 
 					</div>
 					<div class="field">
@@ -124,7 +122,6 @@
 							<div class="task-date">{{$work_skill->sname}}</div>
 						@endforeach
 					</div>
-				</div>
 				</div>
 				@if($i%3==2)
 					</div></div>

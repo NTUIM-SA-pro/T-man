@@ -2,10 +2,10 @@
 <!-- 發的專案 -->
 @section('right-container')
 	<div class="ui segment main">
-	@if($user->user_id==Auth::id())
+	@if(Auth::id()===$user->profiles_uid)
 		<h2 class="ui left floated header">我接的案</h2>
 	@else
-		<h2 class="ui left floated header">{{$user->username}}接的案</h2>
+		<h2 class="ui left floated header">{{$user->pname}}接的案</h2>
 	@endif
 	<div class="ui clearing divider"></div>
 		<?php $i=0 ?>

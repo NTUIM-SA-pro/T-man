@@ -44,7 +44,7 @@ class ProfileController extends BaseController{
 		$user = User::find($user_id)->profile;
 
 		$works = DB::table('works')->join('user_works','user_works.user_works_wid' ,'=', 'works.wid')
-						->join('profiles','profiles.profiles_uid','=','works.work_uid')
+						->join('profiles','profiles.profiles_uid','=','works.wid')
 						->where('user_works_uid',$user_id)->get();
 
 		return View::make('profile.tasktaken')->with('user',$user)->with('works',$works);

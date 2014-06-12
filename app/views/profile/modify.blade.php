@@ -5,7 +5,7 @@
 	$('.ui.selection.dropdown').dropdown();
 	</script>
 	<div class="profile_table">
-		{{ Form::open(array('url' => '/user/'.Auth::id(), 'method' => 'put', 'files' => true)) }}
+		{{ Form::open(array('url' => '/profile/'.Auth::id(), 'method' => 'put', 'files' => true)) }}
 			<table class="ui table segment" style="height:100%;width:100%;">
 				<tr>
 					<td><b>大頭照</td>
@@ -32,11 +32,12 @@
 				<tr>
 					<td><b>專長、技能</td>
 					<td>
-						<select name="skill">
-						@foreach($skill as $item)
-							<option value="{{ $item->sid }}">{{ $item->sname }}</option>
-						@endforeach
-						</select>
+						{{ Form::checkbox('skill[]', '電腦', false) }}電腦
+						{{ Form::checkbox('skill[]', '語文', false) }}語文
+						{{ Form::checkbox('skill[]', '運動', false) }}運動
+						{{ Form::checkbox('skill[]', '美術', false) }}美術
+						{{ Form::checkbox('skill[]', '行政', false) }}行政
+						{{ Form::checkbox('skill[]', '其他', false) }}其他
 					</td>
 				</tr>
 			</table>

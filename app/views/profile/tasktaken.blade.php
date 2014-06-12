@@ -15,7 +15,7 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work->description}}</p>
+									<p>{{$work->work_description}}</p>
 								</div>
 								<div class="task-choose">
 									

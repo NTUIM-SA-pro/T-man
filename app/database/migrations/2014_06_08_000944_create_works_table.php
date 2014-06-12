@@ -14,22 +14,20 @@ class CreateWorksTable extends Migration {
 	{
 		Schema::create('works', function($table)
 		{
-
 			$table->increments('wid');
 			$table->string('wname');
-			$table->string('work_description');
+			$table->string('works_description');
 			$table->string('reward');
-			$table->string('work_img')
+			$table->string('works_img')
 				->nullable()
-				->default('uploads/girl.jpg');
-			//foreign key
-            $table->integer('work_uid')->unsigned();
-			$table->foreign('work_uid')
+				->default('uploads/empty_work.jpg');
+			$table->date('duetime');
+			//foreign key: user id
+            $table->integer('works_uid')->unsigned();
+			$table->foreign('works_uid')
 				->references('id')
 				->on('users')
 				->onDelete('cascade');
-			$table->integer('status');
-			$table->date('duetime');
 			$table->timestamps();
 		});
 	}

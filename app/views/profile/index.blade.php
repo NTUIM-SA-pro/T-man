@@ -41,8 +41,8 @@
 				</td>
 			</tr>
 		</table>
-		@if(Auth::id()===$user->profile_uid)
-			<a href="/user/{{Auth::id()}}/edit">
+		@if(Auth::id()===$user->profiles_uid)
+			<a href="/profile/{{Auth::id()}}/edit">
 				<div class="ui blue button" style="width:100%;">
 					修改個人資料
 				</div>

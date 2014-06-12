@@ -13,13 +13,13 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work->description}}</p>
+									<p>{{$work->work_description}}</p>
 								</div>
 								<div class="task-choose user">
 									<div class="choose_user">
-									@foreach($worktakens as $worktaken)
-										@if($worktaken->work_id == $work->id)
-											<img name='{{$worktaken->taken_by}}' work-id='{{$work->id}}' data-content="<a style='color:#1AB8F3;' href='/user/{{$worktaken->taken_by}}/profile'>{{$worktaken->username}}</a>" class="circular ui image" src="/{{$worktaken->user_img}}" />
+									@foreach($user_works as $user_work)
+										@if($user_work->user_works_wid === $work->wid)
+											<img name='{{$user_work->user_works_uid}}' work-id='{{$work->wid}}' data-content="<a style='color:#1AB8F3;' href='/user/{{$user_work->user_works_uid}}'>{{$user_work->pname}}</a>" class="circular ui image" src="/{{$user_work->profiles_img}}" />
 										@endif
 									@endforeach
 									</div>
@@ -29,7 +29,7 @@
 						</div>
 						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work->duetime}}</div>
 						<div class="field">
-							<img class="head-profile" src="/{{$work->img}}"/>
+							<img class="head-profile" src="/{{$work->works_img}}"/>
 						</div>
 						<div class="field">
 							<div class="task_host">任務名稱:{{$work->wname}}</div>
@@ -42,8 +42,8 @@
 						</div>
 				
 						<div class="field" style="margin-top:10px;">
-							@foreach($work->workskill as $eachskill)
-								<div class="task-date">{{$eachskill->sname}}</div>
+							@foreach($user_works as $user_work)
+								<div class="task-date">{{$user_work->sname}}</div>
 							@endforeach
 						</div>
 					</div>

@@ -4,7 +4,7 @@
 	<div id="preview-coverflow">
 
 		<?php $j=0?>
-		@foreach($workCover as $work)
+		@foreach($work_covers as $work_cover)
 			<div>
 			@if($j==0)
 				<div class="ui left corner red label">
@@ -12,7 +12,7 @@
 	  			</div>
   			@endif
   			<?php $j++?>
-				<img class="cover" src="{{$work->work_img}}"/>
+				<img class="cover" src="{{$work_cover->works_img}}"/>
 			</div>
 
 		@endforeach
@@ -78,7 +78,7 @@
 	</div>
 	<div id="right-container">
 		<?php $i=0 ?>
-		@foreach($works as $work)
+		@foreach($work_skills as $work_skill)
 			@if($i%3==0)
 				<div class = "row">
 				<div class="three column stackable ui grid">
@@ -90,38 +90,38 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work->work_description}}</p>
+									<p>{{$work_skill->works_description}}</p>
 								</div>
 								<div class="task-choose">
-									<form action="takeTask/{{$work->wid}}" method="post">
+									<form action="takeTask/{{$work_skill->wid}}" method="post">
 										<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
 									</form>
 								</div>
 							</div>
 						</div>
 
-						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work->duetime}}</div>
+						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work_skill->duetime}}</div>
 						<div class="field">
-							<img class="head-profile" src="/{{$work->img}}"/>
+							<img class="head-profile" src="/{{$work_skill->works_img}}"/>
 						</div>
 
 						<div class="field">
-							<div class="task_host">任務名稱:{{$work->workname}}</div>
+							<div class="task_host">任務名稱:{{$work_skill->wname}}</div>
 						</div>
 						@foreach($users as $user)
-							@if($user->id == $work->id)
-							<div class="task_host">發案人:{{$user->username}}</div>
+							@if($user->profiles_uid == $work_skill->wid)
+							<div class="task_host">發案人:{{$user->pname}}</div>
 							@endif
 						@endforeach
 
 					</div>
 					<div class="field">
-						<div class="task_host">獎賞:{{$work->reward}}</div>
+						<div class="task_host">獎賞:{{$work_skill->reward}}</div>
 					</div>
 				
 					<div class="field" style="margin-top:10px;">
-						@foreach($work->workskill as $eachskill)
-							<div class="task-date">{{$eachskill->skillname}}</div>
+						@foreach($work_skills as $work_skill)
+							<div class="task-date">{{$work_skill->sname}}</div>
 						@endforeach
 					</div>
 				</div>

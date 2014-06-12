@@ -4,10 +4,23 @@ class HomeController extends BaseController {
 
 	public function home()
 	{
-		$works_cover = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
-		$works = Work::all();
-		$user = DB::table('works')->join('profiles','profiles.profile_uid' ,'=', 'works.work_uid')->get();
-		return View::make('home')->with('workCover',$works_cover)->with('works',$works)->with('users',$user);
+		$works_covers = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
+
+		// users join profiles
+		$users = DB::table('works')
+				->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
+				->get();
+
+		// works join skills
+		$work_skills = DB::table('skills')
+						->join('work_skills','work_skills.work_skills_sid' ,'=', 'skills.sid')
+						->join('works','work_skills.work_skills_wid' ,'=', 'works.wid')
+						->get();
+
+		return View::make('home')
+				->with( 'work_covers', $works_covers )
+				->with( 'work_skills', $work_skills )
+				->with( 'users', $users );
 	}
 
 	public function test()

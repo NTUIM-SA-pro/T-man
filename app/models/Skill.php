@@ -13,4 +13,14 @@ class Skill extends Eloquent {
 	{
 		return $this->belongsTo('User');
 	}
+
+	/**
+	 * Many to many.
+	 *
+	 * Table: work_skills
+	 */
+	public function work()
+	{
+		return $this->belongsToMany('Work', 'work_skills', 'work_skills_sid', 'work_skills_wid');
+	}
 }

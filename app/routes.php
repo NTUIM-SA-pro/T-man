@@ -54,7 +54,7 @@ Route::group(array('before' => 'auth'), function() {
 });
 
 
-Route::get('/user/{userid}/tasktaken','profileController@showtakenTask');
+Route::get('/user/{userid}/tasktaken','ProfileController@showtakenTask');
 
 //拿你po的專案
-Route::get('/user/{userid}/task', array('uses'=>'profileController@task'));
+Route::get('/user/{userid}/task', array('uses'=>'ProfileController@task'));

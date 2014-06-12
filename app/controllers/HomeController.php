@@ -6,22 +6,22 @@ class HomeController extends BaseController {
 	{
 		$works_covers = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
 
-		// works join profiles
-		$users = DB::table('works')
-				->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
-				->get();
+		// profiles join works
+		$user_works = DB::table('profiles')
+						->join('user_works','profiles.profiles_uid' ,'=', 'user_works.user_works_uid')
+						->join('works','works.wid' ,'=', 'user_works.user_works_wid')
+						->get();
 
 		// works join skills
-		$work_skills = DB::table('skills')
-						->join('work_skills','work_skills.work_skills_sid' ,'=', 'skills.sid')
-						->join('works','work_skills.work_skills_wid' ,'=', 'works.wid')
-						->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
+		$work_skills = DB::table('works')
+						->join('work_skills','works.wid' ,'=', 'work_skills.work_skills_wid')
+						->join('skills','skills.sid' ,'=', 'work_skills.work_skills_sid')
 						->get();
 
 		return View::make('home')
 				->with( 'work_covers', $works_covers )
-				->with( 'work_skills', $work_skills )
-				->with( 'users', $users );
+				->with( 'user_works', $user_works )
+				->with( 'work_skills', $work_skills );
 	}
 
 	public function home_error()

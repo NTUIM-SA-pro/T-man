@@ -46,11 +46,7 @@ Route::group(array('before' => 'auth'), function() {
 	Route::resource('user', 'UserController');
 
 	Route::post('takeTask/{work_id}','WorkController@taketask');
-	Route::post('/user/{userid}/confirmtask','WorkController@confirmtask');
+	Route::post('/user/confirmtask','WorkController@confirmtask');
 });
 
-
 Route::get('/user/{userid}/tasktaken','ProfileController@showtakenTask');
-
-//拿你po的專案
-Route::get('/user/{userid}/task', array('uses'=>'ProfileController@task'));

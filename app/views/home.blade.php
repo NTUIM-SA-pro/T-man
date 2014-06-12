@@ -78,7 +78,7 @@
 	</div>
 	<div id="right-container">
 		<?php $i=0 ?>
-		@foreach($work_skills as $work_skill)
+		@foreach($user_works as $user_work)
 			@if($i%3==0)
 				<div class = "row">
 				<div class="three column stackable ui grid">
@@ -90,38 +90,40 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work_skill->works_description}}</p>
+									<p>{{$user_work->works_description}}</p>
 								</div>
 								<div class="task-choose">
-									<form action="takeTask/{{$work_skill->wid}}" method="post">
+									<form action="takeTask/{{$user_work->wid}}" method="post">
 										<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
 									</form>
 								</div>
 							</div>
 						</div>
 
-						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work_skill->duetime}}</div>
+						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$user_work->duetime}}</div>
 						<div class="field">
-							<img class="head-profile" src="/{{$work_skill->works_img}}"/>
+							<img class="head-profile" src="/{{$user_work->works_img}}"/>
 						</div>
 
 						<div class="field">
-							<div class="task_host">任務名稱:{{$work_skill->wname}}</div>
+							<div class="task_host">任務名稱:{{$user_work->wname}}</div>
 						</div>
 
-						<div class="task_host">發案人:{{$work_skill->pname}}</div>
+						<div class="task_host">發案人:{{$user_work->pname}}</div>
 
-
-					</div>
-					<div class="field">
-						<div class="task_host">獎賞:{{$work_skill->reward}}</div>
-					</div>
+						<div class="field">
+						<div class="task_host">獎賞:{{$user_work->reward}}</div>
+						</div>
 				
-					<div class="field" style="margin-top:10px;">
-						@foreach($work_skills as $work_skill)
-							<div class="task-date">{{$work_skill->sname}}</div>
-						@endforeach
+						<div class="field" style="margin-top:10px;">
+							@foreach($work_skills as $work_skill)
+								@if( $work_skill->wid === $user_work->wid )
+								<div class="task-date">{{$work_skill->sname}}</div>
+								@endif
+							@endforeach
+						</div>
 					</div>
+					
 				</div>
 				@if($i%3==2)
 					</div></div>

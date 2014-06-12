@@ -10,6 +10,7 @@
 	<div class="ui clearing divider"></div>
 		<?php $i=0 ?>
 		@foreach($works as $work)
+		@if( $work->profiles_uid === Auth::id() && $work->status === 4 )
 			@if($i%3==0)
 				<div class = "row">
 				<div class="three column stackable ui grid">
@@ -21,25 +22,37 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work->work_description}}</p>
+									<p>{{$work->works_description}}</p>
 								</div>
 								<div class="task-choose">
 									
 								</div>
 							</div>
 						</div>
+						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work->duetime}}</div>
 						<div class="field">
-							<img class="head-profile" src="/{{$work->img}}"/>
+							<img class="head-profile" src="/{{$work->works_img}}"/>
 						</div>
 						<div class="field">
-							<div class="task_host">發案人:{{$work->username}}</div>
+							<div class="task_host">任務名稱:{{$work->wname}}</div>
+						</div>
+						<div class="field">
+							@foreach( $works as $work_owner )
+							@if( $work_owner->wid === $work->wid && $work_owner->status === 2 )
+								<div class="task_host">發案人:{{$work_owner->pname}}</div>
+							@endif
+							@endforeach
 						</div>
 						<div class="field">
 							<div class="task_host">獎賞:{{$work->reward}}</div>
 						</div>
 				
 						<div class="field" style="margin-top:10px;">
-							
+							@foreach($work_skills as $work_skill)
+							@if( $work_skill->wid === $work->wid )
+								<div class="task-date">{{$work_skill->sname}}</div>
+							@endif
+							@endforeach
 						</div>
 					</div>
 				</div>
@@ -48,7 +61,7 @@
 				@endif
 				<?php $i++ ?>
 
-			
+		@endif	
 		@endforeach
 	</div>
 @stop

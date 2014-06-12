@@ -43,11 +43,22 @@ class ProfileController extends BaseController{
 	{
 		$user = User::find($user_id)->profile;
 
-		$works = DB::table('works')->join('user_works','user_works.user_works_wid' ,'=', 'works.wid')
-						->join('profiles','profiles.profiles_uid','=','works.wid')
-						->where('user_works_uid',$user_id)->get();
+		// profiles join works
+		$works = DB::table('works')
+					->join('user_works','user_works.user_works_wid' ,'=', 'works.wid')
+					->join('profiles','profiles.profiles_uid','=','user_works.user_works_uid')
+					->get();
 
-		return View::make('profile.tasktaken')->with('user',$user)->with('works',$works);
+		// works join skills
+		$work_skills = DB::table('works')
+						->join('work_skills','works.wid' ,'=', 'work_skills.work_skills_wid')
+						->join('skills','skills.sid' ,'=', 'work_skills.work_skills_sid')
+						->get();
+
+		return View::make('profile.tasktaken')
+				->with( 'user', $user )
+				->with( 'works', $works )
+				->with( 'work_skills', $work_skills );
 	}
 
 	/**

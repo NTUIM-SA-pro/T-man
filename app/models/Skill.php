@@ -9,6 +9,8 @@ class Skill extends Eloquent {
 	 */
 	protected $table = 'skills';
 
+	protected $primaryKey = 'sid';
+
 	public function user()
 	{
 		return $this->belongsTo('User');
@@ -22,10 +24,5 @@ class Skill extends Eloquent {
 	public function work()
 	{
 		return $this->belongsToMany('Work', 'work_skills', 'work_skills_sid', 'work_skills_wid');
-	}
-
-	public function skill()
-	{
-		return $this->belongsToMany('Skill', 'work_skills', 'work_skills_wid', 'work_skills_sid');
 	}
 }

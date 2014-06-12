@@ -95,10 +95,8 @@
         
       });
     $('a.item.login').click(function(){
-        $('.login.modal').modal('setting',{
-        onHidden:function(){
-          $('#login_form .error.message').hide();
-
+        $('.login.modal').modal('show');
+      });
 
     $('#login_form .button.ok').click(function(){
         $.ajax({

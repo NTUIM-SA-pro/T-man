@@ -39,12 +39,16 @@
 				<tr>
 					<td><b>專長、技能</td>
 					<td>
-						{{ Form::checkbox('skill[]', '電腦', false) }}電腦
-						{{ Form::checkbox('skill[]', '語文', false) }}語文
-						{{ Form::checkbox('skill[]', '運動', false) }}運動
-						{{ Form::checkbox('skill[]', '美術', false) }}美術
-						{{ Form::checkbox('skill[]', '行政', false) }}行政
-						{{ Form::checkbox('skill[]', '其他', false) }}其他
+						@foreach ($skills as $skill)
+						<?php $skill_own = false; ?>
+							<!-- 檢查是否擁有技能 -->
+							@foreach( $user_skills as  $user_skill)
+							@if( $user_skill->user_skills_uid === Auth::id() && $user_skill->user_skills_sid === $skill->sid )
+							<?php $skill_own = true; ?>
+							@endif
+							@endforeach
+						{{ Form::checkbox('skill[]', $skill->sid, $skill_own) }}{{$skill->sname}}
+						@endforeach
 					</td>
 				</tr>
 			</table>

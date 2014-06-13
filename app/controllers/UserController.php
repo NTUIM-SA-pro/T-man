@@ -104,6 +104,7 @@ class UserController extends BaseController {
 		return View::make('profile.task')
 					->with('user',$user)
 					->with('user_works',$user_works)
+					->with( 'skills', Skill::all() )
 					->with('work_skills',$work_skills);
 	}
 

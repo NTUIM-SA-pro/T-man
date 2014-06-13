@@ -40,7 +40,11 @@
 			<tr>
 				<td><b>專長、技能</b></td>
 				<td>
-					
+					@foreach( $user_skills as $user_skill )
+						@if( $user_skill->user_skills_uid === Auth::id() )
+							{{$user_skill->sname}}
+						@endif
+					@endforeach
 				</td>
 			</tr>
 		</table>

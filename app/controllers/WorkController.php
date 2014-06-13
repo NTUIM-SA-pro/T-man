@@ -51,7 +51,7 @@ class WorkController extends BaseController {
 		$status = 0;
 		$date = Input::get('date');
 
-		$destinationPath = 'public/uploads';
+		$destinationPath = public_path().'/uploads';
 		$filepath = 'uploads';
 		$filename = str_random(12).$match[1];
 		$upload_success = $img->move($destinationPath, $filename);

@@ -105,30 +105,13 @@
 		  		<div class="field">
 		  			<label>Tag</label>
 		  			<div class="model_checkbox">
-			  			<div class="ui checkbox">
-							<input type="checkbox" name="skill1">
-							<label>電腦</label>
-						</div>
-						<div class="ui checkbox">
-							<input type="checkbox" name="skill2">
-							<label>語文</label>
-						</div>
-						<div class="ui checkbox">
-							<input type="checkbox" name="skill3">
-							<label>運動</label>
-						</div>
-						<div class="ui checkbox">
-							<input type="checkbox" name="skill4">
-							<label>美術</label>
-						</div>
-						<div class="ui checkbox">
-							<input type="checkbox" name="skill5">
-							<label>行政</label>
-						</div>
-						<div class="ui checkbox">
-							<input type="checkbox" name="skill6">
-							<label>其他</label>
-						</div>
+			  			
+							@foreach ($skills as $skill)
+							<div class="ui checkbox">
+							{{ Form::checkbox('skill[]', $skill->sid, false) }}<label>{{$skill->sname}}</label>
+							</div>
+							@endforeach
+						
 					</div>
 		  		</div>
 				<div id="submit" class="ui black submit button" style="width:100%">提交</div>

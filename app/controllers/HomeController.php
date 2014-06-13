@@ -2,6 +2,9 @@
 
 class HomeController extends BaseController {
 
+	/* 
+	 * Show homepage
+	 */
 	public function home()
 	{
 		$works_covers = DB::table('works')->take(7)->orderBy('created_at','desc')->get();

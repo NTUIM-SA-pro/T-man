@@ -11,44 +11,41 @@
 |
 */
 
-//首頁
-Route::any('home', array(
-	'as' => 'home',
-	'uses' => 'HomeController@home'
-));
-
+Route::resource('home', 'HomeController');
 
 Route::any('home_error', array(
 	'as'=>'home-error',
 	'uses'=>'HomeController@home_error'
 ));
 
-//登出
+// 登出
 Route::get('logout', 'UserController@logout');
 
-
-//註冊
+// 註冊
 Route::post('register', 'UserController@register');
 
-//登入
+// 登入
 Route::post('login', 'UserController@login');
 
-//除了編輯個人頁面
+// 除了編輯個人頁面
 Route::resource('user', 'UserController',
 	array('except' => array('edit')));
 
-Route::resource('profile', 'ProfileController');
+Route::resource('profile', 'ProfileController',
+	array('only' => array('show')));
 
-//使用者登入後
+Route::resource('work', 'WorkController',
+	array('only' => array('show')));
+
+// 使用者登入後
 Route::group(array('before' => 'auth'), function() {
 	Route::resource('work', 'WorkController');
 
 	Route::resource('user', 'UserController');
 
+	Route::resource('profile', 'ProfileController');
+
 	Route::post('takeTask/{work_id}','WorkController@taketask');
 
 	Route::post('/user/confirmtask','WorkController@confirmtask');
 });
-
-Route::get('/user/{userid}/tasktaken','ProfileController@showtakenTask');
-

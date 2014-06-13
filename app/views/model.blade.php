@@ -105,13 +105,11 @@
 		  		<div class="field">
 		  			<label>Tag</label>
 		  			<div class="model_checkbox">
-			  			
 							@foreach ($skills as $skill)
 							<div class="ui checkbox">
-							{{ Form::checkbox('skill[]', $skill->sid, false) }}<label>{{$skill->sname}}</label>
+							{{ Form::checkbox('work_skill[]', $skill->sid, false) }}<label>{{$skill->sname}}</label>
 							</div>
 							@endforeach
-						
 					</div>
 		  		</div>
 				<div id="submit" class="ui black submit button" style="width:100%">提交</div>

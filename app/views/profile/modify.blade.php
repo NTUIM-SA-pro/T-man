@@ -47,7 +47,7 @@
 							<?php $skill_own = true; ?>
 							@endif
 							@endforeach
-						{{ Form::checkbox('skill[]', $skill->sid, $skill_own) }}{{$skill->sname}}
+						{{ Form::checkbox('user_skill[]', $skill->sid, $skill_own) }}{{$skill->sname}}
 						@endforeach
 					</td>
 				</tr>

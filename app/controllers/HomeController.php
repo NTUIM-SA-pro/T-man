@@ -2,10 +2,12 @@
 
 class HomeController extends BaseController {
 
-	/* 
-	 * Show homepage
+	/**
+	 * Display Homepage.
+	 *
+	 * @return home.blade.php
 	 */
-	public function home()
+	public function index()
 	{
 		$works_covers = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
 
@@ -18,13 +20,60 @@ class HomeController extends BaseController {
 		$work_skills = DB::table('skills')
 						->join('work_skills','work_skills.work_skills_sid' ,'=', 'skills.sid')
 						->join('works','work_skills.work_skills_wid' ,'=', 'works.wid')
-						->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
 						->get();
 
 		return View::make('home')
 				->with( 'work_covers', $works_covers )
 				->with( 'work_skills', $work_skills )
+				->with( 'works', Work::all() )
+				->with( 'skills', Skill::all() )
 				->with( 'users', $users );
+	}
+
+	/**
+	 * Filter works by skills.
+	 *
+	 * @return home.blade.php
+	 */
+	public function store()
+	{
+		$skills_checked = Input::get('filter_skill'); // skill checkbox
+
+		// filter
+		if( is_array($skills_checked) )
+		{
+			$works_covers = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
+
+			// works join profiles
+			$users = DB::table('works')
+					->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
+					->get();
+
+			// works join skills
+			$work_skills = DB::table('skills')
+							->join('work_skills','work_skills.work_skills_sid' ,'=', 'skills.sid')
+							->join('works','work_skills.work_skills_wid' ,'=', 'works.wid')
+							->get();
+
+			// works join skills and select works with correct skills
+			$works = DB::table('skills')
+						->join('work_skills','work_skills.work_skills_sid' ,'=', 'skills.sid')
+						->join('works','work_skills.work_skills_wid' ,'=', 'works.wid')
+						->groupBy('wid')
+						->whereIn('sid', $skills_checked)
+						->get();
+
+			return View::make('home')
+					->with( 'work_covers', $works_covers )
+					->with( 'work_skills', $work_skills )
+					->with( 'works', $works )
+					->with( 'skills', Skill::all() )
+					->with( 'users', $users );
+		}
+		else
+		{
+			// delete all user_skills
+		}
 	}
 
 	public function home_error()

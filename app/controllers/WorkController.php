@@ -24,82 +24,51 @@ class WorkController extends BaseController {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store user's work.
 	 *
-	 * @return Response
+	 * @return Usercontroller@show
 	 */
 	public function store()
 	{
-		$skill1 = Input::get('skill1');
-		$skill2 = Input::get('skill2');
-		$skill3 = Input::get('skill3');
-		$skill4 = Input::get('skill4');
-		$skill5 = Input::get('skill5');
-		$skill6 = Input::get('skill6');
-
-		$workname = Input::get('workName');
-		$img = Input::file('image');
-		// image name
-		$name = $img->getClientOriginalName();
-
-		preg_match('/.*(\.\w*)/', $name,$match);
-		$description = Input::get('description');
-
 		$user_id = Auth::id();
 
+		// get the data from front end. 
+		$workname = Input::get('workName');
+		$img = Input::file('image');
+		$description = Input::get('description');
 		$reward = Input::get('reward');
-		$status = 0;
 		$date = Input::get('date');
+		$skills_checked = Input::get('work_skill'); // skill checkbox
 
+		// image name
+		$filename = str_random(12);
+		// image upload path
 		$destinationPath = public_path().'/uploads';
-		$filepath = 'uploads';
-		$filename = str_random(12).$match[1];
-		$upload_success = $img->move($destinationPath, $filename);
-
+		// image url
+		$url = $img->move($destinationPath, $filename)->getRealPath();
+		// substring: /uploads/*.jpg
+		$url = substr($url, -20);	
 		// insert and get this work id
 		$work_id = Work::insertGetId(
 			array(
 				'wname' => $workname, 
 				'works_description' => $description,
 				'reward' => $reward, 
-				'works_img' => $filepath.'/'.$filename,
+				'works_img' => $url,
 				'works_uid' => $user_id,
 				'dueTime' => $date
 			));
-
+		// this work
 		$work = Work::find($work_id);
-
+		// insert into many to many: user_works
 		$work->user()->attach($user_id);
-		// 我想用sync
-		if($skill1 == 'on')
+		// sync user_skills
+		if( is_array($skills_checked) )
 		{
-			$work->skill()->attach(1);
-		}
-		if($skill2 == 'on')
-		{
-			$work->skill()->attach(2);
-		}
-		if($skill3 == 'on')
-		{
-			$work->skill()->attach(3);
-		}
-		if($skill4 == 'on')
-		{
-			$work->skill()->attach(4);
-		}
-		if($skill5 == 'on')
-		{
-			$work->skill()->attach(5);
-		}
-		if($skill6 == 'on')
-		{
-			$work->skill()->attach(6);
+			$work->skill()->sync($skills_checked);
 		}
 
-		// if($work && $upload_success ){
-			if( $upload_success ) {
-			return Redirect::to("/user/".$user_id);
-		}
+		return Redirect::to("/user/".$user_id);
 	}
 
 	public function taketask($work_id)	
@@ -138,14 +107,32 @@ class WorkController extends BaseController {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display user's works which he takes.
 	 *
 	 * @param  int  $id
-	 * @return Response
+	 * @return profile.tasktaken.blade.php
 	 */
 	public function show($id)
 	{
-		//
+		$user = User::find($id)->profile;
+
+		// profiles join works
+		$works = DB::table('works')
+					->join('user_works','user_works.user_works_wid' ,'=', 'works.wid')
+					->join('profiles','profiles.profiles_uid','=','user_works.user_works_uid')
+					->get();
+
+		// works join skills
+		$work_skills = DB::table('works')
+						->join('work_skills','works.wid' ,'=', 'work_skills.work_skills_wid')
+						->join('skills','skills.sid' ,'=', 'work_skills.work_skills_sid')
+						->get();
+
+		return View::make('profile.tasktaken')
+				->with( 'user', $user )
+				->with( 'works', $works )
+				->with( 'skills', Skill::all() )
+				->with( 'work_skills', $work_skills );
 	}
 
 

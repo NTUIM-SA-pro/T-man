@@ -58,7 +58,6 @@ class ProfileController extends BaseController{
 			->with( 'user', $user );
 	}
 
-
 	/**
 	 * Update user's profile.
 	 *
@@ -77,7 +76,7 @@ class ProfileController extends BaseController{
 		$img = Input::file('img');
 		$sex = Input::get('sex');
 		$intro = Input::get('introduction');
-		$skills_checked = Input::get('skill'); // skill checkbox
+		$skills_checked = Input::get('user_skill'); // skill checkbox
 
 		// image validation
 		/*if ($validator->fails())
@@ -91,23 +90,17 @@ class ProfileController extends BaseController{
 			$img = Input::file('img');
 		}*/	
 
-		// image name
-		//$name = $img->getClientOriginalName();
-		//preg_match('/.*(\.\w*)/', $name,$match);
-		
-		// file name
-		//$filename = str_random(12).$match[1];
 		//$date = \Carbon\Carbon::now();
 			
 		//$filename = $date;
-
+		// image name
 		$filename = str_random(12);
 		// image upload path
 		$destinationPath = public_path().'/uploads';
 		// image url
 		$url = $img->move($destinationPath, $filename)->getRealPath();
 		// substring: /uploads/*.jpg
-		$url = substr($url, -20);	
+		$url = substr($url, -20);
 		// update profile
 		$profile_update = DB::table('profiles')
 							->where('profiles_uid', $id)
@@ -130,7 +123,7 @@ class ProfileController extends BaseController{
 		return Redirect::to('/profile/'.$id);
 	}
 
-	public function showtakenTask($user_id)
+	/*public function showtakenTask($user_id)
 	{
 		$user = User::find($user_id)->profile;
 
@@ -151,5 +144,5 @@ class ProfileController extends BaseController{
 				->with( 'works', $works )
 				->with( 'skills', Skill::all() )
 				->with( 'work_skills', $work_skills );
-	}
+	}*/
 }

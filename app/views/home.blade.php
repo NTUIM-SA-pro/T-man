@@ -21,64 +21,38 @@
 		<div class="one column stackable ui grid" >
 			<div class="column">
 				<div class="ui segment" style="border: 1px solid #ababab;">
+					{{ Form::open(array('url' => '/home', 'method' => 'post')) }}
 					<div class="field">
 						<span class="filter_title">條件篩選</span>
 					</div>
 					<div class="field">
 						<div class="ui divided list">
+							@foreach ($skills as $skill)
 							<div class="item">
 								<div class="ui checkbox">
-									<input type="checkbox" name="skill1">
-									<label>電腦</label>
+								{{ Form::checkbox('filter_skill[]', $skill->sid, false) }}<label>{{$skill->sname}}</label>
 								</div>
 							</div>
-							<div class="item">
-								<div class="ui checkbox">
-									<input type="checkbox" name="skill2">
-									<label>語文</label>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ui checkbox">
-									<input type="checkbox" name="skill3">
-									<label>運動</label>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ui checkbox">
-									<input type="checkbox" name="skill4">
-									<label>美術</label>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ui checkbox">
-									<input type="checkbox" name="skill5">
-									<label>行政</label>
-								</div>
-							</div>
-							<div class="item">
-								<div class="ui checkbox">
-									<input type="checkbox" name="skill6">
-									<label>其他</label>
-								</div>
-							</div>
+							@endforeach
 						</div>
 					</div>
 					<div class="field">
-						<div class="ui animated black button go">
-						  <div class="visible content">Go</div>
-						  <div class="hidden content">
-						  	<i class="right arrow icon"></i>
-						  </div>
-						</div>
+						<!--<div class="ui animated black button go">
+						  	<div class="visible content">GO</div>
+						  	<div class="hidden content">
+						  		<i class="right arrow icon"></i>
+						  	</div>
+						</div>-->
+						<input type="submit" value="GO!">
 					</div>
+					{{ Form::close() }}
 				</div>
 			</div>
 		</div>
 	</div>
 	<div id="right-container">
 		<?php $i=0 ?>
-		@foreach($work_skills as $work_skill)
+		@foreach($works as $work)
 			@if($i%3==0)
 				<div class = "row">
 				<div class="three column stackable ui grid">
@@ -90,43 +64,48 @@
 							<div class="content">
 								<div class="task-desc">
 									<h3>敘述：</h3>
-									<p>{{$work_skill->works_description}}</p>
+									<p>{{$work->works_description}}</p>
 								</div>
 								<div class="task-choose">
-									<form action="takeTask/{{$work_skill->wid}}" method="post">
+									<form action="takeTask/{{$work->wid}}" method="post">
 										<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
 									</form>
 								</div>
 							</div>
 						</div>
 
-						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work_skill->duetime}}</div>
+						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work->duetime}}</div>
 						<div class="field">
 
-							<img class="head-profile" src="/{{$work_skill->works_img}}"/>
+							<img class="head-profile" src="/{{$work->works_img}}"/>
 						</div>
 
 						<div class="field">
-							<div class="task_host">任務名稱:{{$work_skill->wname}}</div>
+							<div class="task_host">任務名稱:{{$work->wname}}</div>
 						</div>
 
-						<div class="task_host">發案人:{{$work_skill->pname}}</div>
-
-
-					</div>
-					<div class="field">
-						<div class="task_host">獎賞:{{$work_skill->reward}}</div>
-					</div>
-				
-					<div class="field" style="margin-top:10px;">
-						@foreach($work_skills as $work_skill)
-							<div class="task-date">{{$work_skill->sname}}</div>
+						@foreach( $users as $user )
+							@if( $user->wid === $work->wid )
+							<div class="task_host">發案人:{{$user->pname}}</div>
+							@endif
 						@endforeach
-					</div>
-				</div>				
+
+						<div class="field">
+							<div class="task_host">獎賞:{{$work->reward}}</div>
+						</div>
+				
+						<div class="field" style="margin-top:10px;">
+							@foreach($work_skills as $work_skill)
+								@if( $work_skill->wid === $work->wid )
+								<div class="task-date">{{$work_skill->sname}}</div>
+								@endif
+							@endforeach
+						</div>
+					</div>	
 				</div>
 				@if($i%3==2)
-					</div></div>
+					</div>
+					</div>
 				@endif
 				<?php $i++ ?>
 		@endforeach

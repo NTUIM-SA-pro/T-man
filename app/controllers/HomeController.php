@@ -72,7 +72,7 @@ class HomeController extends BaseController {
 		}
 		else
 		{
-			// delete all user_skills
+			return Redirect::to("/home");
 		}
 	}
 

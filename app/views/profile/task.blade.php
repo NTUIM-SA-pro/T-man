@@ -13,7 +13,7 @@
   	<div class="ui clearing divider"></div>
 		<?php $i=0 ?>
 		@foreach($user_works as $work)
-		@if( $work->profiles_uid === Auth::id() )
+		@if( $work->profiles_uid === Auth::id() && ($work->status === 0 || $work->status === 1 || $work->status === 2))
 			@if($i%3==0)
 				<div class = "row">
 				<div class="three column stackable ui grid">

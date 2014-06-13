@@ -47,5 +47,5 @@ Route::group(array('before' => 'auth'), function() {
 
 	Route::post('takeTask/{work_id}','WorkController@taketask');
 
-	Route::post('/user/confirmtask','WorkController@confirmtask');
+	Route::post('user/confirmtask','WorkController@confirmtask');
 });

@@ -3,27 +3,6 @@
 class WorkController extends BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-
-	}
-
-	/**
 	 * Store user's work.
 	 *
 	 * @return Usercontroller@show
@@ -68,42 +47,7 @@ class WorkController extends BaseController {
 			$work->skill()->sync($skills_checked);
 		}
 
-		return Redirect::to("/user/".$user_id);
-	}
-
-	public function taketask($work_id)	
-	{
-		$id = Auth::id();
-
-		// 發案人: 未接 -> 未確認
-		$work_owner = UserWork::where('user_works_wid', '=', $work_id)
-						->where('status', '=', 0)
-						->update(array('status' => 1));
-
-		// 接案人: 未確認
-		$work_taker = Work::find($work_id);
-		$work_taker->user()->attach($id, array('status' => 3));
-
-		return Redirect::to("/user/".$id."/tasktaken");
-	}
-
-	public function confirmtask()	
-	{
-		$id = Auth::id();
-		$chosen_user = Input::get('user');
-		$work = Input::get('work');
-
-		// 發案人: 未確認 -> 已確認
-		$work_owner = UserWork::where('user_works_wid', '=', $work)
-						->where('status', '=', 1)
-						->update(array('status' => 2));
-
-		// 接案人: 未確認 -> 已確認
-		$work_owner = UserWork::where('user_works_wid', '=', $work)
-						->where('status', '=', 3)
-						->update(array('status' => 4));
-
-		return $id;
+		return Redirect::to("/work/".$user_id);
 	}
 
 	/**
@@ -135,41 +79,50 @@ class WorkController extends BaseController {
 				->with( 'work_skills', $work_skills );
 	}
 
-
 	/**
-	 * Show the form for editing the specified resource.
+	 * User take works.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  int  $work_id
+	 * @return profile.tasktaken.blade.php
 	 */
-	public function edit($id)
+	public function taketask($work_id)	
 	{
-		//
+		$id = Auth::id();
+
+		// 發案人: 未接 -> 未確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work_id)
+						->where('status', '=', 0)
+						->update(array('status' => 1));
+
+		// 接案人: 未確認
+		$work_taker = Work::find($work_id);
+		$work_taker->user()->attach($id, array('status' => 3));
+
+		return Redirect::to("/work/".$id);
 	}
 
-
 	/**
-	 * Update the specified resource in storage.
+	 * User confirm works.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  int  $work_id
+	 * @return profile.tasktaken.blade.php
 	 */
-	public function update($id)
+	public function confirmtask()	
 	{
-		//
+		$id = Auth::id();
+		$chosen_user = Input::get('user');
+		$work = Input::get('work');
+
+		// 發案人: 未確認 -> 已確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work)
+						->where('status', '=', 1)
+						->update(array('status' => 2));
+
+		// 接案人: 未確認 -> 已確認
+		$work_owner = UserWork::where('user_works_wid', '=', $work)
+						->where('status', '=', 3)
+						->update(array('status' => 4));
+
+		return $id;
 	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
 }

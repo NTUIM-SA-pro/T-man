@@ -14,7 +14,6 @@
   			<?php $j++?>
 				<img class="cover" src="{{$work_cover->works_img}}"/>
 			</div>
-
 		@endforeach
 	</div>
 	<div id='left-container'>
@@ -67,9 +66,11 @@
 									<p>{{$work->works_description}}</p>
 								</div>
 								<div class="task-choose">
-									<form action="takeTask/{{$work->wid}}" method="post">
-										<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
-									</form>
+									@if( Auth::check() )
+									{{ Form::open(array('url' => 'takeTask/'.$work->wid, 'method' => 'post')) }}
+										{{Form::submit('接任務', ['class' => 'ui green button', 'style' => 'width:200px;text-align:center;'])}}
+									{{ Form::close() }}
+									@endif
 								</div>
 							</div>
 						</div>

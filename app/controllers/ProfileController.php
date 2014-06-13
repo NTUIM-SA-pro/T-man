@@ -117,32 +117,12 @@ class ProfileController extends BaseController{
 		}
 		else
 		{
-			// delete all user_skills
+			// delete user's all skills
+			$delete_skills = DB::table('user_skills')
+								->where('user_skills_uid', '=', $id)
+								->delete();
 		}
 	
 		return Redirect::to('/profile/'.$id);
 	}
-
-	/*public function showtakenTask($user_id)
-	{
-		$user = User::find($user_id)->profile;
-
-		// profiles join works
-		$works = DB::table('works')
-					->join('user_works','user_works.user_works_wid' ,'=', 'works.wid')
-					->join('profiles','profiles.profiles_uid','=','user_works.user_works_uid')
-					->get();
-
-		// works join skills
-		$work_skills = DB::table('works')
-						->join('work_skills','works.wid' ,'=', 'work_skills.work_skills_wid')
-						->join('skills','skills.sid' ,'=', 'work_skills.work_skills_sid')
-						->get();
-
-		return View::make('profile.tasktaken')
-				->with( 'user', $user )
-				->with( 'works', $works )
-				->with( 'skills', Skill::all() )
-				->with( 'work_skills', $work_skills );
-	}*/
 }

@@ -21,7 +21,7 @@
 		<div class="one column stackable ui grid" >
 			<div class="column">
 				<div class="ui segment" style="border: 1px solid #ababab;">
-					{{ Form::open(array('url' => '/home', 'method' => 'post')) }}
+					{{ Form::open(array('url' => '/home', 'method' => 'post','id'=>'filter_form')) }}
 					<div class="field">
 						<span class="filter_title">條件篩選</span>
 					</div>
@@ -37,13 +37,13 @@
 						</div>
 					</div>
 					<div class="field">
-						<!--<div class="ui animated black button go">
-						  	<div class="visible content">GO</div>
+						<div class="ui animated black button go">
+						  	<div class="visible content submit">GO</div>
 						  	<div class="hidden content">
 						  		<i class="right arrow icon"></i>
 						  	</div>
-						</div>-->
-						<input type="submit" value="GO!">
+						</div>
+						
 					</div>
 					{{ Form::close() }}
 				</div>

@@ -1,7 +1,7 @@
 @extends('user_main')
 @section('right-container')
 	<div class="ui segment main">
-	@if($user->id==Auth::id())
+	@if($user->profiles_uid==Auth::id())
 		<h2 class="ui left floated header">我的個人資料</h2>
 	@else
 		<h2 class="ui left floated header">{{$user->pname}}的個人資料</h2>

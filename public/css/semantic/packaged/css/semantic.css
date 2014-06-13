@@ -1706,7 +1706,7 @@ body > .ui.grid {
 .ui.menu a.item:hover,
 .ui.menu .ui.dropdown .menu .item:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.02);
+  /*background-color: rgba(0, 0, 0, 0.02);*/
 }
 .ui.menu .ui.dropdown.item.active {
   background-color: rgba(0, 0, 0, 0.02);
@@ -2392,7 +2392,7 @@ body > .ui.grid {
 }
 .ui.menu .blue.active.item,
 .ui.blue.menu .active.item {
-  border-color: #6ECFF5 !important;
+  /*border-color: #6ECFF5 !important;*/
   color: #6ECFF5 !important;
 }
 .ui.menu .purple.active.item,
@@ -2428,7 +2428,7 @@ body > .ui.grid {
 }
 .ui.inverted.menu .item,
 .ui.inverted.menu .item > a {
-  color: #FFFFFF;
+  color: #999;
 }
 .ui.inverted.menu .item .item,
 .ui.inverted.menu .item .item > a {
@@ -2460,13 +2460,16 @@ body > .ui.grid {
 .ui.inverted.menu .link.item:hover,
 .ui.inverted.menu a.item:hover,
 .ui.inverted.menu .dropdown.item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  /*background-color: rgba(255, 255, 255, 0.1);*/
+  /*background-color: rgba(50,50,50,0.1);*/
+  color: #333;
 }
 .ui.inverted.menu a.item:hover,
 .ui.inverted.menu .item > a:hover,
 .ui.inverted.menu .item .menu a.item:hover,
 .ui.inverted.menu .item .menu .link.item:hover {
-  color: #ffffff;
+  /*color: #ffffff;*/
+  color: #333;
 }
 /*--- Down ---*/
 .ui.inverted.menu a.item:active,
@@ -2483,7 +2486,7 @@ body > .ui.grid {
 }
 .ui.inverted.menu .active.item,
 .ui.inverted.menu .active.item a {
-  color: #ffffff !important;
+  color: #999 !important;
 }
 .ui.inverted.vertical.menu .item .menu .active.item {
   background-color: rgba(255, 255, 255, 0.2);
@@ -2551,7 +2554,12 @@ body > .ui.grid {
   background-color: #F16883;
 }
 .ui.inverted.blue.menu {
-  background-color: #6ECFF5;
+  border: 1px solid #cfcfcf;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  /*background-color: #6ECFF5;*/
+  background-color: rgba(255,255,255,0.9);
 }
 .ui.inverted.blue.pointing.menu .active.item:after {
   background-color: #6ECFF5;

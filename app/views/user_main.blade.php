@@ -6,12 +6,18 @@
 				<div class="column">
 					<div class="ui segment" style="border: 1px solid #ababab;">
 						<div class="field">
-							<img class="head-profile"src="/{{$user->profiles_img}}"/>
+							<img class="head-profile"src="{{$user->profiles_img}}"/>
 						</div>
+						
 						<div class="field">
 							<div class="profile-name">{{$user->pname}}
 							</div>
 						</div>
+						@if(isset($msg))
+							<div class="field" style="text-align:center; margin-top:15px;">
+								<a href='/profile/{{Auth::id()}}/editphoto' class="ui teal button">更改相片</a>
+							</div>
+						@endif
 					</div>
 				</div>
 			</div>

@@ -34,6 +34,12 @@ class UserController extends BaseController {
 		$password = Hash::make($tempPassword);
 		$nickname = Input::get('nickname');
 
+
+		if (!preg_match("#^[a-zA-Z0-9]+$#", $nickname)) {
+   			return 'inject';   
+		} 
+		
+
 		$user = User::create(
     		array('account' => $account, 'password' => $password)
 		);
@@ -48,7 +54,7 @@ class UserController extends BaseController {
 			'account' => $account,
 			'password' => $tempPassword),true);
 			if($auth){
-				return Redirect::to("/home/");
+				return Auth::id();
 			}
 			else return 'error';
 		}

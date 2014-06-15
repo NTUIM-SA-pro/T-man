@@ -13,41 +13,69 @@ class WorkController extends BaseController {
 
 		// get the data from front end. 
 		$workname = Input::get('workName');
+
 		$img = Input::file('image');
 		$description = Input::get('description');
 		$reward = Input::get('reward');
 		$date = Input::get('date');
 		$skills_checked = Input::get('work_skill'); // skill checkbox
 
-		// image name
-		$filename = str_random(12);
-		// image upload path
-		$destinationPath = public_path().'/uploads';
-		// image url
-		$url = $img->move($destinationPath, $filename)->getRealPath();
-		// substring: /uploads/*.jpg
-		$url = substr($url, -20);	
-		// insert and get this work id
-		$work_id = Work::insertGetId(
-			array(
-				'wname' => $workname, 
-				'works_description' => $description,
-				'reward' => $reward, 
-				'works_img' => $url,
-				'works_uid' => $user_id,
-				'dueTime' => $date
-			));
-		// this work
-		$work = Work::find($work_id);
-		// insert into many to many: user_works
-		$work->user()->attach($user_id);
-		// sync user_skills
-		if( is_array($skills_checked) )
-		{
-			$work->skill()->sync($skills_checked);
+		if (!preg_match("/^[a-zA-Z0-9]+$/", $workname)||!preg_match("/^[a-zA-Z0-9]+$/", $reward)) {
+   			return 'inject';
+		}
+		if(!preg_match("/\d{4}-\d{2}-\d{2}/", $date)){
+			return 'date_error';
 		}
 
-		return Redirect::to("/work/".$user_id);
+		if ( Input::hasFile('image') )
+		{
+			$origin_name = $img->getClientOriginalName();
+			
+			if (!preg_match('/(\.jpg|\.png|\.bmp|\.git|\.tiff)$/', $origin_name))
+			{
+				return 'img_format';
+			}
+			$extension = $img->getClientOriginalExtension();
+			// image name
+			$filename = str_random(12).'.'.$extension;
+			// image upload path
+			$destinationPath = public_path().'/uploads';
+			// image url
+			$url = $img->move($destinationPath, $filename)->getRealPath();
+
+    		$s3 = AWS::get('s3');	
+
+			try {
+				$s3->upload('SA_project', 'uploads/'.$filename, fopen($url,'r'), 'public-read');
+			} catch (S3Exception $e) {
+				return "upload_error";
+			}
+			unlink($url);
+	
+			$work_id = Work::insertGetId(
+				array(
+					'wname' => $workname, 
+					'works_description' => $description,
+					'reward' => $reward, 
+					'works_img' => 'https://s3.amazonaws.com/SA_project/uploads/'.$filename,
+					'works_uid' => $user_id,
+					'dueTime' => $date
+				));
+			// this work
+			$work = Work::find($work_id);
+			// insert into many to many: user_works
+			$work->user()->attach($user_id);
+			// sync user_skills
+			if( is_array($skills_checked) )
+			{
+				$work->skill()->sync($skills_checked);
+			}
+
+			return $user_id;
+		}
+		else{
+			return 'img_empty';
+		}
 	}
 
 	/**

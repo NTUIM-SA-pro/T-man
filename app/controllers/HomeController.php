@@ -89,8 +89,23 @@ class HomeController extends BaseController {
 
 		$works_cover = DB::table('works')->take(7)->orderBy('created_at','desc')->get();
 		$works = Work::all();
-		$user = DB::table('works')->join('profiles','profiles.user_id' ,'=', 'works.user_id')->get();
-		if( !Auth::check() ) return View::make('home')->with('workCover',$works_cover)->with('works',$works)->with('users',$user)->with('msg','ok');
+		$users = DB::table('works')
+				->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
+				->get();
+		$work_skills = DB::table('skills')
+						->join('work_skills','work_skills.work_skills_sid' ,'=', 'skills.sid')
+						->join('works','work_skills.work_skills_wid' ,'=', 'works.wid')
+						->get();
+
+		if( !Auth::check() ) 
+		{
+			return View::make('home')
+			->with('work_covers',$works_cover)
+			->with('works',$works)->with('msg','ok')
+			->with( 'skills', Skill::all() )
+			->with('users',$users)
+			->with( 'work_skills', $work_skills );
+		}
 		// return View::make('home')->with('workCover',$works_cover)->with('works',$works)->with('users',$user);
 	}
 

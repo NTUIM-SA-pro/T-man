@@ -69,8 +69,8 @@
 
 <div class="ui creatework modal">
 	<i class="close icon"></i>
-	<form action="/work" method="POST" class="ui fluid form" enctype="multipart/form-data">
 		<div class="four wide column">
+		<form id="task_form" action="work" method="POST" class="ui fluid form" enctype="multipart/form-data">
 			<div id="inputbox" class="ui warning form segment">
 				<h2>新增任務</h2>
 		  		<div class="field">
@@ -113,8 +113,11 @@
 							@endforeach
 					</div>
 		  		</div>
-				<div id="submit" class="ui black submit button" style="width:100%">提交</div>
+		  		<div class="field">
+		  			<div class="ui error message"></div>
+					<div  class="ui black submit button" style="width:100%">提交</div>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>

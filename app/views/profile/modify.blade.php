@@ -71,6 +71,6 @@
 			</div>
 		</div>
 	@if(isset($msg))
-					<span class='error_message'>{{$msg}}</span>
+					<span class='error_message' style="display:none;">{{$msg}}</span>
 	@endif
 @stop

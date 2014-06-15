@@ -11,7 +11,7 @@
 	      		<i class="dropdown icon"></i>
 	      		<div class="menu">
 			        <a class="item" href='/user/{{Auth::id()}}'>個人頁面</a>
-			        <a class="item" >設定</a>
+			        <!--<a class="item" >設定</a>-->
       			</div>
     		</div>
 			

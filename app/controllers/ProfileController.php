@@ -67,14 +67,9 @@ class ProfileController extends BaseController{
 
 	public function update($id)
 	{
-		/*$validator = array(
-    		'img' => 'required|min:1|integerOrArray'
-		);*/
 		$user = User::find($id);
 
 		// get the data from front end. 
-		$profile_name = Input::get('name');
-		// $img = Input::file('img');
 		$sex = Input::get('sex');
 		$intro = Input::get('introduction');
 		$skills_checked = Input::get('user_skill'); // skill checkbox
@@ -83,12 +78,14 @@ class ProfileController extends BaseController{
 		if (!preg_match("/^[a-zA-Z0-9]+$/", $profile_name)) {
    			return 'inject';
 		}
+
 		$profile_update = DB::table('profiles')
 							->where('profiles_uid', $id)
 							->update(array( 'pname' => $profile_name,
 											'introduction' => $intro,
 											'sex' => $sex
 							));
+
 		if( is_array($skills_checked) )
 		{
 			$user->skill()->sync($skills_checked);
@@ -102,61 +99,6 @@ class ProfileController extends BaseController{
 		}
 	
 		return 'upload_ok';
-
-		// if ( Input::hasFile('img') )
-		// {
-		// 	return '123';
-		// 	$origin_name = $img->getClientOriginalName();
-			
-		// 	if (!preg_match('/(\.jpg|\.png|\.bmp|\.git|\.tiff)$/', $origin_name)) return 'format_error';
-
-		// 	$extension = $img->getClientOriginalExtension();
-  //   		$filename = str_random(12).$extension;
-
-  //   		$s3 = AWS::get('s3');
-
-		
-		
-		// 	// image upload path
-		// 	$destinationPath = public_path().'/uploads';
-		// 	// image url
-		// 	$url = $img->move($destinationPath, $filename)->getRealPath();
-		// 	try {
-		// 		$s3->upload('SA_project', 'uploads/'.$filename, $url, 'public-read');
-		// 	} catch (S3Exception $e) {
-		// 		return "upload_error";
-		// 	}
-
-  //   		$profile_update = DB::table('profiles')
-		// 					->where('profiles_uid', $id)
-		// 					->update(array( 'pname' => $profile_name,
-		// 									'profiles_img' => $url,
-		// 									'introduction' => $intro,
-		// 									'sex' => $sex
-		// 							));
-		
-		// // sync user_skills
-		// if( is_array($skills_checked) )
-		// {
-		// 	$user->skill()->sync($skills_checked);
-		// }
-		// else
-		// {
-		// 	// delete all user_skills
-		// }
-	
-		// return 'update_ok';
-		// }
-		// else
-		// {
-		// 	return 'else';
-					// }
-
-
-		
-		// substring: /uploads/*.jpg
-		// update profile
-		
 	}
 	public function editphotopage($user_id)
 	{
@@ -197,8 +139,6 @@ class ProfileController extends BaseController{
 
     		$s3 = AWS::get('s3');
 
-		
-		
 			// image upload path
 			$destinationPath = public_path().'/uploads';
 			// image url

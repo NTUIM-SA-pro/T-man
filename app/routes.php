@@ -41,11 +41,15 @@ Route::resource('work', 'WorkController',
 Route::group(array('before' => 'auth'), function() {
 	Route::resource('work', 'WorkController');
 
+	Route::post('/profile/{user_id}/uploadphoto','ProfileController@uploadphoto');
+
 	Route::resource('user', 'UserController');
 
 	Route::resource('profile', 'ProfileController');
 
 	Route::post('takeTask/{work_id}','WorkController@taketask');
 
-	Route::post('user/confirmtask','WorkController@confirmtask');
+	Route::post('/user/confirmtask','WorkController@confirmtask');
+
+	Route::get('/profile/{user_id}/editphoto', 'ProfileController@editphotopage');
 });

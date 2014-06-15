@@ -54,6 +54,7 @@
 					<label>請再輸入一次</label>
 					<input type="password" name="password-again" placeholder="請使用四位數以上的密碼">
 				</div>
+				<div class="ui error message" ></div>
 				<div class="field"  >
 					<div class="ui positive right labeled icon submit button ok" style="width:49%;">
 						OK

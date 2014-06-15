@@ -34,7 +34,25 @@
             inline: true,
             on: 'submit',
             onSuccess: function () {
-                $("#register_form").submit();
+                $.ajax({
+                url: 'register',
+                type: 'POST',
+                data: $('#register_form').serialize(),
+                success: function (message) {
+                    if (message != 'inject') 
+                    {
+                        window.location.href = "/profile/" + message;
+                    }
+                    else
+                    {
+                        $('#register_form .error.message').html('綽號請不要使用特殊字元(不用inject我們...)').show();
+                    }
+                },
+                error: function () {
+                    alert('wrong');
+                }
+            });
+
 
             }
         };
@@ -110,7 +128,65 @@
                     }
                     else
                     {
-                        $('.error.message').html(message).show();
+                        $('#login_form .error.message').html(message).show();
+                    }
+                },
+                error: function () {
+                    alert('wrong');
+                }
+            });
+        });
+
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.error.message.photo').hide();
+                    $('.photo_upload').addClass('load');
+                    $('.photo_upload').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".upload").change(function(){
+            readURL(this);
+        });
+
+
+        $('#modify_form .button.ok').click(function () {
+            $('#modify_form .error.message').html('');
+    
+
+            var user =  $('#modify_form').attr('user');
+            $.ajax({
+                url: '/profile/'+user,
+                type: 'put',
+                data: $('#modify_form').serialize(),
+                enctype: 'multipart/form-data',
+                success: function (message) {
+                    if (message == 'inject') 
+                    {
+                        $('#modify_form .error.message').html('綽號請不要使用特殊字元(不用inject我們...)').show();
+                    }
+                    // else if(message=='format_error')
+                    // {
+                    //     $('#modify_form .error.message').html('請上傳正確圖片格式!').show();
+                    // }
+                    // else if(message=='upload_error')
+                    // {
+                    //     $('#modify_form .error.message').html('上傳圖片發生未知錯誤!').show();
+                    // }
+                    else if(message=='upload_ok')
+                    {
+                        window.location.href = "/profile/" + user;
+                    }
+                    else
+                    {   
+                        console.log(message);
                     }
                 },
                 error: function () {

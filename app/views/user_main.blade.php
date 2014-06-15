@@ -6,7 +6,7 @@
 				<div class="column">
 					<div class="ui segment" style="border: 1px solid #ababab;">
 						<div class="field">
-							<img class="head-profile"src="/{{$user->profiles_img}}"/>
+							<img class="head-profile"src="{{$user->profiles_img}}"/>
 						</div>
 						
 						<div class="field">

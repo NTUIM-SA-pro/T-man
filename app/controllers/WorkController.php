@@ -110,7 +110,7 @@ class WorkController extends BaseController {
 
 		// 接案人: 未確認
 		$work_taker = Work::find($work_id);
-		$work_taker->user()->attach($id, array('status' => 3));
+		$work_taker->user()->attach($id, array('status' => 1));
 
 		return Redirect::to("/user/".$id."/tasktaken");
 	}

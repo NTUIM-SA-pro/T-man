@@ -66,18 +66,27 @@
 									<h3>敘述：</h3>
 									<p>{{$work->works_description}}</p>
 								</div>
-								<div class="task-choose">
-									<form action="takeTask/{{$work->wid}}" method="post">
-										<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
-									</form>
-								</div>
+								@if(Auth::id()===$work->works_uid)
+									<div class="task-choose">
+										<div class="ui small message" style="width:200px;text-align:center;">
+									  		<p>這案子是你po的！</p>
+										</div>
+									</div>
+								@else
+									<div class="task-choose">
+										<form action="takeTask/{{$work->wid}}" method="post">
+											<input type="submit" class="ui green button" style="width:200px;text-align:center;" value="接任務"/>
+										</form>
+									</div>
+								@endif
+								
 							</div>
 						</div>
 
 						<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work->duetime}}</div>
 						<div class="field">
 
-							<img class="head-profile" src="/{{$work->works_img}}"/>
+							<img class="head-profile" src="{{$work->works_img}}"/>
 						</div>
 
 						<div class="field">

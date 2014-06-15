@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="/jqueryui/css/smoothness/jquery-ui-1.10.4.custom.min.css">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <script src="/js/jquery.js"></script>
+<script src="/js/jquery.form.min.js"></script>
 <script src="/jqueryui/js/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="/css/semantic/packaged/javascript/semantic.js"></script>
 <script src="/js/jquery_coverflow/jquery.coverflow.js"></script>
@@ -158,7 +159,7 @@
 
 
         $('#modify_form .button.ok').click(function () {
-            $('#modify_form .error.message').html('');
+
     
 
             var user =  $('#modify_form').attr('user');
@@ -212,8 +213,63 @@
 
         $("#datepick").datepicker("option", "dateFormat", "yy-mm-dd");
 
-        $('#submit').click(function () {
-            $('.ui.fluid.form').submit();
+        $('#task_form .black.submit.button').click(function () {
+            if($('#task_form input[name="workName"').val()=='')
+            {
+                $('#task_form .error.message').html('請輸入工作名稱').show();
+                return false;
+            }
+            else if($('#task_form input[name="description"').val()=='')
+            {
+                $('#task_form .error.message').html('請輸入工作敘述').show();
+                return false;
+            }
+            else if($('#task_form input[name="reward"').val()=='')
+            {
+                $('#task_form .error.message').html('請輸入工作獎賞').show();
+                return false;
+            }
+            else if($('#task_form input[name="date"').val()=='')
+            {
+                $('#task_form .error.message').html('請輸入工作時間').show();
+                return false;
+            }
+            var formData = new FormData($('#task_form')[0]);
+            console.log('ok');
+            // $('#task_form .error.message').css('display','none');
+
+            $.ajax({
+                url: '/work',
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (msg) {
+                    if(msg=='inject')
+                    {
+                        $('#task_form .error.message').html('工作名稱或獎賞請不要使用特殊字元(不用inject我們...)').show();
+                    }
+                    else if(msg=='img_format')
+                    {
+                        $('#task_form .error.message').html('請使用正確的圖片格式！').show();   
+                    }
+                    else if(msg=='img_empty')
+                    {
+                        $('#task_form .error.message').html('請上傳圖片！').show();     
+                    }
+                    else
+                    {
+                        window.location.href = "/user/" + msg;
+                    }
+                },
+                error: function(){
+                    alert('wrong');
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            // return false;
         });
 
         $('.userList img').click(function () {

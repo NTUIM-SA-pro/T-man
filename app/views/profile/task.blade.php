@@ -13,16 +13,17 @@
   	<div class="ui clearing divider"></div>
 		<?php $i=0 ?>
 		@foreach($user_works as $work)
-		@if( $work->profiles_uid === Auth::id() )
-			@if($i%3==0)
-				<div class = "row">
-				<div class="three column stackable ui grid">
-			@endif 
+			@if( $work->profiles_uid === Auth::id() )
+				@if($i%3==0)
+					<div class = "row">
+					<div class="three column stackable ui grid">
+				@endif 
 
 			<div class="column">
 				<div class="ui segment">
 					<div class="ui dimmer">
 						<div class="content">
+						@if(Auth::id()===$user->profiles_uid)
 							<!-- 未被接案 -->
 							@if($work->status==0)
 								<div class="task-desc">
@@ -73,12 +74,17 @@
 									</div>
 								</div>
 							@endif
-
+						@else
+							<div class="task-desc">
+									<h3>敘述：</h3>
+									<p>{{$work->works_description}}</p>
+							</div>
+						@endif	
 						</div>
 					</div>
 					<div class="ui purple ribbon label" style="margin-bottom:5px;"> {{$work->duetime}}</div>
 					<div class="field">
-						<img class="head-profile" src="/{{$work->works_img}}"/>
+						<img class="head-profile" src="{{$work->works_img}}"/>
 					</div>
 					<div class="field">
 						<div class="task_host">任務名稱:{{$work->wname}}</div>
@@ -103,6 +109,7 @@
 					</div></div>
 				@endif
 				<?php $i++ ?>
+
 		@endif	
 		@endforeach
 	</div>

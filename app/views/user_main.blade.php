@@ -6,7 +6,7 @@
 				<div class="column">
 					<div class="ui segment" style="border: 1px solid #ababab;">
 						<div class="field">
-							<img class="head-profile"src="{{$user->profiles_img}}"/>
+							<img class="head-profile"src="/{{$user->profiles_img}}"/>
 						</div>
 						
 						<div class="field">
@@ -51,11 +51,11 @@
 								<a href="/profile/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#ff82b5;">{{$user->pname}}的資料</div></a>
 							</div>
 							<div class="field">
-								<a href="/user/{{$user->profiles_uid}}">
+								<a href="/work/{{$user->profiles_uid}}">
 								<div class="profile-btn" style="background-color:#00cbe9;">{{$user->pname}}接的案</div>
 							</div>
 							<div class="field">
-								<a href="/user/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#fd8a33;color:white;">{{$user->pname}}發的案</div></a>
+								<a href="/user/{{$user->profiles_uid}}"><div class="profile-btn" style="background-color:#fd8a33;">{{$user->pname}}發的案</div></a>
 							</div>
 						@endif
 					</div>

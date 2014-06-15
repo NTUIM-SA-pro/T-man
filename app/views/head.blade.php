@@ -13,4 +13,4 @@
 <script src="/js/jquery_coverflow/jquery.mousewheel.js"></script>
 <script src="/js/jquery_coverflow/jquery.touchSwipe.min.js"></script>
 <script src="/js/jquery_coverflow/reflection.js"></script>
-<script src="/js/script.min.js"></script>
+<script src="/js/script.js"></script>

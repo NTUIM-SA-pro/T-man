@@ -3,15 +3,15 @@
 	
 	<div id="preview-coverflow">
 
-		<?php $j = $work_counts ?>
+		<?php $j = 0 ?>
 		@foreach($work_covers as $work_cover)
 			<div>
-			@if( $j==1 )
+			@if( $j == 0 )
 				<div class="ui left corner red label">
 	    			<div class="text">New</div>
 	  			</div>
   			@endif
-  			<?php $j-- ?>
+  			<?php $j++ ?>
 				<img class="cover" src="{{$work_cover->works_img}}"/>
 			</div>
 		@endforeach

@@ -14,10 +14,6 @@ class HomeController extends BaseController {
 						->orderBy('created_at','desc')
 						->get();
 
-		$works_counts = DB::table('works')
-						->take(7)
-						->count();
-
 		// works join profiles
 		$users = DB::table('works')
 				->join('profiles','profiles.profiles_uid' ,'=', 'works.works_uid')
@@ -31,7 +27,6 @@ class HomeController extends BaseController {
 
 		return View::make('home')
 				->with( 'work_covers', $works_covers )
-				->with( 'work_counts', $works_counts )
 				->with( 'work_skills', $work_skills )
 				->with( 'works', Work::all() )
 				->with( 'skills', Skill::all() )

@@ -52,7 +52,7 @@ class WorkController extends BaseController {
 			}
 			unlink($url);
 	
-			$work_id = Work::insertGetId(
+			$work_insert = Work::create(
 				array(
 					'wname' => $workname, 
 					'works_description' => $description,
@@ -61,6 +61,8 @@ class WorkController extends BaseController {
 					'works_uid' => $user_id,
 					'dueTime' => $date
 				));
+			// get last work id
+			$work_id = Work::orderBy('wid','desc')->first(array('wid'));
 			// this work
 			$work = Work::find($work_id);
 			// insert into many to many: user_works

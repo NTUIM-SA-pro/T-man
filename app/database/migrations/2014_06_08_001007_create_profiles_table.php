@@ -24,7 +24,7 @@ class CreateProfilesTable extends Migration {
 			$table->primary(array('pname','profiles_uid'));
 			$table->string('profiles_img')
 				->nullable()
-				->default('uploads/empty_profile.jpg');
+				->default('/uploads/empty_profile.jpg');
 			$table->string('introduction')
 				->nullable()
 				->default();;

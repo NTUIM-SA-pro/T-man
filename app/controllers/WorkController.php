@@ -20,7 +20,7 @@ class WorkController extends BaseController {
 		$date = Input::get('date');
 		$skills_checked = Input::get('work_skill'); // skill checkbox
 
-		if (!preg_match("/^[a-zA-Z0-9]+$/", $workname)||!preg_match("/^[a-zA-Z0-9]+$/", $reward)) {
+		if (!preg_match("/^[\x7f-\xff|a-zA-Z0-9]+$/", $workname)||!preg_match("/^[\x7f-\xff|a-zA-Z0-9]+$/", $reward)) {
    			return 'inject';
 		}
 		if(!preg_match("/\d{4}-\d{2}-\d{2}/", $date)){

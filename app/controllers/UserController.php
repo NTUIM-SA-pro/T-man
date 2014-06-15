@@ -35,29 +35,36 @@ class UserController extends BaseController {
 		$nickname = Input::get('nickname');
 
 
-		if (!preg_match("#^[a-zA-Z0-9]+$#", $nickname)) {
+		if (!preg_match("/^[\x7f-\xff|a-zA-Z0-9]+$/", $nickname)) {
    			return 'inject';   
 		} 
 		
+		$find = DB::table('users')
+                    ->where('account', '=', $account);
+        if($find)
+        {
+        	return 'duplicate';
+        }
+        else
+        {
+			$user = User::create(
+	    		array('account' => $account, 'password' => $password)
+			);
 
-		$user = User::create(
-    		array('account' => $account, 'password' => $password)
-		);
+			$profile = new Profile;
+			$profile->pname = $nickname;
 
-		$profile = new Profile;
-		$profile->pname = $nickname;
+			$save = $user->profile()->save($profile);
 
-		$save = $user->profile()->save($profile);
-
-		if($save){
-			$auth = Auth::attempt(array(
-			'account' => $account,
-			'password' => $tempPassword),true);
-			if($auth){
-
-				return Auth::id();
+			if($save){
+				$auth = Auth::attempt(array(
+				'account' => $account,
+				'password' => $tempPassword),true);
+				if($auth){
+					return Auth::id();
+				}
+				else return 'error';
 			}
-			else return 'error';
 		}
 	}
 
@@ -79,6 +86,7 @@ class UserController extends BaseController {
 			return '帳號or密碼輸入錯誤';		
 		}	
 	}
+	
 
 	public function logout()
 	{

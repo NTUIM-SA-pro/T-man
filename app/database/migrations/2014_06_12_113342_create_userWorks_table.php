@@ -26,8 +26,6 @@ class CreateUserWorksTable extends Migration {
 				->references('wid')
 				->on('works')
 				->onDelete('cascade');
-			// primary key: user id + work id
-			$table->primary(array('user_works_uid', 'user_works_wid'));
 			/* user 和 work 之間的關係:
 			 * 0. 發案人, 未接
 			 * 1. 發案人, 未確認
@@ -38,6 +36,8 @@ class CreateUserWorksTable extends Migration {
 			$table->integer('status')
 				->nullable()
 				->default(0);
+			// primary key: user id + work id +status
+			$table->primary(array('user_works_uid', 'user_works_wid', 'status'));
             $table->timestamps();
         });
 	}

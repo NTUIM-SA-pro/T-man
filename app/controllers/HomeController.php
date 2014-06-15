@@ -99,6 +99,7 @@ class HomeController extends BaseController {
 
 		if( !Auth::check() ) 
 		{
+			// return Redirect::route('home.index');
 			return View::make('home')
 			->with('work_covers',$works_cover)
 			->with('works',$works)->with('msg','ok')

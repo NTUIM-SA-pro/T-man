@@ -29,7 +29,7 @@ Route::post('login', 'UserController@login');
 
 // 除了編輯個人頁面
 Route::resource('user', 'UserController',
-	array('except' => array('edit')));
+	array('except' => array('edit', 'update')));
 
 Route::resource('profile', 'ProfileController',
 	array('only' => array('show')));

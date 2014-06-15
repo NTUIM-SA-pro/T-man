@@ -30,15 +30,17 @@ Route::post('login', 'UserController@login');
 Route::resource('profile', 'ProfileController',
 	array('only' => array('show')));
 
-// 使用者登入後
-Route::group(array('before' => 'auth'), function() {
-
 // 除了編輯個人頁面
 Route::resource('user', 'UserController',
 	array('except' => array('edit', 'update')));
 
 Route::resource('work', 'WorkController',
 	array('only' => array('show')));
+
+// 使用者登入後
+Route::group(array('before' => 'auth'), function() {
+	Route::post('takeTask/{work_id}','WorkController@taketask');
+
 	Route::resource('work', 'WorkController');
 
 	Route::post('/profile/{user_id}/uploadphoto','ProfileController@uploadphoto');
@@ -46,8 +48,6 @@ Route::resource('work', 'WorkController',
 	Route::resource('user', 'UserController');
 
 	Route::resource('profile', 'ProfileController');
-
-	Route::post('takeTask/{work_id}','WorkController@taketask');
 
 	Route::post('/user/confirmtask','WorkController@confirmtask');
 

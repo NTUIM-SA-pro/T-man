@@ -107,12 +107,7 @@ class WorkController extends BaseController {
 				->with( 'work_skills', $work_skills );
 	}
 
-	/**
-	 * User take works.
-	 *
-	 * @param  int  $work_id
-	 * @return profile.tasktaken.blade.php
-	 */
+	
 	public function taketask($work_id)	
 	{
 		$id = Auth::id();

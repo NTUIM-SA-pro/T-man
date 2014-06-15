@@ -40,7 +40,7 @@ class UserController extends BaseController {
 		} 
 		
 		$find = DB::table('users')
-                    ->where('account', '=', $account);
+                    ->where('account', '=', $account)->get();
         if($find)
         {
         	return 'duplicate';
